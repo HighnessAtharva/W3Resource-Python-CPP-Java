@@ -112,10 +112,10 @@ def sql_table(c):
         print(row)
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 6. Write a Python program to insert a list of records into a given SQLite table.
@@ -151,11 +151,11 @@ rows = [(5001, 'James Hoog', 'New York', 0.15),
         (5004, 'Mc Lyon', 'Paris', 0.35),
         (5005, 'Paul Adam', 'Rome', 0.45)]
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn, rows)
+conn = sql_connection()
+sql_table(conn, rows)
 
-if (sqllite_conn):
-    sqllite_conn.close()
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 7. Write a Python program to insert values to a table from user input.
@@ -213,11 +213,11 @@ def sql_table(c):
     print(len(cursor.fetchall()))
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
+conn = sql_connection()
+sql_table(conn)
 
-if (sqllite_conn):
-    sqllite_conn.close()
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 9. Write a Python program to update a specific column value of a given table and select all rows before and after updating the said table.
@@ -261,10 +261,10 @@ def sql_table(c):
         print(row)
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 10. Write a Python program to update all the values of a specific column of a given SQLite table.
@@ -308,10 +308,10 @@ def sql_table(c):
         print(row)
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 11. Write a Python program to delete a specific row from a given SQLite table.
@@ -357,10 +357,10 @@ def sql_table(c):
         print(row)
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 12. Write a Python program to alter a given SQLite table.
@@ -389,10 +389,10 @@ def sql_table(c):
     c.commit()
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 13. Write a Python program to create a backup of a SQLite database.
