@@ -6,8 +6,7 @@ try:
     conn = sqlite3.connect('temp.db')
     c = conn.cursor()
     print("\nDatabase created and connected to SQLite.")
-    sqlite_select_Query = "select sqlite_version();"
-    c.execute(sqlite_select_Query)
+    c.execute("select sqlite_version();")
     record = c.fetchall()
     print("\nSQLite Database Version is: ", record)
     c.close()
@@ -24,8 +23,7 @@ try:
     conn = sqlite3.connect('temp.db')
     c = sqlite3.connect(':memory:')
     print("\nMemory database created and connected to SQLite.")
-    sqlite_select_Query = "select sqlite_version();"
-    c.execute(sqlite_select_Query)
+    c.execute("select sqlite_version();")
     print("\nSQLite Database Version is: ", sqlite3.version)
     c.close()
 except sqlite3.Error as error:
@@ -76,10 +74,10 @@ def sql_table(c):
     c.commit()
 
 
-sqllite_conn = sql_connection()
-sql_table(sqllite_conn)
-if (sqllite_conn):
-    sqllite_conn.close()
+conn = sql_connection()
+sql_table(conn)
+if (conn):
+    conn.close()
     print("\nThe SQLite connection is closed.")
 
 # 5. Write a Python program to create a table and insert some records in that table. Finally selects all rows from the table and display the records.
