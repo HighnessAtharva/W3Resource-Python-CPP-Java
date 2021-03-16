@@ -1,6 +1,7 @@
 """
 1. Write a Python program to print the NumPy version in your system.
 """
+import timeit
 import numpy as np
 print(np.__version__)
 
@@ -11,7 +12,6 @@ Expected Output:
 Original List: [12.23, 13.32, 100, 36.32] 
 One-dimensional numpy array: [ 12.23 13.32 100. 36.32]
 """
-import numpy as np
 my_arr = np.array([12.23, 13.32, 100, 36.32])
 print(my_arr)
 
@@ -22,8 +22,7 @@ Expected Output:
 [ 5 6 7] 
 [ 8 9 10]]
 """
-import numpy as np
-my_arr = np.arange(2, 11).reshape(3,3)
+my_arr = np.arange(2, 11).reshape(3, 3)
 print(my_arr)
 
 """
@@ -33,7 +32,6 @@ value to 11.
 Update sixth value to 11 
 [ 0. 0. 0. 0. 0. 0. 11. 0. 0. 0.]
 """
-import numpy as np
 my_arr = np.zeros(10)
 print(my_arr)
 my_arr[6] = 11
@@ -44,8 +42,7 @@ print(my_arr)
 Expected Output:
 [12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37]
 """
-import numpy as np
-my_arr = np.arange(12,39)
+my_arr = np.arange(12, 39)
 print(my_arr)
 
 """
@@ -55,7 +52,6 @@ Original array:
 Reverse array: 
 [37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12]
 """
-import numpy as np
 
 my_arr = np.arange(12, 38)
 print(my_arr[::-1])
@@ -68,7 +64,6 @@ Original array
 Array converted to a float type: 
 [ 1. 2. 3. 4.]
 """
-import numpy as np
 my_arr = np.array([1, 2, 3, 4], dtype=float)
 print(my_arr)
 my_arr = np.asfarray([1, 2, 3, 4])
@@ -90,8 +85,7 @@ Original array:
 [ 1. 0. 0. 0. 1.] 
 [ 1. 1. 1. 1. 1.]]
 """
-import numpy as np
-my_arr = np.ones((5,5))
+my_arr = np.ones((5, 5))
 print(my_arr)
 my_arr[1:4, 1:4] = 0
 print(my_arr)
@@ -110,8 +104,7 @@ Original array:
 [ 0. 1. 1. 1. 0.] 
 [ 0. 0. 0. 0. 0.]]
 """
-import numpy as np
-my_arr = np.ones((3,3))
+my_arr = np.ones((3, 3))
 my_arr = np.pad(my_arr, 1, 'constant', constant_values=0)
 print(my_arr)
 
@@ -128,9 +121,8 @@ Checkerboard pattern:
 [0 1 0 1 0 1 0 1] 
 [1 0 1 0 1 0 1 0]]
 """
-import numpy as np
 
-my_arr = np.zeros((8,8))
+my_arr = np.zeros((8, 8))
 my_arr[::2, 1::2] = 1
 my_arr[1::2, ::2] = 1
 print(my_arr)
@@ -143,10 +135,9 @@ Tuple to array:
 [[8 4 6] 
 [1 2 3]]
 """
-import numpy as np
-my_arr = np.array([1,2,3,4,5,6,7,8])
+my_arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
 print(my_arr)
-my_arr2 = np.array([(8,4,6),(1,2,3)])
+my_arr2 = np.array([(8, 4, 6), (1, 2, 3)])
 print(my_arr2)
 
 """
@@ -158,9 +149,8 @@ After append values to the end of the array:
 [10 20 30 40 50 60 70 80 90]
 """
 
-import numpy as np
 my_arr = np.array([10, 20, 30])
-new_arr = np.append(my_arr, [40, 50 , 60, 70, 80, 90])
+new_arr = np.append(my_arr, [40, 50, 60, 70, 80, 90])
 print(new_arr)
 
 """
@@ -174,13 +164,12 @@ Expected Output:
 [6 6 6]]
 """
 
-import numpy as np
 
-my_arr = np.empty((3,3))
+my_arr = np.empty((3, 3))
 print(my_arr)
-my_arr = np.array([6]*9).reshape((3,3))
+my_arr = np.array([6]*9).reshape((3, 3))
 print(my_arr)
-my_arr = np.full((3,3), 6)
+my_arr = np.full((3, 3), 6)
 print(my_arr)
 
 """
@@ -194,9 +183,8 @@ Values in Centigrade degrees:
 [-17.77777778 -11.11111111 7.33888889 1.11111111 37.72777778]
 """
 
-import numpy as np
 
-celsius = np.array([0,12,45.21,34,99.91])
+celsius = np.array([0, 12, 45.21, 34, 99.91])
 print(celsius)
 fahrenheit = celsius*9/5 + 32
 print(fahrenheit)
@@ -209,13 +197,12 @@ Size of the array: 3
 Length of one array element in bytes: 8 
 Total bytes consumed by the elements of the array: 24 
 """
-import numpy as np
 
-my_arr = np.full((3,3), 5)
+my_arr = np.full((3, 3), 5)
 print(my_arr)
 print('Size of the array (number of elements):', my_arr.size)
-print('Length of one array element in bytes:', my_arr.itemsize )
-print('Total bytes consumed by the elements of the array:', my_arr.nbytes )
+print('Length of one array element in bytes:', my_arr.itemsize)
+print('Total bytes consumed by the elements of the array:', my_arr.nbytes)
 
 """
 17. Write a Python program to test whether each element of a 1-D array is also
@@ -226,7 +213,6 @@ Array2: [0, 40]
 Compare each element of array1 and array2 
 [ True False False True False]
 """
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60])
 my_arr2 = np.array([0, 40])
@@ -242,7 +228,6 @@ Array2: [10, 30, 40]
 Common values between two arrays:
 [10 40]
 """
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60])
 my_arr2 = np.array([10, 30, 40])
@@ -264,11 +249,10 @@ Unique elements of the above array:
 [1 2 3]
 """
 
-import numpy as np
 
 my_arr = np.array([10, 10, 20, 20, 30, 30])
 print(np.unique(my_arr))
-my_arr = np.array([[1, 1],[2, 3]])
+my_arr = np.array([[1, 1], [2, 3]])
 print(np.unique(my_arr))
 
 """
@@ -281,7 +265,6 @@ Set difference between two arrays:
 [ 0 20 60 80]
 """
 
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60, 80])
 my_arr2 = np.array([10, 30, 40, 50, 70, 90])
@@ -298,7 +281,6 @@ Unique values that are in only one (not both) of the input arrays:
 [ 0 20 30 50 60 70 80]
 """
 
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60, 80])
 my_arr2 = np.array([10, 30, 40, 50, 70, 90])
@@ -312,7 +294,6 @@ Array2: [10, 30, 40, 50, 70]
 Unique sorted array of values that are in either of the two input arrays:
 [ 0 10 20 30 40 50 60 70 80]
 """
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60, 80])
 my_arr2 = np.array([10, 30, 40, 50, 70, 90])
@@ -323,7 +304,6 @@ print(np.union1d(my_arr, my_arr2))
 23. Write a Python program to test if all elements in an array evaluate to True.
 Note: 0 evaluates to False in python.
 """
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60, 80])
 my_arr2 = np.array([10, 30, 40, 50, 70, 90])
@@ -336,7 +316,6 @@ print(np.all(my_arr2))
 evaluates to True. 
 Note: 0 evaluates to False in python.
 """
-import numpy as np
 
 my_arr = np.array([0, 10, 20, 40, 60, 80])
 my_arr2 = np.array([10, 30, 40, 50, 70, 90])
@@ -356,16 +335,15 @@ Repeating 3 times
 [1 2 3 4 1 2 3 4 1 2 3 4]
 """
 
-import numpy as np
 
 my_arr = np.array([1, 2, 3, 4])
 
 # solution 1
-print(np.concatenate((my_arr,my_arr)))
-print(np.concatenate((my_arr,my_arr,my_arr)))
+print(np.concatenate((my_arr, my_arr)))
+print(np.concatenate((my_arr, my_arr, my_arr)))
 # solution 2
-print(np.tile(my_arr,2))
-print(np.tile(my_arr,3))
+print(np.tile(my_arr, 2))
+print(np.tile(my_arr, 3))
 
 """
 26. Write a Python program to repeat elements of an array.
@@ -373,10 +351,9 @@ Expected Output:
 [3 3 3 3] 
 [1 1 2 2 3 3 4 4]
 """
-import numpy as np
 
 print(np.repeat(3, 4))
-print(np.repeat([1,2,3,4], 2))
+print(np.repeat([1, 2, 3, 4], 2))
 
 """
 27. Write a Python program to find the indices of the maximum and minimum values
@@ -385,9 +362,8 @@ Original array: [1 2 3 4 5 6]
 Maximum Values: 5 
 Minimum Values: 0
 """
-import numpy as np
 
-my_arr = np.array([1,2,3,4,5])
+my_arr = np.array([1, 2, 3, 4, 5])
 print('Maximum Values:', np.argmax(my_arr))
 print('Maximum Values:', np.argmin(my_arr))
 
@@ -404,14 +380,13 @@ a < b
 a <= b 
 [ True True]
 """
-import numpy as np
 
-arr_a = np.array([1,2])
-arr_b = np.array([4,2])
-print(np.greater(arr_a,arr_b))
-print(np.greater_equal(arr_a,arr_b))
-print(np.less(arr_a,arr_b))
-print(np.less_equal(arr_a,arr_b))
+arr_a = np.array([1, 2])
+arr_b = np.array([4, 2])
+print(np.greater(arr_a, arr_b))
+print(np.greater_equal(arr_a, arr_b))
+print(np.less(arr_a, arr_b))
+print(np.less_equal(arr_a, arr_b))
 
 """
 29. Write a Python program to sort along the first, last axis of an array.
@@ -427,14 +402,13 @@ Sort along the last axis:
 [[1 2] 
 [4 6]]
 """
-import numpy as np
 
-my_arr = np.array([[4,6],[2,1]])
+my_arr = np.array([[4, 6], [2, 1]])
 print('Original array:\n', my_arr)
 my_arr.sort(axis=0)
-print('Sort along the first axis:\n',my_arr)
+print('Sort along the first axis:\n', my_arr)
 my_arr.sort()
-print('Sort along the last axis:\n',my_arr)
+print('Sort along the last axis:\n', my_arr)
 
 """
 30. Write a Python program to sort pairs of first name and last name return their
@@ -445,14 +419,13 @@ Expected Output:
 [0 1 2 3 4]
 [0 3 2 4 1]
 """
-import numpy as np
 
 first_names = ('Betsey', 'Shelley', 'Lanell', 'Genesis', 'Margery')
-surnames =    ('Battle', 'Brien', 'Plotner', 'Stahl', 'Woolum')
+surnames = ('Battle', 'Brien', 'Plotner', 'Stahl', 'Woolum')
 ind = np.lexsort((first_names, surnames))
-print('by last name:\n',ind)
+print('by last name:\n', ind)
 ind = np.lexsort((surnames, first_names))
-print('by first name:\n',ind)
+print('by first name:\n', ind)
 
 """
 31. Write a Python program to get the values and indices of the elements that are
@@ -463,24 +436,22 @@ Original array:
 Values bigger than 10 = [20 20 30 40]
 Their indices are (array([0, 1, 1, 1]), array([2, 0, 1, 2]))
 """
-import numpy as np
 
-my_arr = np.array([0, 10, 20, 20, 30, 40]).reshape((2,3))
+my_arr = np.array([0, 10, 20, 20, 30, 40]).reshape((2, 3))
 print('original array:\n', my_arr)
 # solution 1
-print(my_arr[my_arr>10])
-print(np.nonzero(my_arr>10))
+print(my_arr[my_arr > 10])
+print(np.nonzero(my_arr > 10))
 # solution 2
-print(my_arr[np.where(my_arr>10)]) 
-print(np.nonzero(my_arr>10))
+print(my_arr[np.where(my_arr > 10)])
+print(np.nonzero(my_arr > 10))
 
 
 """
 32. Write a Python program to save a NumPy array to a text file.
 """
-import numpy as np
 
-my_arr = np.array([[2,3,4],[5,6,7]])
+my_arr = np.array([[2, 3, 4], [5, 6, 7]])
 np.savetxt('myarray.txt', my_arr, fmt='%.2f', delimiter=',')
 
 """
@@ -488,9 +459,8 @@ np.savetxt('myarray.txt', my_arr, fmt='%.2f', delimiter=',')
 Expected Output:
 128 bytes
 """
-import numpy as np
 
-my_arr = np.array([[2,3,4],[5,6,7]])
+my_arr = np.array([[2, 3, 4], [5, 6, 7]])
 # solution 1
 print(my_arr.nbytes)
 # solution 2
@@ -512,12 +482,11 @@ Default type is float
 Type changes to int
 [[1 1]]
 """
-import numpy as np
 
-print(np.zeros((3,3), dtype=int))
-print(np.ones((3,3), dtype=int))
-print(np.zeros((3,3)))
-print(np.ones((3,3)))
+print(np.zeros((3, 3), dtype=int))
+print(np.ones((3, 3), dtype=int))
+print(np.zeros((3, 3)))
+print(np.ones((3, 3)))
 
 """
 35. Write a Python program to change the dimension of an array. 
@@ -534,12 +503,11 @@ Change array shape to (3, 3) -> 3 rows and 3 columns
 [7 8 9]]
 """
 
-import numpy as np
 
 my_arr = np.ones((9,))
 print(my_arr)
 print(my_arr.shape)
-my_arr = my_arr.reshape((3,3))
+my_arr = my_arr.reshape((3, 3))
 print(my_arr)
 print(my_arr.shape)
 
@@ -551,9 +519,8 @@ Original array:
 New flattened array: 
 [10 20 30 20 40 50]
 """
-import numpy as np
 
-my_arr = np.array([[10,20,30],[20,40,50]])
+my_arr = np.array([[10, 20, 30], [20, 40, 50]])
 print(my_arr, '\n', my_arr.shape)
 print(np.ravel(my_arr), '\n', np.ravel(my_arr).shape)
 
@@ -565,9 +532,8 @@ Expected Output:
 (2, 3)
 int32
 """
-import numpy as np
 
-my_arr = np.ones((2,3), dtype=np.int32)
+my_arr = np.ones((2, 3), dtype=np.int32)
 print(my_arr)
 print(my_arr.shape)
 print(my_arr.dtype)
@@ -585,11 +551,10 @@ Reshape 2x3:
 [[1 2 3] 
 [4 5 6]]
 """
-import numpy as np
 
-my_arr = np.array(([1,2],[3,4],[5,6]))
+my_arr = np.array(([1, 2], [3, 4], [5, 6]))
 print(my_arr)
-my_arr.shape = (2,3)
+my_arr.shape = (2, 3)
 print(my_arr)
 
 """
@@ -602,9 +567,8 @@ New Type: float64
 [[ 2. 4. 6.] 
 [ 6. 8. 10.]]
 """
-import numpy as np
 
-my_arr = np.array([[2,4,6],[6,8,10]])
+my_arr = np.array([[2, 4, 6], [6, 8, 10]])
 print(my_arr, '\n', my_arr.dtype)
 new_arr = my_arr.astype('float64')
 print(new_arr, '\n', new_arr.dtype)
@@ -616,9 +580,8 @@ Expected Output:
 [2 2 2 2 2]
 [2 2 2 2 2]]
 """
-import numpy as np
 
-my_arr = np.full((3,5),2)
+my_arr = np.full((3, 5), 2)
 print(my_arr)
 
 """
@@ -628,7 +591,6 @@ Sample array: x = np.arange(4, dtype=np.int64)
 Expected Output:
 [10 10 10 10]
 """
-import numpy as np
 
 x = np.arange(4, dtype=np.int64)
 print(x)
@@ -643,7 +605,6 @@ Expected Output:
 [ 0. 1. 0.] 
 [ 0. 0. 1.]]
 """
-import numpy as np
 
 my_arr = np.eye(3)
 print(my_arr)
@@ -659,9 +620,8 @@ Expected Output:
 [0 0 6 0] 
 [0 0 0 8]]
 """
-import numpy as np
 
-my_arr = np.diag([4,5,6,8])
+my_arr = np.diag([4, 5, 6, 8])
 print(my_arr)
 
 """
@@ -675,10 +635,9 @@ Array from 10 to 50:
 [10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 
 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49]
 """
-import numpy as np
 
 my_arr = np.arange(50, dtype=int)
-my_arr2 = np.arange(10,51, dtype=int)
+my_arr2 = np.arange(10, 51, dtype=int)
 print(my_arr)
 print(my_arr2)
 
@@ -692,7 +651,6 @@ Expected Output:
 4.98275862 5.12068966 5.25862069 5.39655172 5.53448276 5.67241379
 5.81034483 5.94827586 6.0862069 6.22413793 6.36206897 6.5 ]
 """
-import numpy as np
 
 my_arr = np.linspace(2.5, 6.5, num=30, endpoint=True)
 print(my_arr)
@@ -707,9 +665,7 @@ Expected Output:
 6309.5734448 8912.50938134 12589.25411794 17782.79410039
 25118.8643151 35481.33892336 50118.72336273 70794.57843841]
 """
-import numpy as np
-
-my_arr = np.logspace(2.,5.,num=20, endpoint=False)
+my_arr = np.logspace(2., 5., num=20, endpoint=False)
 print(my_arr)
 
 """
@@ -720,9 +676,7 @@ Expected Output:
 [ 1. 1. 0.]
 [ 1. 1. 1.]]
 """
-import numpy as np
-
-my_arr = np.tri(4,3,-1)
+my_arr = np.tri(4, 3, -1)
 print(my_arr)
 
 """
@@ -733,10 +687,9 @@ Expected Output:
 [ 0 9 10] 
 [ 0 0 13]]
 """
-import numpy as np
 
-my_arr = np.arange(2,14).reshape(4,3)
-print(np.triu(my_arr,-1))
+my_arr = np.arange(2, 14).reshape(4, 3)
+print(np.triu(my_arr, -1))
 
 """
 49. Write a Python program to collapse a 3-D array into one dimension array.
@@ -748,10 +701,9 @@ Expected Output:
 One dimension array: 
 [ 1. 0. 0. 0. 1. 0. 0. 0. 1.]
 """
-import numpy as np
 
-my_arr = np.eye(3)
-print(my_arr.ravel())
+my_arr = np.eye(3).ravel()
+print(my_arr)
 
 """
 50. Write a Python program to find the 4th element of a specified array.
@@ -761,9 +713,8 @@ Expected Output:
 Forth e1ement of the array:
 6
 """
-import numpy as np
 
-my_arr = np.array([[2,4,6],[6,8,10]])
+my_arr = np.array([[2, 4, 6], [6, 8, 10]])
 print(my_arr.flat[3])
 
 """
@@ -774,9 +725,8 @@ Expected Output:
 [2] 
 [3]]
 """
-import numpy as np
-my_arr = np.array([[1,2,3]])
-print(np.swapaxes(my_arr,0,1))
+my_arr = np.array([[1, 2, 3]])
+print(np.swapaxes(my_arr, 0, 1))
 
 """
 52. Write a Python program to move axes of an array to new positions. Other axes
@@ -785,10 +735,9 @@ Expected Output:
 (3, 4, 2) 
 (4, 2, 3)
 """
-import numpy as np
 
-my_arr = np.array([[1,2,3],[4,5,6],[7,8,9]])
-print('original:\n',my_arr)
+my_arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print('original:\n', my_arr)
 print('transposed:')
 # solution 1
 print(np.moveaxis(my_arr, 0, 1))
@@ -807,11 +756,10 @@ Move the following 3rd array axes to first position.
 Sample Expected Output:
 (2, 5, 3, 4)
 """
-import numpy as np
 # This function continues to be supported for backward compatibility,
 # but you should prefer moveaxis. The moveaxis function was added in NumPy 1.11.
 
-my_arr = np.zeros((2,3,4,5))
+my_arr = np.zeros((2, 3, 4, 5))
 print(my_arr.shape)
 print(np.rollaxis(my_arr, 3, 1).shape)
 print(np.moveaxis(my_arr, 3, 1).shape)
@@ -825,9 +773,8 @@ Expected Output:
 [ 3. 4. 5.]]
 [array([1]), array([3, 4])]
 """
-import numpy as np
 
-x= 12.
+x = 12.
 print(np.atleast_1d(x))
 x = [[0., 1., 2.], [3., 4., 5.]]
 print(np.atleast_1d(x))
@@ -850,9 +797,8 @@ View inputs as arrays with at least three dimensions:
 [ 2.]]]
 """
 
-import numpy as np
 
-x= 10
+x = 10
 print(np.atleast_2d(x))
 x = [[0., 1.], [2., 3.]]
 print(np.atleast_2d(x))
@@ -867,9 +813,8 @@ print(np.atleast_3d(x))
 Expected Output:
 New shape will be will be (3, 1, 4).
 """
-import numpy as np
 
-x = np.arange(12).reshape((3,4))
+x = np.arange(12).reshape((3, 4))
 print(x)
 print(np.expand_dims(x, 1).shape)
 
@@ -879,9 +824,8 @@ shape.
 Specified shape: (3, 1, 4)
 Expected Output: (3, 4)
 """
-import numpy as np
 
-x = np.zeros(12).reshape((3,1,4))
+x = np.zeros(12).reshape((3, 1, 4))
 print(x)
 print(np.squeeze(x))
 print(np.squeeze(x).shape)
@@ -894,11 +838,10 @@ Expected Output:
 [[ 0 1 3 0 2 4]
 [ 5 7 9 6 8 10]]
 """
-import numpy as np
 
 x = np.array([[0, 1, 3], [5, 7, 9]])
 y = np.array([[0, 2, 4], [6, 8, 10]])
-print(np.concatenate((x,y), 1))
+print(np.concatenate((x, y), 1))
 
 """
 59. Write a Python program to convert 1-D arrays as columns into a 2-D array.
@@ -908,11 +851,10 @@ Expected Output:
 [20 50]
 [30 60]]
 """
-import numpy as np
 
-x = np.array((10,20,30))
-y = np.array((40,50,60))
-print(np.column_stack((x,y)))
+x = np.array((10, 20, 30))
+y = np.array((40, 50, 60))
+print(np.column_stack((x, y)))
 
 """
 60. Write a Python program to convert (in sequence depth wise (along third axis)) two 1-D arrays into a 2-D array. Go to the editor
@@ -922,11 +864,10 @@ Expected Output:
 [[20 50]]
 [[30 60]]]
 """
-import numpy as np
 
-x = np.array((10,20,30))
-y = np.array((40,50,60))
-print(np.dstack((x,y)))
+x = np.array((10, 20, 30))
+y = np.array((40, 50, 60))
+print(np.dstack((x, y)))
 
 """
 61. Write a Python program to split an array of 14 elements into 3 arrays, each of
@@ -936,12 +877,11 @@ Original array: [ 1 2 3 4 5 6 7 8 9 10 11 12 13 14]
 After splitting: 
 [array([1, 2]), array([3, 4, 5, 6]), array([ 7, 8, 9, 10, 11, 12, 13, 14])]
 """
-import numpy as np
 
-x = np.arange(1,15)
+x = np.arange(1, 15)
 print(x)
-print(np.array_split(x,[2,6]))
-print(np.split(x,[2,6]))
+print(np.array_split(x, [2, 6]))
+print(np.split(x, [2, 6]))
 
 """
 62. Write a Python program to split an array of shape 4x4 it into two arrays
@@ -960,9 +900,8 @@ Expected Output:
 [10, 11], 
 [14, 15]]), array([], shape=(4, 0), dtype=int64)]
 """
-import numpy as np
 
-x = np.arange(16).reshape(4,4)
+x = np.arange(16).reshape(4, 4)
 print(x)
 print(np.split(x, 2, axis=-1))
 print(np.hsplit(x, 2))
@@ -976,9 +915,8 @@ Original array:
 Number of non zero elements in the above array: 
 5
 """
-import numpy as np
 
-x = np.array([[0,10,20],[20,30,40]])
+x = np.array([[0, 10, 20], [20, 30, 40]])
 print(np.count_nonzero(x))
 
 """
@@ -997,9 +935,8 @@ Row values ranging from 0 to 4.
 [ 0. 1. 2. 3. 4.]
 [ 0. 1. 2. 3. 4.]]
 """
-import numpy as np
 
-x = np.zeros((5,5))
+x = np.zeros((5, 5))
 print(x)
 x += np.arange(5)
 print(x)
@@ -1016,7 +953,6 @@ True
 False 
 True
 """
-import numpy as np
 
 x = np.array([[1.12, 2.0, 3.45], [2.33, 5.12, 6.0]])
 print(1.12 in x)
@@ -1029,7 +965,6 @@ Expected Output:
 [ 0.09090909 0.18181818 0.27272727 0.36363636 0.45454545 0.54545455 
 0.63636364 0.72727273 0.81818182 0.90909091]
 """
-import numpy as np
 
 x = np.linspace(0.09, 1, num=10, endpoint=False)
 print(x)
@@ -1041,7 +976,6 @@ Test the array is read-only or not:
 Try to change the value of the first element:
 ValueError: assignment destination is read-only
 """
-import numpy as np
 
 x = np.arange(5)
 print(x)
@@ -1057,10 +991,9 @@ Expected Output:
 55 57 60 63 65 66 69 70 72 75 78 80 81 84 85 87 90 93 95 96 99]
 2318
 """
-import numpy as np
 
 x = np.arange(100)
-y = x[np.where((x%5 == 0)|(x%3 == 0))]
+y = x[np.where((x % 5 == 0) | (x % 3 == 0))]
 print(y)
 print(y.sum())
 
@@ -1075,7 +1008,6 @@ Expected Output:
 984. 985. 986. 987. 988. 989. 990. 991. 992. 993. 994. 995. 
 996. 997. 998. 999.]
 """
-import numpy as np
 
 print(np.arange(1000.))
 
@@ -1084,12 +1016,11 @@ print(np.arange(1000.))
 Expected Output:
 0 1 2 3 4 5 6 7 8 9 10 11
 """
-import numpy as np
 
 x = np.arange(12)
 
 for i in x.flatten():
-    print(i, end= ' ')
+    print(i, end=' ')
 print('\n')
 
 """
@@ -1099,12 +1030,11 @@ Expected Output:
 Elements of the array in Fortan array: 
 0 4 8 1 5 9 2 6 10 3 7 11
 """
-import numpy as np
 
 x = np.arange(12)
 
 for i in x.flatten(order='F'):
-    print(i, end= ' ')
+    print(i, end=' ')
 print('\n')
 
 """
@@ -1140,9 +1070,8 @@ Expected Output:
 [1 1 1 1 1] 
 [1 1 1 1 1]]]
 """
-import numpy as np
 
-print(np.ones((5,5,5)))
+print(np.ones((5, 5, 5)))
 
 """
 73. Write a Python program to create an array of (3, 4) shape, multiply every
@@ -1158,9 +1087,8 @@ New array elements:
 [24 27 30 33]]
 """
 
-import numpy as np
 
-x = np.arange(12).reshape(3,4)
+x = np.arange(12).reshape(3, 4)
 y = x*3
 print(x)
 print(y)
@@ -1183,15 +1111,14 @@ Two dimensional array:
 2:6
 3:7
 """
-import numpy as np
 
-x = np.array([0,1,2,3])
-y = np.array([[0,1,2,3],[4,5,6,7]])
+x = np.array([0, 1, 2, 3])
+y = np.array([[0, 1, 2, 3], [4, 5, 6, 7]])
 print(x)
 print(x.shape)
 print(y)
 print(y.shape)
-for x,y in np.nditer([x,y]):
+for x, y in np.nditer([x, y]):
     print(x, ':', y)
 
 """
@@ -1201,11 +1128,11 @@ Expected Output:
 [(1, 2., b'Albert Einstein') (2, 2., b'Edmond Halley')
 (3, 3., b'Gertrude B. Elion')]
 """
-import numpy as np
 
 x = np.zeros((3,), dtype=('i4,f8,U25'))
 print(x)
-x[...] = [(1, 2., b'Albert Einstein'),(2, 2., b'Edmond Halley'),(3, 3., b'Gertrude B. Elion')]
+x[...] = [(1, 2., b'Albert Einstein'), (2, 2., b'Edmond Halley'),
+          (3, 3., b'Gertrude B. Elion')]
 print(x)
 
 """
@@ -1215,26 +1142,28 @@ Expected Output:
 [ 1 8 27]
 """
 
-import numpy as np
 
 # my solution
-x = np.arange(1,4)
+x = np.arange(1, 4)
 print(x)
 for i in np.nditer(x, op_flags=['readwrite']):
     i[...] = i**3
 print(x)
 
 # solution from scipy docs
+
+
 def cube(a):
     it = np.nditer([a, None])
     for x, y in it:
-      y[...] = x*x*x
+        y[...] = x*x*x
     return it.operands[1]
 
-print(cube([1,2,3]))
+
+print(cube([1, 2, 3]))
 
 # short solution
-x = np.arange(1,4)
+x = np.arange(1, 4)
 print(x*x*x)
 
 """
@@ -1250,17 +1179,16 @@ Original array elements:
 [ 2 6 10]
 [ 3 7 11]
 """
-import numpy as np
 
 # solution with hsplit
-x = np.arange(12).reshape(3,4)
+x = np.arange(12).reshape(3, 4)
 print(x)
-y = np.hsplit(x,4)
+y = np.hsplit(x, 4)
 for ary in y:
     print(ary.T.squeeze())
 
 # solution with nditer
-x = np.arange(12).reshape(3,4)
+x = np.arange(12).reshape(3, 4)
 print(x)
 for row in np.nditer(x, flags=['external_loop'], order='F'):
     print(row)
@@ -1273,11 +1201,10 @@ Expected Output:
 (2, 'Green', 15.0)
 (3, 'White', 20.0)
 """
-import numpy as np
 
 # dtype=[('id', 'i4'), ('color', 'U10'), ('float', 'f8')]
-x = np.core.records.fromarrays([[1,2,3,4], ['Red', 'Green', 'White', 'Orange'],
-                                [12.20,15,20,40]], names=['id', 'color', 'number'])
+x = np.core.records.fromarrays([[1, 2, 3, 4], ['Red', 'Green', 'White', 'Orange'],
+                                [12.20, 15, 20, 40]], names=['id', 'color', 'number'])
 print(x)
 print(x.shape)
 print(x.dtype)
@@ -1295,9 +1222,8 @@ Original array elements:
 Array to list: 
 [[0, 1], [2, 3], [4, 5]]
 """
-import numpy as np
 
-x = np.arange(6).reshape(3,2)
+x = np.arange(6).reshape(3, 2)
 print(x)
 l = x.tolist()
 print(l)
@@ -1317,9 +1243,8 @@ Second column:
 Third column:
 [4 5]
 """
-import numpy as np
 
-x = np.arange(6).reshape(3,2)
+x = np.arange(6).reshape(3, 2)
 print(x)
 for col in x:
     print(col)
@@ -1336,9 +1261,8 @@ Conver float values to intger values:
 [ 2 7] 
 [25 36]]
 """
-import numpy as np
 
-x = np.array([[ 12., 12.51],[ 2.34 ,7.98],[ 25.23 ,36.5 ]])
+x = np.array([[12., 12.51], [2.34, 7.98], [25.23, 36.5]])
 print(x)
 print(x.dtype)
 y = x.astype(int)
@@ -1355,9 +1279,8 @@ Original array elements:
 Print array values with precision 3: 
 [ 0.262 0.528 0.572 0.593 0.783 0.697 0.354 0.995 0.069 0.547]
 """
-import numpy as np
 
-x = np.array([ 0.26153123, 0.52760141, 0.5718299, 0.5927067])
+x = np.array([0.26153123, 0.52760141, 0.5718299, 0.5927067])
 print(x)
 
 np.set_printoptions(precision=3)
@@ -1375,9 +1298,8 @@ Original array elements:
 Print array values with precision 3: 
 [ 0. 1.6 1200. 0.235]
 """
-import numpy as np
 
-x = np.array([ 1.60000000e-10,1.60000000e+00,1.20000000e+03,2.35000000e-01])
+x = np.array([1.60000000e-10, 1.60000000e+00, 1.20000000e+03, 2.35000000e-01])
 print(x)
 np.set_printoptions(precision=3, suppress=True)
 print(x)
@@ -1387,11 +1309,12 @@ print(x)
 Expected Output:
 [0 1 2 3 4 5 6 7 8 9]
 """
-import numpy as np
+
 
 def func(i):
     for _ in range(i):
         yield _
+
 
 x = np.fromiter(func(10,), dtype=int)
 print(x)
@@ -1402,25 +1325,23 @@ Expected Output:
 [[ 10 20 30 100]
 [ 40 50 60 200]]
 """
-import numpy as np
 
-x = np.arange(1,7).reshape(2,3)*10
+x = np.arange(1, 7).reshape(2, 3)*10
 print(x, '\n', x.shape)
-y = np.array([100,200]).reshape(2,1)
+y = np.array([100, 200]).reshape(2, 1)
 print(y, '\n', y.shape)
 
-import timeit
 
 # with hstack
-z = np.hstack((x,y))
+z = np.hstack((x, y))
 print(z, '\n', z.shape)
 
 # with concatenate
-z = np.concatenate((x,y), axis=1)
+z = np.concatenate((x, y), axis=1)
 print(z, '\n', z.shape)
 
 # with column_stack
-z = np.column_stack((x,y))
+z = np.column_stack((x, y))
 print(z, '\n', z.shape)
 
 # with append
@@ -1444,14 +1365,13 @@ Replace all elements of the said array with .5 which are greater than. 5
 [ 0.5 0.5 0.38213418] 
 [ 0.5 0.34528799 0.1563123 ]]
 """
-import numpy as np
 
-x = np.array([[ 0.42436315, 0.48558583, 0.32924763],
-              [ 0.7439979, 0.58220701, 0.38213418],
-              [ 0.5097581, 0.34528799, 0.1563123 ]])
+x = np.array([[0.42436315, 0.48558583, 0.32924763],
+              [0.7439979, 0.58220701, 0.38213418],
+              [0.5097581, 0.34528799, 0.1563123]])
 
-x[x>0.5] = 0.5
-print(x)             
+x[x > 0.5] = 0.5
+print(x)
 
 """
 89. Write a Python program to remove specific elements in a numpy array.
@@ -1461,22 +1381,20 @@ Original array:
 Delete first, fourth and fifth elements:
 [ 20 30 60 70 80 90 100]
 """
-import numpy as np
 
-x = np.arange(10,101,10)
+x = np.arange(10, 101, 10)
 print(x)
-x = np.delete(x, [0,3,4], None)
+x = np.delete(x, [0, 3, 4], None)
 print(x)
 
 """
 90. Write a Python program to remove the negative values in a numpy array with 0.
 """
-import numpy as np
 
-x = np.arange(-5,5).reshape(5,2)
+x = np.arange(-5, 5).reshape(5, 2)
 print(x)
 
-x[x<0] = 0
+x[x < 0] = 0
 print(x)
 
 """
@@ -1493,13 +1411,12 @@ Remove all non-numeric elements of the said array
 [ 7. 8. 9.] 
 [ 1. 0. 1.]]
 """
-import numpy as np
 
-arr = np.array([[ 1., 2., 3.],
-                [ 4., 5., np.nan],
-                [ 7., 8., 9.],
-                [ 1., 0., 1.]])
-arr = arr[np.all(np.isfinite(arr),axis=1)]
+arr = np.array([[1., 2., 3.],
+                [4., 5., np.nan],
+                [7., 8., 9.],
+                [1., 0., 1.]])
+arr = arr[np.all(np.isfinite(arr), axis=1)]
 print(arr)
 
 """
@@ -1518,12 +1435,11 @@ Elements from the second array corresponding to elements in the first
 array that are greater than 100 and less than 110: 
 ['e' 'i']
 """
-import numpy as np
 
 a = np.array([97, 101, 105, 111, 117])
-b = np.array(['a','e','i','o','u'])
+b = np.array(['a', 'e', 'i', 'o', 'u'])
 
-z = b[(a>100) & (a<110)]
+z = b[(a > 100) & (a < 110)]
 print(z)
 
 """
@@ -1534,9 +1450,8 @@ Original array:
 Magnitude of the vector:
 7.4161984871
 """
-import numpy as np
 
-x = np.arange(1,6)
+x = np.arange(1, 6)
 print(np.linalg.norm(x))
 
 """
@@ -1548,16 +1463,14 @@ Frequency of unique values of the said array:
 [[10 20 30 40 50] 
 [ 3 4 2 2 1]]
 """
-import numpy as np
 
-x = np.array([10,10,20,10,20,20,20,30,30,50,40,40])
+x = np.array([10, 10, 20, 10, 20, 20, 20, 30, 30, 50, 40, 40])
 uniques, count = np.unique(x, return_counts=True)
 print(np.array([uniques, count]))
 
 """
 95. Write a Python program to check whether the numpy array is empty or not.
 """
-import numpy as np
 x = np.arange(6)
 y = np.array([])
 print(x)
@@ -1578,10 +1491,9 @@ Vector:
 [ 1. 1. 1.] 
 [ 1. 1. 1.]]
 """
-import numpy as np
 
-x = np.array([[20,20,20],[30,30,30],[40,40,40]])
-y = np.array([20,30,40]).reshape(3,1)
+x = np.array([[20, 20, 20], [30, 30, 30], [40, 40, 40]])
+y = np.array([20, 30, 40]).reshape(3, 1)
 z = x/y
 print(x)
 print(y)
@@ -1595,7 +1507,6 @@ Expected Output:
 [ 0. 0. 0. 0.]
 [ 0. 0. 0. 0.]]
 """
-import numpy as np
 x = np.zeros((4, 4))
 print(x)
 
@@ -1610,9 +1521,9 @@ b'\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00>@
 Array using fromstring(): 
 [ 10. 20. 30.]
 """
-import numpy as np
 
-x = np.fromstring(b'\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00>@', dtype=float, count=-1, sep='')
+x = np.fromstring(b'\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00>@',
+                  dtype=float, count=-1, sep='')
 print(x)
 
 """
@@ -1625,9 +1536,8 @@ Sum of the array elements:
 Product of the array elements: 
 6000.0
 """
-import numpy as np
 
-x = np.array([10,20,30.])
+x = np.array([10, 20, 30.])
 print(np.sum(x))
 print(np.prod(x))
 
@@ -1639,15 +1549,13 @@ Expected Output:
 Put 0 and 40 in first and fifth position of the above array 
 Array x after put two values: [ 0. 10. 20. 30. 40.] 
 """
-import numpy as np
 
- inserting
-x = np.array([10,10,20,30,30])
-x = np.insert(x,[0,4],[0,40])
+# inserting
+x = np.array([10, 10, 20, 30, 30])
+x = np.insert(x, [0, 4], [0, 40])
 print(x)
 
- replacing
-x = np.array([10,10,20,30,30])
-np.put(x,[0,4],[0,40])
+# replacing
+x = np.array([10, 10, 20, 30, 30])
+np.put(x, [0, 4], [0, 40])
 print(x)
-
