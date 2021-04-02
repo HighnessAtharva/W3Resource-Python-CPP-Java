@@ -1,10 +1,12 @@
-# 1. Write a Python program to read each row from a given csv file and print a list of strings. 
+# 1. Write a Python program to read each row from a given csv file and print a list of strings.
+
 import sys
 import csv
 with open('departments.csv', newline='') as csvfile:
- data = csv.reader(csvfile, delimiter=' ', quotechar='|')
- for row in data:
-   print(', '.join(row))
+  data = csv.reader(csvfile, delimiter=' ', quotechar='|')
+  for row in data:
+    print(', '.join(row))
+
 '''
 department_id,department_name,manager_id,location_id
 10,Administration,200,1700
@@ -36,12 +38,12 @@ department_id,department_name,manager_id,location_id
 270,Payroll,,1700
 '''
 
-# 2. Write a Python program to read a given CSV file having tab delimiter. 
+# 2. Write a Python program to read a given CSV file having tab delimiter.
 import csv
 with open('countries.csv', newline='') as csvfile:
- data = csv.reader(csvfile, delimiter='\t')
- for row in data:
-   print(', '.join(row))
+  data = csv.reader(csvfile, delimiter='\t')
+  for row in data:
+    print(', '.join(row))
 '''
 country_id country_name region_id
 AR Argentina 2
@@ -74,8 +76,8 @@ ZW Zimbabwe 4
 # 3. Write a Python program to read a given CSV file as a list.
 import csv
 with open('employees.csv', newline='') as f:
-   reader = csv.reader(f)
-   data_list = list(reader)
+  reader = csv.reader(f)
+  data_list = list(reader)
 print(data_list)
 '''
 employ_id,first_name,last_name,email,phone_number,hire_date,job_id,salary,commission_pct,manager_id,department_id
@@ -132,11 +134,11 @@ employ_id,first_name,last_name,email,phone_number,hire_date,job_id,salary,commis
 150,Peter,Tucker,PTUCKER,011.44.1344.129268,1987-08-06,SA_REP,10000,0.3,145,80
 '''
 
-# 4. Write a Python program to read a given CSV file as a dictionary. 
+# 4. Write a Python program to read a given CSV file as a dictionary.
 data = csv.DictReader(open("departments.csv"))
 print("CSV file as a dictionary:\n")
 for row in data:
-   print(row)
+  print(row)
 '''
 department_id, department_name,  manager_id,  location_id
 10, Administration, 200, 1700
@@ -149,30 +151,30 @@ department_id, department_name,  manager_id,  location_id
 80, Sales, 145, 2500
 '''
 
-# 5. Write a Python program to read a given CSV files with initial spaces after a delimiter and remove those initial spaces. 
+# 5. Write a Python program to read a given CSV files with initial spaces after a delimiter and remove those initial spaces.
 print("\nWith initial spaces after a delimiter:\n")
 with open('departments.csv', 'r') as csvfile:
-   data = csv.reader(csvfile, skipinitialspace=False)
-   for row in data:
-     print(', '.join(row))
+  data = csv.reader(csvfile, skipinitialspace=False)
+  for row in data:
+    print(', '.join(row))
 print("\n\nWithout initial spaces after a delimiter:\n")
 with open('departments.csv', 'r') as csvfile:
-   data = csv.reader(csvfile, skipinitialspace=True)
-   for row in data:
-     print(', '.join(row))
+  data = csv.reader(csvfile, skipinitialspace=True)
+  for row in data:
+    print(', '.join(row))
 '''
 CSV REFER DEPTARTMENT
 '''
 
-# 6. Write a Python program that reads a CSV file and remove initial spaces, quotes around each entry and the delimiter. 
+# 6. Write a Python program that reads a CSV file and remove initial spaces, quotes around each entry and the delimiter.
 csv.register_dialect('csv_dialect',
                      delimiter='|',
                      skipinitialspace=True,
                      quoting=csv.QUOTE_ALL)
 with open('temp.csv', 'r') as csvfile:
-   reader = csv.reader(csvfile, dialect='csv_dialect')
-   for row in reader:
-       print(row)
+  reader = csv.reader(csvfile, dialect='csv_dialect')
+  for row in reader:
+    print(row)
 '''
 "country_id"|"country_name"|"region_id"
 "AR"|"Argentina"| 2
@@ -183,13 +185,14 @@ with open('temp.csv', 'r') as csvfile:
 
 '''
 
-# 7. Write a Python program to read specific columns of a given CSV file and print the content of the columns. 
+# 7. Write a Python program to read specific columns of a given CSV file and print the content of the columns.
+
 with open('departments.csv', newline='') as csvfile:
- data = csv.DictReader(csvfile)
- print("ID Department Name")
- print("---------------------------------")
- for row in data:
-   print(row['department_id'], row['department_name'])
+  data = csv.DictReader(csvfile)
+  print("ID Department Name")
+  print("---------------------------------")
+  for row in data:
+    print(row['department_id'], row['department_name'])
 '''
 department_id,department_name,manager_id,location_id
 10,Administration,200,1700
@@ -221,15 +224,15 @@ department_id,department_name,manager_id,location_id
 270,Payroll,,1700
 '''
 
-# 8. Write a Python program that reads each row of a given csv file and skip the header of the file. Also print the number of rows and the field names. 
+# 8. Write a Python program that reads each row of a given csv file and skip the header of the file. Also print the number of rows and the field names.
 fields = []
 rows = []
 with open('departments.csv', newline='') as csvfile:
- data = csv.reader(csvfile, delimiter=' ', quotechar=',')
- # Following command skips the first row of the CSV file.
- fields = next(data)
- for row in data:
-   print(', '.join(row))
+  data = csv.reader(csvfile, delimiter=' ', quotechar=',')
+  # Following command skips the first row of the CSV file.
+  fields = next(data)
+  for row in data:
+    print(', '.join(row))
 print("\nTotal no. of rows: %d" % (data.line_num))
 print('Field names are:')
 print(', '.join(field for field in fields))
@@ -239,14 +242,14 @@ CSV FILE SAME AS ABOVE
 
 # 9. Write a Python program to create an object for writing and iterate over the rows to print the values.
 with open('temp.csv', 'wt') as f:
-    writer = csv.writer(f)
-    writer.writerow(('id1', 'id2', 'date'))
-    for i in range(3):
-        row = (
-            i + 1,
-            chr(ord('a') + i),
-            '01/{:02d}/2019'.format(i + 1),)
-        writer.writerow(row)
+  writer = csv.writer(f)
+  writer.writerow(('id1', 'id2', 'date'))
+  for i in range(3):
+    row = (
+        i + 1,
+        chr(ord('a') + i),
+        '01/{:02d}/2019'.format(i + 1),)
+    writer.writerow(row)
 print(open('temp.csv', 'rt').read())
 
 '''
@@ -259,21 +262,21 @@ print(open('temp.csv', 'rt').read())
 
 '''
 
-# 10. Write a Python program to write a Python list of lists to a csv file. After writing the CSV file read the CSV file and display the content. 
+# 10. Write a Python program to write a Python list of lists to a csv file. After writing the CSV file read the CSV file and display the content.
 data = [[10, 'a1', 1], [12, 'a2', 3], [
     14, 'a3', 5], [16, 'a4', 7], [18, 'a5', 9]]
 with open("temp.csv", "w", newline="") as f:
-   writer = csv.writer(f)
-   writer.writerows(data)
+  writer = csv.writer(f)
+  writer.writerows(data)
 with open('temp.csv', newline='') as csvfile:
- data = csv.reader(csvfile, delimiter=' ')
- for row in data:
-   print(', '.join(row))
+  data = csv.reader(csvfile, delimiter=' ')
+  for row in data:
+    print(', '.join(row))
 '''
 CSV SAME AS ABOVE
 '''
 
-# 11. Write a Python program to write a Python dictionary to a csv file. After writing the CSV file read the CSV file and display the content. 
+# 11. Write a Python program to write a Python dictionary to a csv file. After writing the CSV file read the CSV file and display the content.
 csv_columns = ['id', 'Column1', 'Column2', 'Column3', 'Column4', 'Column5']
 dict_data = {'id': ['1', '2', '3'],
              'Column1': [33, 25, 56],
@@ -283,17 +286,17 @@ dict_data = {'id': ['1', '2', '3'],
              'Column5': [10, 10, 40], }
 csv_file = "temp.csv"
 try:
-   with open(csv_file, 'w') as csvfile:
-       writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
-       writer.writeheader()
-       for data in dict_data:
-           writer.writerow(dict_data)
+  with open(csv_file, 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+    writer.writeheader()
+    for data in dict_data:
+      writer.writerow(dict_data)
 except IOError:
-   print("I/O error")
+  print("I/O error")
 data = csv.DictReader(open(csv_file))
 print("CSV file as a dictionary:\n")
 for row in data:
-   print(row)
+  print(row)
 '''
 CSV SAME AS ABOVE
 '''
