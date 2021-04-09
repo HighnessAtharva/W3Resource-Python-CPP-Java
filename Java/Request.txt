@@ -1,0 +1,6 @@
+Please consider adding the Collections from W3Resources.
+
+Create a new folder `Collections` and add all the Excercises from 
+https://www.w3resource.com/java-exercises/collection/index
+
+Urgently Required. 
