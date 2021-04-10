@@ -7,6 +7,23 @@
 // 3
 // 5
 // 12
+#include <iostream>
+
+using namespace std;
+
+int test(int x, int y)
+        {
+            return x == y ? (x + y)*3 : x + y;
+        }
+        
+        
+int main() 
+ {
+  cout << test(1, 2) << endl;  
+  cout << test(3, 2) << endl;  
+  cout << test(2, 2) << endl;  
+  return 0;    
+}
 
 
 // 2. Write a C++ program to get the absolute difference between n and 51. If n is greater than 51 return triple the absolute difference. 
@@ -18,6 +35,29 @@
 // 6
 // 21
 // 0
+#include <iostream>
+
+using namespace std;
+
+int test(int n)
+        {
+            const int x = 51;
+
+            if (n > x)
+            {
+                return (n - x)*3;
+            }
+            return x - n;
+        }
+        
+        
+int main() 
+ {
+  cout << test(53) << endl;  
+  cout << test(30) << endl;  
+  cout << test(51) << endl;  
+  return 0;    
+}
 
 
 // 3. Write a C++ program to check two given integers, and return true if one of them is 30 or if their sum is 30. 
@@ -32,6 +72,22 @@
 // 1
 // 0
 
+#include <iostream>
+using namespace std;
+
+bool test(int x, int y)
+        {
+            return x == 30 || y == 30 || (x + y == 30);
+        }        
+        
+int main() 
+ {
+  cout << test(30, 0) << endl;  
+  cout << test(25, 5) << endl;  
+  cout << test(20, 30) << endl;  
+  cout << test(20, 25) << endl;    
+  return 0;    
+}
 
 // 4. Write a C++ program to check a given integer and return true if it is within 10 of 100 or 200. 
 // Sample Input:
@@ -43,6 +99,25 @@
 // 1
 // 0
 
+#include <iostream>
+
+using namespace std;
+
+bool test(int x)
+        {
+              if(abs(x - 100) <= 10 || abs(x - 200) <= 10)
+                return true;
+            return false;
+        }
+        
+int main() 
+ {
+  cout << test(103) << endl;  
+  cout << test(90) << endl;  
+  cout << test(89) << endl;  
+  return 0;    
+}
+
 
 // 5. Write a C++ program to create a new string where 'if' is added to the front of a given string. If the string already begins with 'if', return the string unchanged. 
 // Sample Input:
@@ -52,6 +127,25 @@
 // if else
 // if else
 
+#include <iostream>
+
+using namespace std;
+
+string test(string s)
+        {
+            if (s.length() > 2 && s.substr(0, 2)=="if")
+            {
+                return s;
+            }
+            return "if " + s;
+        }
+        
+int main() 
+ {
+  cout << test("if else") << endl;  
+  cout << test("else") << endl;  
+  return 0;    
+}
 
 // 6. Write a C++ program to remove the character in a given position of a given string. The given position will be in the range 0..string length -1 inclusive. 
 // Sample Input:
@@ -62,6 +156,22 @@
 // Pthon
 // ython
 // Pythn
+#include <iostream>
+
+using namespace std;
+
+string test(string str, int n)
+        {
+            return str.erase(n, 1);
+        }
+        
+int main() 
+ {
+  cout << test("Python", 1) << endl;  
+  cout << test("Python", 0) << endl;  
+  cout << test("Python", 4) << endl;  
+  return 0;    
+}
 
 
 // 7. Write a C++ program to exchange the first and last characters in a given string and return the new string. 
@@ -73,6 +183,22 @@
 // dbca
 // a
 // yx
+#include <iostream>
+using namespace std;
+
+string test(string str)
+        {
+            return str.length() > 1
+                ? str.substr(str.length() - 1) + str.substr(1, str.length() - 2) + str.substr(0, 1) : str;
+        }
+        
+int main() 
+ {
+  cout << test("abcd") << endl;  
+  cout << test("a") << endl;  
+  cout << test("xy") << endl;  
+  return 0;    
+}
 
 
 // 8. Write a C++ program to create a new string which is 4 copies of the 2 front characters of a given string. If the given string length is less than 2 return the original string. 
@@ -85,6 +211,21 @@
 // JSJSJSJS
 // a
 
+#include <iostream>
+using namespace std;
+
+string test(string str)
+        {
+             return str.length() < 2 ? str : str.substr(0, 2) + str.substr(0, 2) + str.substr(0, 2)  + str.substr(0, 2); 
+        }
+        
+int main() 
+ {
+  cout << test("C Sharp") << endl;  
+  cout << test("JS") << endl;  
+  cout << test("a") << endl;  
+  return 0;    
+}
 
 // 9. Write a C++ program to create a new string with the last char added at the front and back of a given string of length 1 or more. 
 // Sample Input:
@@ -96,6 +237,22 @@
 // nGreenn
 // 111
 
+#include <iostream>
+using namespace std;
+
+string test(string str)
+        {
+            string s = str.substr(str.length()-1);
+            return s + str + s;
+        }
+        
+int main() 
+ {
+  cout << test("Red") << endl;  
+  cout << test("Green") << endl;  
+  cout << test("1") << endl;  
+  return 0;    
+}
 
 // 10. Write a C++ program to check if a given positive number is a multiple of 3 or a multiple of 7. 
 // Sample Input
@@ -109,6 +266,22 @@
 // 1
 // 0
 
+#include <iostream>
+using namespace std;
+
+bool test(int n)
+        {
+            return n % 3 == 0 || n % 7 == 0;
+        }
+        
+int main() 
+ {
+  cout << test(3) << endl;  
+  cout << test(14) << endl;  
+  cout << test(12) << endl;  
+  cout << test(37) << endl;  
+  return 0;    
+}
 
 // 11. Write a C++ program to create a new string taking the first 3 characters of a given string and return the string with the 3 characters added at both the front and back. If the given string length is less than 3, use whatever characters are there. 
 // Sample Input:
@@ -120,6 +293,29 @@
 // JSJSJS
 // CodCodeCod
 
+#include <iostream>
+using namespace std;
+
+string  test(string str)
+        {
+             if (str.length() < 3)
+            {
+                return str + str + str;
+            }
+            else
+            {
+                string front = str.substr(0, 3);
+                return front + str + front;
+            }
+        }
+        
+int main() 
+ {
+  cout << test("Python") << endl;  
+  cout << test("JS") << endl;  
+  cout << test("Code") << endl;  
+  return 0;    
+}
 
 // 12. Write a C++ program to check if a given string starts with 'C#' or not. 
 // Sample Input:
@@ -130,6 +326,22 @@
 // 1
 // 1
 // 0
+#include <iostream>
+
+using namespace std;
+
+ bool test(string str)
+        {
+            return (str.length() < 3 && str=="C#") || (str.substr(0,2)=="C#" && str[2] == ' ');
+        }
+        
+int main() 
+ {
+  cout << test("C# Sharp") << endl;  
+  cout << test("C#") << endl;  
+  cout << test("C++") << endl;  
+  return 0;    
+}
 
 
 // 13. Write a C++ program to check if one given temperatures is less than 0 and the other is greater than 100. 
@@ -142,6 +354,21 @@
 // 1
 // 0
 
+#include <iostream>
+using namespace std;
+
+bool test(int temp1, int temp2)
+        {
+            return temp1 < 0 && temp2 > 100 || temp2 < 0 && temp1 > 100;
+        }
+        
+int main() 
+ {
+  cout << test(120, -1) << endl;  
+  cout << test(-1, 120) << endl;  
+  cout << test(2, 120) << endl;  
+  return 0;    
+}
 
 // 14. Write a C++ program to check two given integers whether either of them is in the range 100..200 inclusive. 
 // Sample Input:
@@ -153,6 +380,21 @@
 // 0
 // 1
 
+#include <iostream>
+using namespace std;
+
+bool test(int x, int y)
+        {
+            return (x >= 100 && x <= 200) || (y >= 100 && y <= 200);
+        }
+        
+int main() 
+ {
+  cout << test(100, 199) << endl;  
+  cout << test(250, 300) << endl;  
+  cout << test(105, 190) << endl;  
+  return 0;    
+}
 
 // 15. Write a C++ program to check whether three given integer values are in the range 20..50 inclusive. Return true if 1 or more of them are in the said range otherwise false. 
 // Sample Input:
@@ -165,6 +407,22 @@
 // 1
 // 1
 // 0
+#include <iostream>
+using namespace std;
+
+bool test(int x, int y, int z)
+        {
+            return (x >= 20 && x <= 50) || (y >= 20 && y <= 50) || (z >= 20 && z <= 50);
+        }
+        
+int main() 
+ {
+  cout << test(11, 20, 12) << endl;  
+  cout << test(30, 30, 17) << endl;  
+  cout << test(25, 35, 50) << endl;  
+  cout << test(15, 12, 8) << endl;    
+  return 0;    
+}
 
 
 // 16. Write a C++ program to check whether two given integer values are in the range 20..50 inclusive. Return true if 1 or other is in the said range otherwise false. 
@@ -179,6 +437,23 @@
 // 1
 // 0
 
+#include <iostream>
+
+using namespace std;
+
+bool test(int x, int y)
+        {
+            return (x <= 20 || y >= 50) || (y <= 20 || x >= 50);
+        }
+        
+int main() 
+ {
+  cout << test(20, 84) << endl;  
+  cout << test(14, 50) << endl;  
+  cout << test(11, 45) << endl;  
+  cout << test(25, 40) << endl;    
+  return 0;    
+}
 
 // 17. Write a C++ program to check if a string 'yt' appears at index 1 in a given string. If it appears return a string without 'yt' otherwise return the original string. 
 // Sample Input:
@@ -190,6 +465,21 @@
 // ytade
 // jsues
 
+#include <iostream>
+using namespace std;
+
+string test(string str)
+        {
+            return str.substr(1, 2)=="yt" ? str.erase(1, 2) : str;
+        }
+        
+int main() 
+ {
+  cout << test("Python") << endl;  
+  cout << test("ytade") << endl;  
+  cout << test("jsues") << endl;  
+  return 0;    
+}
 
 // 18. Write a C++ program to check the largest number among three given integers. 
 // Sample Input:
@@ -202,6 +492,23 @@
 // 3
 // 1
 // 2
+#include <iostream>
+using namespace std;
+
+int test(int x, int y, int z)
+        {
+            int result = max(x, max(y, z));
+            return result;
+        }
+        
+int main() 
+ {
+  cout << test(1,2,3) << endl;  
+  cout << test(1,3,2) << endl;  
+  cout << test(1,1,1) << endl;  
+  cout << test(1,2,2) << endl;  
+  return 0;    
+}
 
 
 // 19. Write a C++ program to check which number nearest to the value 100 among two given integers. Return 0 if the two numbers are equal. 
@@ -213,6 +520,25 @@
 // 95
 // 0
 // 99
+#include <iostream>
+using namespace std;
+
+int test(int x, int y)
+        {
+            const int n = 100;
+            int val = abs(x - n);
+            int val2 = abs(y - n);
+
+            return val == val2 ? 0 : (val < val2 ? x : y);
+        }
+        
+int main() 
+ {
+  cout << test(78, 95) << endl;  
+  cout << test(95, 95) << endl;  
+  cout << test(99, 70) << endl;  
+  return 0;    
+}
 
 
 // 20. Write a C++ program to check whether two given integers are in the range 40..50 inclusive, or they are both in the range 50..60 inclusive. 
@@ -226,6 +552,23 @@
 // 0
 // 1
 // 1
+#include <iostream>
+
+using namespace std;
+
+bool test(int x, int y)
+        {
+            return (x >= 40 && x <= 50 && y >= 40 && y <= 50) || (x >= 50 && x <= 60 && y >= 50 && y <= 60);
+        }
+        
+int main() 
+ {
+  cout << test(78, 95) << endl;  
+  cout << test(25, 35) << endl;  
+  cout << test(40, 50) << endl;  
+  cout << test(55, 60) << endl;  
+  return 0;    
+}
 
 
 // 21. Write a C++ program to find the larger value from two positive integer values that is in the range 20..30 inclusive, or return 0 if neither is in that range. 
@@ -240,6 +583,46 @@
 // 25
 // 28
 
+#include <iostream>
+
+using namespace std;
+
+int test(int x, int y)
+        {
+            if (x >= 20 && x <= 30 && y >= 20 && y <= 30)
+            {
+                if (x >= y)
+                {
+                    return x;
+                }
+                else
+                {
+                    return y;
+                }
+            }
+            else if (x >= 20 && y <= 30)
+            {
+                return x;
+            }
+            else if (y >= 20 && y <= 30)
+            {
+                return y;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        
+int main() 
+ {
+  cout << test(78, 95) << endl;  
+  cout << test(20, 30) << endl;  
+  cout << test(21, 25) << endl;  
+  cout << test(28, 28) << endl;  
+  return 0;    
+}
 
 // 22. Write a C++ program to check if a given string contains between 2 and 4 'z' character. 
 // Sample Input:
@@ -252,6 +635,35 @@
 // 0
 // 1
 // 0
+
+#include <iostream>
+
+using namespace std;
+
+bool test(string str)
+        {
+            int ctr = 0;
+
+            for (int i = 0; i < str.length(); i++)
+            {
+                if (str[i] == 'z')
+                {
+                    ctr++;
+                }
+            }
+
+            return ctr > 1 && ctr < 4;
+        }      
+
+        
+int main() 
+ {
+  cout << test("frizz") << endl;  
+  cout << test("zane") << endl;  
+  cout << test("Zazz") << endl;  
+  cout << test("false") << endl;  
+  return 0;    
+}
 
 
 // 23. Write a C++ program to check if two given non-negative integers have the same last digit. 
@@ -266,6 +678,22 @@
 // 1
 // 0
 
+#include <iostream>
+using namespace std;
+
+bool test(int x, int y)
+        {
+            return abs(x % 10) == abs(y % 10);
+        }
+        
+int main() 
+ {
+  cout << test(123, 456) << endl;  
+  cout << test(12, 512) << endl;  
+  cout << test(7, 87) << endl;  
+  cout << test(12, 45) << endl;  
+  return 0;    
+}
 
 // 24. Write a C++ program to create a new string which is n (non-negative integer) copies of a given string. 
 // Sample Input:
@@ -276,6 +704,26 @@
 // JSJS
 // JSJSJS
 // JS
+#include <iostream>
+using namespace std;
+
+string test(string s, int n)
+        {
+            string result = "";
+            for (int i = 0; i < n; i++)
+            {
+                result += s;
+            }
+            return result;
+        }
+        
+int main() 
+ {
+  cout << test("JS", 2) << endl;  
+  cout << test("JS", 3) << endl;  
+  cout << test("JS", 1) << endl;  
+  return 0;    
+}
 
 
 // 25. Write a C++ program to create a new string which is n (non-negative integer) copies of the first 3 characters of a given string. If the length of the given string is less than 3 then return n copies of the string. 
@@ -288,6 +736,33 @@
 // PytPytPyt
 // JSJSJS
 
+#include <iostream>
+using namespace std;
+
+string test(string s, int n)
+        {
+            string result = " ";
+            int frontOfString = 3;
+
+            if (frontOfString > s.length())
+                frontOfString = s.length();
+
+            string front = s.substr(0, frontOfString);
+
+            for (int i = 0; i < n; i++)
+            {
+                result += front;
+            }
+            return result;
+        }
+        
+int main() 
+ {
+  cout << test("Python", 2) << endl;  
+  cout << test("Python", 3) << endl;  
+  cout << test("JS", 3) << endl;  
+  return 0;    
+}
 
 // 26. Write a C++ program to count the string "aa" in a given string and assume "aaa" contains two "aa". 
 // Sample Input:
@@ -298,6 +773,30 @@
 // 2
 // 2
 // 3
+#include <iostream>
+using namespace std;
+
+
+int test(string s)
+        {
+            int ctr_aa = 0;
+            for (int i = 0; i < s.length() - 1; i++)
+            {
+                if (s.substr(i, 2) == "aa")
+                {
+                    ctr_aa++;
+                }
+            }
+            return ctr_aa;
+        }
+        
+int main() 
+ {
+  cout << test("bbaaccaag") << endl;  
+  cout << test("jjkiaaasew") << endl;  
+  cout << test("JSaaakoiaa") << endl;  
+  return 0;    
+}
 
 
 // 27. Write a C++ program to check if the first appearance of "a" in a given string is immediately followed by another "a". 
@@ -309,6 +808,29 @@
 // 1
 // 0
 // 1
+#include <iostream>
+using namespace std;
+
+
+bool test(string str)
+        {
+            int counter = 0;
+            for (int i = 0; i < str.length()-1; i++)
+            {
+                if (str[i] == 'a') counter++;
+                if(str.substr(i, 2) == "aa" && counter < 2) 
+                return true;
+            }
+            return false;
+        }
+        
+int main() 
+ {
+  cout << test("caabb") << endl;  
+  cout << test("babaaba") << endl;  
+  cout << test("aaaaa") << endl;  
+  return 0;    
+}
 
 
 // 28. Write a C++ program to create a new string made of every other character starting with the first from a given string. 
@@ -321,6 +843,26 @@
 // PP
 // J
 
+#include <iostream>
+using namespace std;
+
+string test(string s)
+        {
+           string result = " ";
+            for (int i = 0; i < s.length(); i++)
+             {
+                 if (i % 2 == 0) result += s[i];
+             }
+            return result;
+        }
+        
+int main() 
+ {
+  cout << test("Python") << endl;  
+  cout << test("PHP") << endl;  
+  cout << test("JS") << endl;  
+  return 0;    
+}
 
 // 29. Write a C++ program to create a string like "aababcabcd" from a given string "abcd". 
 // Sample Input:
@@ -332,6 +874,26 @@
 // aababc
 // a
 
+#include <iostream>
+using namespace std;
+
+string test(string str)
+        {
+            string result = "";
+            for (int i = 0; i < str.length(); i++)
+            {
+                result += str.substr(0, i + 1);
+            }
+            return result;
+        }
+        
+int main() 
+ {
+  cout << test("abcd") << endl;  
+  cout << test("abc") << endl;  
+  cout << test("a") << endl;  
+  return 0;    
+} 
 
 // 30. Write a C++ program to count a substring of length 2 appears in a given string and also as the last 2 characters of the string. Do not count the end substring. 
 // Sample Input:
@@ -345,6 +907,29 @@
 // 3
 // 0
 
+#include <iostream>
+using namespace std;
+
+int test(string str)
+        {
+            string last_two_char = str.substr(str.length()-2);
+            int ctr = 0;
+
+            for (int i = 0; i < str.length()-2; i++)
+            {
+               if (str.substr(i, 2) == (last_two_char)) ctr++;
+            }
+            return ctr;
+        }
+        
+int main() 
+ {
+  cout << test("abcdsab") << endl;  
+  cout << test("abcdabab") << endl;  
+  cout << test("abcabdabab") << endl;  
+  cout << test("abcabd") << endl;  
+  return 0;    
+}
 
 // 31. Write a C++ program to check whether the sequence of numbers 1, 2, 3 appears in a given array of integers somewhere. 
 // Sample Input:
