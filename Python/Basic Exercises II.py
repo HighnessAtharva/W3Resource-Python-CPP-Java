@@ -25,6 +25,7 @@ import pprint
 import collections
 import random
 
+
 # 1. function that takes a sequence of numbers and determines whether all the numbers are different from each other
 
 def test_distinct(data):
