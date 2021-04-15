@@ -143,10 +143,8 @@ print(difference(14))
 
 # 17. Write a Python program to test whether a number is within 100 of 1000 or 2000.
 
-
 def near_thousand(n):
     return ((abs(1000 - n) <= 100) or (abs(2000 - n) <= 100))
-
 
 print(near_thousand(1000))
 print(near_thousand(900))
@@ -181,11 +179,7 @@ print(new_string("IsEmpty"))
 
 # 20. Write a Python program to get a string which is n (non-negative integer) copies of a given string.
 def larger_string(str, n):
-    result = ""
-    for i in range(n):
-        result = result + str
-    return result
-
+    return str * n
 
 print(larger_string('abc', 2))
 print(larger_string('.py', 3))
@@ -193,29 +187,19 @@ print(larger_string('.py', 3))
 
 # 21. Write a Python program to find whether a given number (accept from the user) is even or odd, print out an appropriate message to the user.
 num = int(input("Enter a number: "))
-mod = num % 2
-if mod > 0:
+if num % 2:
     print("This is an odd number.")
 else:
     print("This is an even number.")
 
 # 22. Write a Python program to count the number 4 in a given list.
-
-
 def list_count_4(nums):
-    count = 0
-    for num in nums:
-        if num == 4:
-            count = count + 1
-
-    return count
-
+    return nums.count(4)
 
 print(list_count_4([1, 4, 6, 7, 4]))
 print(list_count_4([1, 4, 6, 4, 7, 4]))
 
 # 23. Write a Python program to get the n (non-negative integer) copies of the first 2 characters of a given string. Return the n copies of the whole string if the length is less than 2.
-
 
 def substring_copy(str, n):
     flen = 2
@@ -247,32 +231,25 @@ print(is_vowel('e'))
 # Test Data :
 # 3 -> [1, 5, 8, 3] : True
 # -1 -> [1, 5, 8, 3] : False
-
-
 def is_group_member(group_data, n):
-    for value in group_data:
-        if n == value:
-            return True
+    if n in group_data:
+        return True
     return False
-
 
 print(is_group_member([1, 5, 8, 3], 3))
 print(is_group_member([5, 8, 3], -1))
 
 # 26. Write a Python program to create a histogram from a given list of integers.
 
-
 def histogram(items):
     for n in items:
-        output = ''
-        times = n
-        while(times > 0):
-            output += '*'
-            times = times - 1
-        print(output)
-
+        str = ''
+        for i in range(n):
+            str += '*'
+        print(str)
 
 histogram([2, 3, 6, 5])
+
 
 # 27. Write a Python program to concatenate all elements in a list into a string and return it.
 
@@ -320,20 +297,16 @@ for x in numbers:
 color_list_1 = set(["White", "Black", "Red"])
 color_list_2 = set(["Red", "Green"])
 
-print(color_list_1.difference(color_list_2))
+print(color_list_1-color_list_2)
 
 
 # 30. Write a Python program that will accept the base and height of a triangle and compute the area.
 b = int(input("Input the base : "))
 h = int(input("Input the height : "))
 
-area = b * h / 2
-
-print("area = ", area)
-
+print("area = ",b * h / 2)
 
 # 31. Write a Python program to compute the greatest common divisor (GCD) of two positive integers.
-
 def gcd(x, y):
     gcd = 1
 
@@ -422,11 +395,10 @@ print(add_numbers(10, 20))
 
 
 # 37. Write a Python program to display your details like name, age, address in three different lines.
-
 def personal_details():
     name, age = "Simon", 19
     address = "Bangalore, Karnataka, India"
-    print("Name: {}\nAge: {}\nAddress: {}".format(name, age, address))
+    print(f"Name: {name}\nAge: {age}\nAddress: {address}")
 
 personal_details()
 
@@ -494,7 +466,6 @@ import os
 print("Current File Name : ",os.path.realpath(__file__))
 
 # 47. Write a Python program to find out the number of CPUs using.
-
 import multiprocessing
 print(multiprocessing.cpu_count())
 
@@ -1370,7 +1341,7 @@ elif type(x) is set:
 elif type(x) is tuple:
     print('x is a tuple')    
 else:
-    print('Neither a list or a set or a tuple.')
+    print('Neither a list nor a set nor a tuple.')
 
 # 146. Write a Python program to find the location of Python module sources.
 
@@ -1427,5 +1398,5 @@ def odd_product(nums):
           
 dt1 = [2, 4, 6, 8]
 dt2 = [1, 6, 4, 7, 8]
-print(dt1, odd_product(dt1));
-print(dt2, odd_product(dt2));
+print(dt1, odd_product(dt1))
+print(dt2, odd_product(dt2))
