@@ -2,36 +2,317 @@
 // Sample Output : Today is : Tuesday.
 // Current time is : 10 PM : 30 : 38
 
+//HTML
+<!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>JavaScript current day and time</title>
+  </head>
+  <body></body>
+</html>
+
+//JS
+var today = new Date();
+  var day = today.getDay();
+  var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+  console.log("Today is : " + daylist[day] + ".");
+  var hour = today.getHours();
+  var minute = today.getMinutes();
+  var second = today.getSeconds();
+  var prepand = (hour >= 12)? " PM ":" AM ";
+  hour = (hour >= 12)? hour - 12: hour;
+  if (hour===0 && prepand===' PM ') 
+  { 
+  if (minute===0 && second===0)
+  { 
+  hour=12;
+  prepand=' Noon';
+  } 
+  else
+  { 
+  hour=12;
+  prepand=' PM';
+  } 
+  } 
+  if (hour===0 && prepand===' AM ') 
+  { 
+  if (minute===0 && second===0)
+  { 
+  hour=12;
+  prepand=' Midnight';
+  } 
+  else
+  { 
+  hour=12;
+  prepand=' AM';
+  } 
+  } 
+console.log("Current Time : "+hour + prepand + " : " + minute + " : " + second);
+
 
 // 2. Write a JavaScript program to print the contents of the current window.  
 
+//HTML Code:
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Print the current page.</title>
+</head>
+<body>
+<p>Click the button to print the current page.</p>
+<button onclick="print_current_page()">Print this page</button>
+</body>
+</html>
+
+//JavaScript Code:
+function print_current_page()
+{
+window.print();
+}
 
 // 3. Write a JavaScript program to get the current date.  
 // Expected Output :
 // mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy
 
+//HTML Code:
+<!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>Write a JavaScript program to get the current date.</title>
+  </head>
+  <body>
+  </body>
+  </html>
+
+//JavaScript Code:
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'-'+dd+'-'+yyyy;
+console.log(today);
+today = mm+'/'+dd+'/'+yyyy;
+console.log(today);
+today = dd+'-'+mm+'-'+yyyy;
+console.log(today);
+today = dd+'/'+mm+'/'+yyyy;
+console.log(today);
 
 // 4. Write a JavaScript program to find the area of a triangle where lengths of the three of its sides are 5, 6, 7.  
+HTML Code:
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>The area of a triangle</title>
+</head>
+<body>  
+</body>
+</html>
+
+JavaScript Code:
+
+var side1 = 5; 
+var side2 = 6; 
+var side3 = 7; 
+var s = (side1 + side2 + side3)/2;
+var area =  Math.sqrt(s*((s-side1)*(s-side2)*(s-side3)));
+console.log(area);
 
 // 5. Write a JavaScript program to rotate the string 'w3resource' in right direction by periodically removing one letter from the end of the string and attaching it to the front.  
 
+//HTML Code:
+
+<!DOCTYPE html>
+  <html> 
+  <head>
+  <title>JavaScript basic animation</title>
+  <script type="text/javascript">
+  </script>
+  </head> <body onload="animate_string('target')"
+  <pre id="target">w3resource </pre>
+  </body> 
+  </html>
+  
+//JavaScript Code:
+
+function animate_string(id) 
+{
+    var element = document.getElementById(id);
+    var textNode = element.childNodes[0]; // assuming no other children
+    var text = textNode.data;
+
+setInterval(function () 
+{
+ text = text[text.length - 1] + text.substring(0, text.length - 1);
+  textNode.data = text;
+}, 100);
+}
 
 // 6. Write a JavaScript program to determine whether a given year is a leap year in the Gregorian calendar.  
 
+HTML Code:
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Find Leap Year</title>
+</head>
+<body>
+</body>
+</html>
+
+
+JavaScript Code:
+
+function leapyear(year)
+{
+return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+}
+console.log(leapyear(2016));
+console.log(leapyear(2000));
+console.log(leapyear(1700));
+console.log(leapyear(1800));
+console.log(leapyear(100));
 
 // 7. Write a JavaScript program to find 1st January is being a Sunday between 2014 and 2050.  
+HTML Code:
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>A Program to find 1st January is being a Sunday between 2014 and 2050.</title>
+</head>
+<body>
+</body>
+</html>
+
+
+JavaScript Code:
+
+console.log('--------------------');
+for (var year = 2014; year <= 2050; year++)
+    {
+    var d = new Date(year, 0, 1);
+    if ( d.getDay() === 0 )
+        console.log("1st January is being a Sunday  "+year);
+    }
+console.log('--------------------');
 
 
 // 8. Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted to input a guess number. If the user input matches with guess number, the program will display a message "Good Work" otherwise display a message "Not matched".  
+HTML Code:
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Guess a number</title>
+</head>
+<body>
+</body>
+</html>
+
+
+JavaScript Code:
+
+// Get a random integer from 1 to 10 inclusive
+ const num = Math.ceil(Math.random() * 10);
+console.log(num);
+ const gnum = prompt('Guess the number between 1 and 10 inclusive');
+ if (gnum == num)
+   console.log('Matched');
+  else
+   console.log('Not matched, the number was '+gnum);
+   
 
 // 9. Write a JavaScript program to calculate days left until next Christmas.  
+HTML Code:
 
+<!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset=utf-8 />
+  <title>Write a JavaScript program to calculate days left until next Christmas</title>
+  </head>
+  <body>
+</body>
+  </html>
+  
+
+
+JavaScript Code:
+
+today=new Date();
+var cmas=new Date(today.getFullYear(), 11, 25);
+if (today.getMonth()==11 && today.getDate()>25) 
+{
+cmas.setFullYear(cmas.getFullYear()+1); 
+}  
+var one_day=1000*60*60*24;
+console.log(Math.ceil((cmas.getTime()-today.getTime())/(one_day))+
+" days left until Christmas!");
 
 // 10. Write a JavaScript program to calculate multiplication and division of two numbers (input from user).  
 // Sample form :
 // sample form
+
+//HTML Code:
+
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset=utf-8 />
+<title>JavaScript program to calculate multiplication and division of two numbers </title>
+<style type="text/css">
+body {margin: 30px;}
+</style> 
+</head>
+<body>
+<form>
+1st Number : <input type="text" id="firstNumber" /><br>
+2nd Number: <input type="text" id="secondNumber" /><br>
+<input type="button" onClick="multiplyBy()" Value="Multiply" />
+<input type="button" onClick="divideBy()" Value="Divide" />
+</form>
+<p>The Result is : <br>
+<span id = "result"></span>
+</p>
+</body>
+</html>
+
+
+//JavaScript Code:
+
+function multiplyBy()
+{
+        num1 = document.getElementById("firstNumber").value;
+        num2 = document.getElementById("secondNumber").value;
+        document.getElementById("result").innerHTML = num1 * num2;
+}
+
+function divideBy() 
+{ 
+        num1 = document.getElementById("firstNumber").value;
+        num2 = document.getElementById("secondNumber").value;
+document.getElementById("result").innerHTML = num1 / num2;
+}
 
 
 // 11. Write a JavaScript program to convert temperatures to and from Celsius, Fahrenheit.  
