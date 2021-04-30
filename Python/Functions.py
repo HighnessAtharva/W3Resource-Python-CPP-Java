@@ -44,8 +44,7 @@ print('the factorial of your integer is:', factorial(my_number))
 def is_in_range(number, n, m):
     if number in range(n,m+1):
         return True
-    else:
-        return False
+    return False
 
 num = int(input('please enter a number: '))
 n = 0

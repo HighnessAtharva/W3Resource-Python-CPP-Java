@@ -114,7 +114,7 @@ while y < 50:
 # 4
 # buzz
 for fizzbuzz in range(51):
-    if fizzbuzz % 3 == 0 and fizzbuzz % 5 == 0:
+    if fizzbuzz %15 == 0:
         print("fizzbuzz")
         continue
     elif fizzbuzz % 3 == 0:
@@ -528,8 +528,6 @@ l = input("Input a letter of the alphabet: ")
 
 if l in ('a', 'e', 'i', 'o', 'u'):
 	print("%s is a vowel." % l)
-elif l == 'y':
-	print("Sometimes letter y stand for vowel, sometimes stand for consonant.")
 else:
 	print("%s is a consonant." % l)
 

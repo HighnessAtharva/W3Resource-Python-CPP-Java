@@ -275,7 +275,7 @@ print("\nArray values & target value:",nums,"&",target)
 print("Solution Set:\n", result)
 
 NOTE: '''Python Enum Excercises'''
-# 1. Write a Python program to create an Enum object and display a member name and value. Go to the editor
+# 1. Write a Python program to create an Enum object and display a member name and value. 
 # Sample data:
 # Member name: Albania
 # Member value: 355
@@ -290,7 +290,7 @@ class Country(Enum):
 print('\nMember name: {}'.format(Country.Albania.name))
 print('Member value: {}'.format(Country.Albania.value))
 
-# 2. Write a Python program to iterate over an enum class and display individual member and their value. Go to the editor
+# 2. Write a Python program to iterate over an enum class and display individual member and their value. 
 # Expected Output:
 # Afghanistan = 93
 # Albania = 355
@@ -310,7 +310,7 @@ for data in Country:
     print('{:15} = {}'.format(data.name, data.value))
 
 
-# 3. Write a Python program to display all the member name of an enum class ordered by their values. Go to the editor
+# 3. Write a Python program to display all the member name of an enum class ordered by their values. 
 # Expected Output:
 # Country Name ordered by Country Code:
 # Afghanistan
@@ -332,7 +332,7 @@ print('Country Name ordered by Country Code:')
 print('\n'.join('  ' + c.name for c in sorted(Country)))
 
 
-# 4. Write a Python program to get all values from an enum class. Go to the editor
+# 4. Write a Python program to get all values from an enum class. 
 # Expected output:
 # [93, 355, 213, 376, 244, 672]
 class Country(IntEnum):
@@ -347,7 +347,7 @@ country_code_list = list(map(int, Country))
 print(country_code_list)
 
 
-# 5.Write a Python program to get the unique enumeration values. Go to the editor
+# 5.Write a Python program to get the unique enumeration values. 
 # Expected Output:
 # Afghanistan = 93
 # Albania = 355
