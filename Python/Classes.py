@@ -134,39 +134,28 @@ class Parenthesis:
         p = self.par_string
         open_par  = ['(', '[', '{']
         close_par = [')', ']', '}']
-        wrong_par = ['(]', '(}', '[)', '[}', '{)', '{]']
-        
-        if len(p)%2 != 0:
+        if len(p) % 2 != 0 or p[0] in close_par or p[-1] in open_par:
             # check if length is not even, the string is invalid, no need to check further
             return False
-        elif p[0] in close_par:
-            # check if string starts with closing parenthesis, the string is invalid
-            return False
-        elif p[-1] in open_par:
-            # check if string ends with opening parenthesis, the string is invalid
-            return False
-        else:
-            # check if there is a wrong pair of open+close parenthesis from a wrong couples list
-            for par in wrong_par:
-                if p.find(par) != -1:
-                    return False
-            # check if all closing parentheses have their opening counterpart before them
-            for o, c in zip(open_par, close_par):
-                while c in p:
-                    i = p.find(c)
-                    print(i)
-                    j = p.rfind(o, 0, i)
-                    print(j)
-                    if j == -1:
-                        return False
-                    else:
-                        p = p.replace(o, '', 1)
-                        p = p.replace(c, '', 1)
-                        print(p)
-            if p == '':
-                return True
-            else:
+        wrong_par = ['(]', '(}', '[)', '[}', '{)', '{]']
+
+        # check if there is a wrong pair of open+close parenthesis from a wrong couples list
+        for par in wrong_par:
+            if p.find(par) != -1:
                 return False
+            # check if all closing parentheses have their opening counterpart before them
+        for o, c in zip(open_par, close_par):
+            while c in p:
+                i = p.find(c)
+                print(i)
+                j = p.rfind(o, 0, i)
+                print(j)
+                if j == -1:
+                    return False
+                p = p.replace(o, '', 1)
+                p = p.replace(c, '', 1)
+                print(p)
+        return p == ''
                             
 print(Parenthesis("{}{{}}{{").is_valid())
 
@@ -184,9 +173,8 @@ class Subsets:
             output.append([my_set[i]])
             k = len(my_set)
             while k>=i:
-                for j in range(i+1, k):
-                    output.append([my_set[i]]+my_set[j:k])
-                k = k - 1
+                output.extend([my_set[i]]+my_set[j:k] for j in range(i+1, k))
+                k -= 1
         return sorted(output)
 
 
@@ -216,9 +204,7 @@ class EqualsTarget:
     def find_pair(self, iterable, target):
         pairs = []
         for i,n in enumerate(iterable):
-            for j,m in enumerate(iterable[i+1:]):
-                if n+m == target:
-                    pairs.append((i, j+i+1))
+            pairs.extend((i, j+i+1) for j, m in enumerate(iterable[i+1:]) if n+m == target)
         return pairs
 
 print(EqualsTarget().find_pair([-10,10,20,10,40,50,60,70,0,-20], 50))
@@ -235,9 +221,7 @@ class SumZero:
         triples = []
         for i, n in enumerate(iterable):
             for j, m in enumerate(iterable[i+1:]):
-                for x, y in enumerate(iterable[i+1+j+1:]):
-                    if n+m+y == 0:
-                        triples.append([n, m, y])
+                triples.extend([n, m, y] for y in iterable[i+1+j+1:] if n+m+y == 0)
         return triples
 
 
@@ -264,10 +248,7 @@ Expected Output : '.py hello'
 class ReverseString:
     def reversed(self, astring):
         split_string = astring.split()
-        reversed_string = ''
-        for word in split_string[::-1]:
-            reversed_string += word+' '
-        return reversed_string
+        return ''.join(f'{word} ' for word in split_string[::-1])
 
 print(ReverseString().reversed('hello .py nice to meet you'))
 
@@ -275,8 +256,7 @@ print(ReverseString().reversed('hello .py nice to meet you'))
 class ReverseString:
     def reversed(self, astring):
         split_string = astring.split()
-        reversed_string = ' '.join(reversed(split_string))
-        return reversed_string
+        return ' '.join(reversed(split_string))
 
 print(ReverseString().reversed('hello .py nice to meet you'))
         
@@ -312,8 +292,7 @@ class Rectangle:
         self.width = w
         
     def area(self):
-        a = self.length * self.width
-        return a
+        return self.length * self.width
 
 X = Rectangle(4,5)
 print(X.area())

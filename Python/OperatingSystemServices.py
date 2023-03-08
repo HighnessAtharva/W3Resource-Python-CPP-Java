@@ -14,11 +14,10 @@ print(os.listdir('.'))
 print("\nTest if a specified file exis or not:")
 try:
    filename = 'abc.txt'
-   f = open(filename, 'r')
-   text = f.read()
-   f.close()
+   with open(filename, 'r') as f:
+      text = f.read()
 except IOError:
-   print('Not accessed or problem in reading: ' + filename)
+   print(f'Not accessed or problem in reading: {filename}')
 
 # 2. Write a Python program to list only directories, files and all directories, files in a specified path. 
 path = 'g:\\testpath\\'
@@ -29,7 +28,7 @@ print("\nOnly files:")
 print([name for name in os.listdir(path)
        if not os.path.isdir(os.path.join(path, name))])
 print("\nAll directories and files :")
-print([name for name in os.listdir(path)])
+print(list(os.listdir(path)))
 
 # 3. Write a Python program to scan a specified directory and identify the sub directories and files.
 root = 'g:\\testpath\\'
@@ -58,7 +57,7 @@ print('Executable:', os.access(
 
 # 5. Write a Python program to get the size, permissions, owner, device, created, last modified and last accessed date time of a specified path.
 path = 'g:\\testpath\\'
-print('Path Name ({}):'.format(path))
+print(f'Path Name ({path}):')
 print('Size:', stat_info.st_size)
 print('Permissions:', oct(stat_info.st_mode))
 print('Owner:', stat_info.st_uid)
@@ -67,9 +66,9 @@ print('Created     :', time.ctime(stat_info.st_ctime))
 print('Last modified:', time.ctime(stat_info.st_mtime))
 print('Last accessed:', time.ctime(stat_info.st_atime))
 
-# 6. Write a Python program to create a symbolic link and read it to decide the original file pointed by the link. 
-path = '/tmp/' + os.path.basename(__file__)
-print('Creating link {} -> {}'.format(path, __file__))
+# 6. Write a Python program to create a symbolic link and read it to decide the original file pointed by the link.
+path = f'/tmp/{os.path.basename(__file__)}'
+print(f'Creating link {path} -> {__file__}')
 os.symlink(__file__, path)
 stat_info = os.lstat(path)
 print('\nFile Permissions:', oct(stat_info.st_mode))
@@ -179,11 +178,8 @@ print(output.getvalue())
 # Discard buffer memory
 output.close()
 
-# 17. Write a Python program to run an operating system command using the os module. 
-if os.name == "nt":
-   command = "dir"
-else:
-   command = "ls -l"
+# 17. Write a Python program to run an operating system command using the os module.
+command = "dir" if os.name == "nt" else "ls -l"
 os.system(command)
 
 # 18. Write a Python program to start a new process replacing the current process. 
@@ -221,8 +217,7 @@ time_struct(time.gmtime())
 def zone_info():
    print('TZ   :', os.environ.get('TZ', '(not set)'))
    print('Timezone abbreviations:', time.tzname)
-   print('Timezone : {} ({})'.format(
-       time.timezone, (time.timezone / 3600)))
+   print(f'Timezone : {time.timezone} ({time.timezone / 3600})')
    print('DST timezone ', time.daylight)
    print('Time :', time.strftime('%X %x %Z'), '\n')
 
@@ -241,8 +236,8 @@ for zone in TIME_ZONES:
    print(zone, ':')
    zone_info()
 
-# 22. Write a Python program that can suspend execution of a given script a given number of seconds. 
-for x in range(4):
+# 22. Write a Python program that can suspend execution of a given script a given number of seconds.
+for _ in range(4):
    time.sleep(3)
    print("Sorry, Slept for 3 seconds...")
 

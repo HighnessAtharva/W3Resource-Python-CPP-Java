@@ -13,6 +13,7 @@ Member name: Albania
 Member value: 355
 """
 
+
 from enum import Enum
 
 class Country(Enum):
@@ -117,9 +118,7 @@ class Country(Enum):
     Angola = 244
     Antarctica = 672   
 
-output = []
-for country in Country:
-    output.append(country.value)
+output = [country.value for country in Country]
 print(output)
 
 # alternatively:
@@ -137,11 +136,7 @@ words = ['red', 'green', 'black', 'pink', 'black', 'white', 'black', 'eyes',
          'orange', 'white', 'black', 'pink', 'green', 'green', 'pink', 'green',
          'white', 'orange', "orange", 'red']
 
-# solution 1 withour collections module
-counts = set()
-for word in words:
-    counts.add((word, words.count(word)))
-
+counts = {(word, words.count(word)) for word in words}
 output = sorted(counts, key=lambda x: x[1], reverse=True)
 print(output[:4])
 
@@ -200,21 +195,13 @@ classes = (('V', 1),
            ('VII', 1))
 # solution 1 (if numbers are sequentials and start with 1)
 my_dict = {}
-for a,b in classes:
-    if a in my_dict:
-        if b > my_dict[a]:
-            my_dict[a] = b
-    else:
+for a, b in classes:
+    if a in my_dict and b > my_dict[a] or a not in my_dict:
         my_dict[a] = b
-
 print(my_dict)
 
-# solution 2 (count occurencies of each class)
-my_dict = {}
 only_classes, roll_numbers = zip(*classes)
-for a in only_classes:
-    my_dict[a]=only_classes.count(a)
-
+my_dict = {a: only_classes.count(a) for a in only_classes}
 print(my_dict)
 
 """
@@ -229,7 +216,7 @@ Angola = 244
 from enum import Enum, unique
 @unique
 class Country(Enum):
-    
+
     Afghanistan = 93
     Albania = 355
     Algeria = 213
@@ -274,7 +261,7 @@ print("In reverse order:")
 reversed_dict = OrderedDict(sorted(my_dict.items(), key=lambda x: x[1], reverse=True))
 for k,v in reversed_dict.items():
     print(k, v)
-    
+
 # or alternatively reversing without creating additional OrderedDict
 print("In reverse order:")
 for k in reversed(my_ordered_dict):
@@ -506,14 +493,11 @@ Expected Output:
 """
 import heapq
 my_unsorted_list = [20, 10, 50, 70, 30, 10, 40, 80, 20, 60]
-my_sorted_list = []
 my_heap = []
 for item in my_unsorted_list:
     heapq.heappush(my_heap, item)
-    
-for x in range(len(my_heap)):
-    my_sorted_list.append(heapq.heappop(my_heap))
 
+my_sorted_list = [heapq.heappop(my_heap) for _ in range(len(my_heap))]
 print(my_sorted_list)
 
 """
@@ -559,7 +543,7 @@ Sorted List:
 [14, 25, 36, 36, 45, 47, 48, 68, 69, 78]
 """
 import bisect
- 
+
 my_list = [25, 45, 36, 47, 69, 48, 68, 78, 14, 36]
 my_sorted_list = []
 for i in my_list:
@@ -579,7 +563,7 @@ q = queue.Queue()
 for i in range(4):
     q.put(i)
 
-print("Members of the queue:")    
+print("Members of the queue:")
 for elem in list(q.queue):
     print(elem, end=' ')
 print("\nSize of the queue:")

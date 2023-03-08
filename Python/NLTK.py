@@ -114,7 +114,7 @@ result = set(stopwords.words('english'))
 print("List of stopwords in English:")
 print(result)
 print("\nOmit - 'again', 'once' and 'from':")
-stop_words = set(stopwords.words('english')) - set(['again', 'once', 'from'])
+stop_words = set(stopwords.words('english')) - {'again', 'once', 'from'}
 print("\nList of fresh stopwords in English:")
 print(stop_words)
 
@@ -187,7 +187,7 @@ print(v1.wup_similarity(v2))
 
 # 11. Write a Python NLTK program to find the number of male and female names in the names corpus. Print the first 10 male and female names.
 # Note: The names corpus contains a total of around 2943 male(male.txt) and 5001 female(female.txt) names. It's compiled by Kantrowitz, Ross.
-from nltk.corpus import names 
+from nltk.corpus import names
 print("\nNumber of male names:")
 print (len(names.words('male.txt')))
 print("\nNumber of female names:")
@@ -195,9 +195,9 @@ print (len(names.words('female.txt')))
 male_names = names.words('male.txt')
 female_names = names.words('female.txt')
 print("\nFirst 10 male names:")
-print (male_names[0:15])
+print(male_names[:15])
 print("\nFirst 10 female names:")
-print (female_names[0:15])
+print(female_names[:15])
 
 
 # 12. Write a Python NLTK program to print the first 15 random combine labeled male and labeled female names from names corpus.
@@ -215,16 +215,16 @@ print(labeled_all_names[:15])
 
 
 # 13. Write a Python NLTK program to extract the last letter of all the labeled names and create a new array with the last letter of each name and the associated label.
-from nltk.corpus import names 
-import random  
+from nltk.corpus import names
+import random
 male_names = names.words('male.txt')
-female_names = names.words('female.txt') 
+female_names = names.words('female.txt')
 labeled_male_names = [(str(name), 'male') for name in male_names]
 labeled_female_names = [(str(name), 'female') for name in female_names]
 # combine labeled male and labeled female names
-all_labeled_names = labeled_male_names + labeled_female_names 
+all_labeled_names = labeled_male_names + labeled_female_names
 feature_set = [(name[-1], gender) for (name, gender) in all_labeled_names]
-print("\nFirst 15 labeled names:") 
+print("\nFirst 15 labeled names:")
 print((all_labeled_names[:15]))
 print("\nLast letter of all the labeled names with the associated label:")
 print((feature_set[:15]))

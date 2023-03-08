@@ -18,7 +18,7 @@ print(list(c.elements()))
 # Most common three characters of the said string:
 # [('s', 4), ('e', 3), ('f', 3)]
 s = 'lkseropewdssafsdfafkpwe'
-print("Original string: "+s)
+print(f"Original string: {s}")
 print("Most common three characters of the said string:")
 print(Counter(s).most_common(3))
 
@@ -52,25 +52,13 @@ words = re.findall('\w+', text)
 print(Counter(words).most_common(10))
 
 
-# 5. Write a Python program that accept some words and count the number of distinct words. Print the number of distinct words and number of occurrences for each distinct word according to their appearance. 
-# Input number of words: 5
-# Input the words:
-# Red
-# Green
-# Blue
-# Black
-# White
-# 5
-# 1 1 1 1 1
 class OrderedCounter(Counter, OrderedDict):
    pass
 
 
-word_array = []
 n = int(input("Input number of words: "))
 print("Input the words: ")
-for i in range(n):
-   word_array.append(input().strip())
+word_array = [input().strip() for _ in range(n)]
 word_ctr = OrderedCounter(word_array)
 print(len(word_ctr))
 for word in word_ctr:
@@ -89,16 +77,13 @@ for word in word_ctr:
 # Math 68
 n = int(input("Number of subjects: "))
 item_order = collections.OrderedDict()
-for i in range(n):
+for _ in range(n):
    sub_marks_list = re.split(
        r'(\d+)$', input("Input Subject name and marks: ").strip())
    subject_name = sub_marks_list[0]
    item_price = int(sub_marks_list[1])
-   if subject_name not in item_order:
-       item_order[subject_name] = item_price
-   else:
-       item_order[subject_name] = item_order[subject_name]+item_price
-
+   item_order[subject_name] = (item_price if subject_name not in item_order
+                               else item_order[subject_name] + item_price)
 for i in item_order:
    print(i+str(item_order[i]))
 
@@ -376,8 +361,7 @@ print(result)
 # Merged dictionary:
 # {'B': 'Black', 'R': 'Red', 'P': 'Pink', 'G': 'Green', 'W': 'White', 'O': 'Orange'}
 def merge_dictionaries(color1, color2):
-    merged_dict = dict(ct.ChainMap({}, color1, color2))
-    return merged_dict
+   return dict(ct.ChainMap({}, color1, color2))
 
 
 color1 = {"R": "Red", "B": "Black", "P": "Pink"}
@@ -389,8 +373,7 @@ print(merge_dictionaries(color1, color2))
 
 
 def merge_dictionaries(color1, color2, color3):
-    merged_dict = dict(ct.ChainMap({}, color1, color2, color3))
-    return merged_dict
+   return dict(ct.ChainMap({}, color1, color2, color3))
 
 
 color1 = {"R": "Red", "B": "Black", "P": "Pink"}
@@ -442,11 +425,10 @@ print(check_break_list(nums, n))
 # (2, 5)
 from collections import defaultdict
 def max_occurrences(nums):
-    dict = defaultdict(int)
-    for i in nums:
-        dict[i] += 1
-    result = max(dict.items(), key=lambda x: x[1]) 
-    return result
+   dict = defaultdict(int)
+   for i in nums:
+       dict[i] += 1
+   return max(dict.items(), key=lambda x: x[1])
 nums = [2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2]
 print ("Original list:")
 print(nums)

@@ -1,6 +1,7 @@
 """
 1. Write a Python program to read an entire text file.
 """
+
 # It is good practice to use the with keyword when dealing with file objects.
 # The advantage is that the file is properly closed after its suite finishes,
 # even if an exception is raised at some point. 
@@ -9,13 +10,10 @@ with open('exercises.txt') as f:
     print(read_data)
 print(f.closed)
 
-# If you’re not using the with keyword, then you should call f.close() to close
-# the file and immediately free up any system resources used by it.
-f = open('exercises.txt')
-read_data = f.read()
-print(read_data)
-print(f.closed)
-f.close()
+with open('exercises.txt') as f:
+    read_data = f.read()
+    print(read_data)
+    print(f.closed)
 print(f.closed)
 
 """
@@ -24,11 +22,9 @@ print(f.closed)
 
 # solution 1
 n = 5
-f = open('exercises.txt')
-for i in range(n):
-    print(f.readline())
-f.close()
-
+with open('exercises.txt') as f:
+    for _ in range(n):
+        print(f.readline())
 # solution 2
 n = 5
 with open('exercises.txt') as f:
@@ -42,36 +38,31 @@ with open('exercises.txt') as f:
     lines = f.readlines()
     for line in lines[:n]:
         print(line)
-    
+
 # solution 4
 from itertools import islice
 n = 5
 with open('exercises.txt') as f:
     for line in islice(f, n):
         print(line)
-        
+
 """
 3. Write a Python program to append text to a file and display the text.
 """
 
-f = open('exercises.txt', 'a')
-f.write('\nappending a line at the end of the file')
-f.close()
-f = open('exercises.txt', 'r')
-print(f.read())
-f.close()
-
+with open('exercises.txt', 'a') as f:
+    f.write('\nappending a line at the end of the file')
+with open('exercises.txt', 'r') as f:
+    print(f.read())
 """
 4. Write a Python program to read last n lines of a file.
 """
 
 n = 6
-f = open('exercises.txt')
-lines = list(f)
-for line in lines[-n:]:
-    print(line)
-f.close()
-
+with open('exercises.txt') as f:
+    lines = list(f)
+    for line in lines[-n:]:
+        print(line)
 """
 5. Write a Python program to read a file line by line and store it into a list.
 """
@@ -102,21 +93,18 @@ with open('exercises.txt') as f:
             if len(longest) < len(word):
                 longest = word
     print(longest)
-    
+
 # solution 2 (finds 1 longest word)
 with open('exercises.txt') as f:
     words = f.read().split()
     longest = max(words, key=len)
     print(longest)
-    
+
 # solution 3 (finds all words with greatest length)
 with open('exercises.txt') as f:
     words = f.read().split()
     max_length = len(max(words, key=len))
-    all_longest = []
-    for word in words:
-        if len(word) == max_length:
-            all_longest.append(word)
+    all_longest = [word for word in words if len(word) == max_length]
     print(set(all_longest))
 
 """
@@ -129,9 +117,7 @@ with open('exercises.txt') as f:
 
 # solution 2
 with open('exercises.txt') as f:
-    counter = 0
-    for line in f:
-        counter += 1
+    counter = sum(1 for _ in f)
     print(counter)
 
 """
@@ -158,7 +144,7 @@ with open('exercises.txt') as f:
             words_freq[word] += 1
         else:
            words_freq[word] = 1
-           
+
 print(words_freq)
 
 # solution 2
@@ -179,7 +165,7 @@ with open('exercises.txt') as f:
     words_freq = Counter(words)
 
 print(words_freq)
-        
+
 """
 11. Write a Python program to get the file size of a plain file.
 """
@@ -201,11 +187,9 @@ with open('list-to-file.txt', 'w+') as f:
 13. Write a Python program to copy the contents of a file to another file.
 """
 
-# solution 1 (copy without deleting existing data)
-f = open('list-to-file.txt')
-f1 = open('exercises.txt', 'a')
-f1.write(f.read())
-f.close()
+with open('list-to-file.txt') as f:
+    f1 = open('exercises.txt', 'a')
+    f1.write(f.read())
 f1.close()
 
 # solution 2 (copy with deleting all previous data in target file)
@@ -217,13 +201,12 @@ shutil.copyfile('list-to-file.txt', 'exercises.txt')
 corresponding line in second file.
 """
 
-f1 = open('fruits.txt')
-f2 = open('vegetables.txt')
-for line1, line2 in zip(f1, f2):
-    print(line1.strip('\n'), line2.strip('\n'))
-f1.close()
+with open('fruits.txt') as f1:
+    f2 = open('vegetables.txt')
+    for line1, line2 in zip(f1, f2):
+        print(line1.strip('\n'), line2.strip('\n'))
 f2.close()
-    
+
 """
 15. Write a Python program to read a random line from a file.
 """
@@ -231,13 +214,12 @@ f2.close()
 import random
 with open('fruits.txt') as f:
     print(random.choice(f.readlines()))
-    
+
 """
 16. Write a Python program to assess if a file is closed or not.
 """
-f = open('fruits.txt')
-print(f.closed)
-f.close()
+with open('fruits.txt') as f:
+    print(f.closed)
 print(f.closed)
 
 """
@@ -273,8 +255,8 @@ import string, os
 if not os.path.exists("letters"):
    os.makedirs("letters")
 for letter in string.ascii_uppercase:
-   with open(letter + ".txt", "w") as f:
-       f.writelines(letter)
+    with open(f"{letter}.txt", "w") as f:
+        f.writelines(letter)
 
 # 21. Write a Python program to create a file where all letters of English alphabet are listed by specified number of letters on each line. 
 import string

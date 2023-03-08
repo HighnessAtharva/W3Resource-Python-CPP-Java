@@ -11,9 +11,10 @@ print("Generate a random color hex:")
 print("#{:06x}".format(random.randint(0, 0xFFFFFF)))
 print("\nGenerate a random alphabetical string:")
 max_length = 255
-s = ""
-for i in range(random.randint(1, max_length)):
-    s += random.choice(string.ascii_letters)
+s = "".join(
+    random.choice(string.ascii_letters)
+    for _ in range(random.randint(1, max_length))
+)
 print(s)
 print("Generate a random value between two integers, inclusive:")
 print(random.randint(0, 10))
@@ -32,7 +33,7 @@ print(random.choice(elements))
 print(random.choice(elements))
 print(random.choice(elements))
 print("\nSelect a random element from a set:")
-elements = set([1, 2, 3, 4, 5])
+elements = {1, 2, 3, 4, 5}
 # convert to tuple because sets are invalid inputs
 print(random.choice(tuple(elements)))
 print(random.choice(tuple(elements)))
@@ -44,7 +45,7 @@ print(d[key])
 key = random.choice(list(d))
 print(d[key])
 key = random.choice(list(d))
-print(d[key]) 
+print(d[key])
 print("\nSelect a random file from a directory.:")
 print(random.choice(os.listdir("/")))
 
@@ -57,14 +58,13 @@ print("Generate a random alphabetical character:")
 print(random.choice(string.ascii_letters))
 print("\nGenerate a random alphabetical string:")
 max_length = 255
-str1 = ""
-for i in range(random.randint(1, max_length)):
-    str1 += random.choice(string.ascii_letters)
+str1 = "".join(
+    random.choice(string.ascii_letters)
+    for _ in range(random.randint(1, max_length))
+)
 print(str1)
 print("\nGenerate a random alphabetical string of a fixed length:")
-str1 = ""
-for i in range(10):
-    str1 += random.choice(string.ascii_letters)
+str1 = "".join(random.choice(string.ascii_letters) for _ in range(10))
 print(str1)
 
 
@@ -101,7 +101,7 @@ print(random_date)
 
 # 6.shuffle the elements of a given list. Use random.shuffle()
 
-import random 
+import random
 nums = [1, 2, 3, 4, 5]
 print("Original list:")
 print(nums)
@@ -118,7 +118,7 @@ print(words)
 
 # 7.generate a float between 0 and 1, inclusive and generate a random float within a specific range. Use random.uniform()
 
-import random 
+import random
 print("Generate a float between 0 and 1, inclusive:")
 print(random.uniform(0, 1))
 print("\nGenerate a random float within a range:")
@@ -127,9 +127,9 @@ print(random_float)
 
 
 # 8.create a list of random integers and randomly select multiple items from the said list. Use random.sample()
-import random 
+import random
 print("Create a list of random integers:")
-population = range(0, 100)
+population = range(100)
 nums_list = random.sample(population, 10)
 print(nums_list)
 no_elements = 4
@@ -144,7 +144,7 @@ print(result_elements)
 
 
 # 9.set a random seed and get a random number between 0 and 1. Use random.random. 
-import random 
+import random
 print("Set a random seed and get a random number between 0 and 1:")
 random.seed(0)
 new_random_value = random.random()
@@ -261,10 +261,7 @@ from decimal import Decimal
 
 def round_to_10_cents(x):
     remainder = x.remainder_near(Decimal('0.10'))
-    if abs(remainder) == Decimal('0.05'):
-        return x
-    else:
-        return x - remainder
+    return x if abs(remainder) == Decimal('0.05') else x - remainder
 
 # Test code.
 for x in range(80, 120):
@@ -498,36 +495,29 @@ for row in reader:
 
 # 6.write (without writing separate lines between rows) and read a CSV file with specified delimiter. Use csv.reader
 
-import csv     
-fw = open("test.csv", "w", newline='')
-writer = csv.writer(fw, delimiter = ",")
-writer.writerow(["a","b","c"])
-writer.writerow(["d","e","f"])
-writer.writerow(["g","h","i"])
-fw.close()
- 
-fr = open("test.csv", "r")
-csv = csv.reader(fr, delimiter = ",")
-for row in csv:
-  print(row) 
-fr.close()
-
-
+import csv
+with open("test.csv", "w", newline='') as fw:
+    writer = csv.writer(fw, delimiter = ",")
+    writer.writerow(["a","b","c"])
+    writer.writerow(["d","e","f"])
+    writer.writerow(["g","h","i"])
+with open("test.csv", "r") as fr:
+    csv = csv.reader(fr, delimiter = ",")
+    for row in csv:
+      print(row)
 # 7.write dictionaries and a list of dictionaries to a given CSV file. Use csv.reader
 import csv
 print("Write dictionaries to a CSV file:")
-fw = open("test.csv", "w", newline='')
-writer = csv.DictWriter(fw, fieldnames=["Name", "Class"])
-writer.writeheader()
-writer.writerow({"Name": "Jasmine Barrett", "Class": "V"})
-writer.writerow({"Name": "Garry Watson", "Class": "V"})
-writer.writerow({"Name": "Courtney Caldwell", "Class": "VI"})
-fw.close()
-fr = open("test.csv", "r")
-csv = csv.reader(fr, delimiter = ",")
-for row in csv:
-  print(row) 
-fr.close()
+with open("test.csv", "w", newline='') as fw:
+    writer = csv.DictWriter(fw, fieldnames=["Name", "Class"])
+    writer.writeheader()
+    writer.writerow({"Name": "Jasmine Barrett", "Class": "V"})
+    writer.writerow({"Name": "Garry Watson", "Class": "V"})
+    writer.writerow({"Name": "Courtney Caldwell", "Class": "VI"})
+with open("test.csv", "r") as fr:
+    csv = csv.reader(fr, delimiter = ",")
+    for row in csv:
+      print(row)
 
 
 

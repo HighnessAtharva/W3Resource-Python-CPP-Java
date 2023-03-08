@@ -1312,8 +1312,7 @@ Expected Output:
 
 
 def func(i):
-    for _ in range(i):
-        yield _
+    yield from range(i)
 
 
 x = np.fromiter(func(10,), dtype=int)

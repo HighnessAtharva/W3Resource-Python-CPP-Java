@@ -34,13 +34,13 @@ print(now.strftime("%Y-%m-%d %H:%M:%S"))
 # Area = 3.8013271108436504
 from math import pi
 r = float(input("Input the radius of the circle : "))
-print("The area of the circle with radius " + str(r) + " is: " + str(pi * r**2))
+print(f"The area of the circle with radius {r} is: {str(pi * r**2)}")
 
 
 # 5. Write a Python program which accepts the user's first and last name and print them in reverse order with a space between them.
 fname = input("Input your First Name : ")
 lname = input("Input your Last Name : ")
-print("Hello  " + lname + " " + fname)
+print(f"Hello  {lname} {fname}")
 
 
 # 6. Write a Python program which accepts a sequence of comma-separated numbers from user and generate a list and a tuple with those numbers.
@@ -50,20 +50,20 @@ print("Hello  " + lname + " " + fname)
 # Tuple : ('3', ' 5', ' 7', ' 23')
 
 color_list = ["Red", "Green", "White", "Black"]
-print("%s %s" % (color_list[0], color_list[-1]))
+print(f"{color_list[0]} {color_list[-1]}")
 
 # 7. Write a Python program to accept a filename from the user and print the extension of that.
 # Sample filename : abc.java
 # Output : java
 filename = input("Input the Filename: ")
 f_extns = filename.split(".")
-print("The extension of the file is : " + repr(f_extns[-1]))
+print(f"The extension of the file is : {repr(f_extns[-1])}")
 
 
 # 8. Write a Python program to display the first and last colors from the following list.
 # color_list = ["Red","Green","White" ,"Black"]
 color_list = ["Red", "Green", "White", "Black"]
-print("%s %s" % (color_list[0], color_list[-1]))
+print(f"{color_list[0]} {color_list[-1]}")
 
 
 # 9. Write a Python program to display the examination schedule. (extract the date from exam_st_date).
@@ -78,9 +78,9 @@ print("The examination will start from : %i / %i / %i" % exam_st_date)
 # Expected Result : 615
 
 a = int(input("Input an integer : "))
-n1 = int("%s" % a)
-n2 = int("%s%s" % (a, a))
-n3 = int("%s%s%s" % (a, a, a))
+n1 = int(f"{a}")
+n2 = int(f"{a}{a}")
+n3 = int(f"{a}{a}{a}")
 print(n1 + n2 + n3)
 
 # 11. Write a Python program to print the documents (syntax, description etc.) of Python built-in function(s).
@@ -132,10 +132,7 @@ print('The volume of the sphere is: ', V)
 
 
 def difference(n):
-    if n <= 17:
-        return 17 - n
-    else:
-        return (n - 17) * 2
+    return 17 - n if n <= 17 else (n - 17) * 2
 
 
 print(difference(22))
@@ -168,9 +165,7 @@ print(sum_thrice(3, 3, 3))
 
 # 19. Write a Python program to get a new string from a given string where "Is" has been added to the front. If the given string already begins with "Is" then return the string unchanged.
 def new_string(str):
-    if len(str) >= 2 and str[:2] == "Is":
-        return str
-    return "Is" + str
+    return str if len(str) >= 2 and str[:2] == "Is" else f"Is{str}"
 
 
 print(new_string("Array"))
@@ -203,12 +198,11 @@ print(list_count_4([1, 4, 6, 4, 7, 4]))
 
 def substring_copy(str, n):
     flen = 2
-    if flen > len(str):
-        flen = len(str)
+    flen = min(flen, len(str))
     substr = str[:flen]
 
     result = ""
-    for i in range(n):
+    for _ in range(n):
         result = result + substr
     return result
 
@@ -232,9 +226,7 @@ print(is_vowel('e'))
 # 3 -> [1, 5, 8, 3] : True
 # -1 -> [1, 5, 8, 3] : False
 def is_group_member(group_data, n):
-    if n in group_data:
-        return True
-    return False
+    return n in group_data
 
 print(is_group_member([1, 5, 8, 3], 3))
 print(is_group_member([5, 8, 3], -1))
@@ -243,9 +235,7 @@ print(is_group_member([5, 8, 3], -1))
 
 def histogram(items):
     for n in items:
-        str = ''
-        for i in range(n):
-            str += '*'
+        str = ''.join('*' for _ in range(n))
         print(str)
 
 histogram([2, 3, 6, 5])
@@ -255,10 +245,7 @@ histogram([2, 3, 6, 5])
 
 
 def concatenate_list_data(list):
-    result = ''
-    for element in list:
-        result += str(element)
-    return result
+    return ''.join(str(element) for element in list)
 
 
 print(concatenate_list_data([1, 5, 12, 2]))
@@ -294,8 +281,8 @@ for x in numbers:
 # color_list_2 = set(["Red", "Green"])
 # Expected Output :
 # {'Black', 'White'}
-color_list_1 = set(["White", "Black", "Red"])
-color_list_2 = set(["Red", "Green"])
+color_list_1 = {"White", "Black", "Red"}
+color_list_2 = {"Red", "Green"}
 
 print(color_list_1-color_list_2)
 
@@ -308,16 +295,12 @@ print("area = ",b * h / 2)
 
 # 31. Write a Python program to compute the greatest common divisor (GCD) of two positive integers.
 def gcd(x, y):
-    gcd = 1
-
     if x % y == 0:
         return y
 
-    for k in range(int(y / 2), 0, -1):
-        if x % k == 0 and y % k == 0:
-            gcd = k
-            break
-    return gcd
+    return next(
+        (k for k in range(int(y / 2), 0, -1) if x % k == 0 and y % k == 0), 1
+    )
 
 
 print(gcd(12, 17))
@@ -327,11 +310,7 @@ print(gcd(4, 6))
 
 
 def lcm(x, y):
-    if x > y:
-        z = x
-    else:
-        z = y
-
+    z = max(x, y)
     while(True):
         if((z % x == 0) and (z % y == 0)):
             lcm = z
@@ -348,11 +327,7 @@ print(lcm(15, 17))
 # 33. Write a Python program to sum of three given integers. However, if two values are equal sum will be zero.
 
 def sum(x, y, z):
-    if x == y or y == z or x == z:
-        sum = 0
-    else:
-        sum = x + y + z
-    return sum
+    return 0 if x == y or y == z or x == z else x + y + z
 
 
 print(sum(2, 1, 2))
@@ -364,10 +339,7 @@ print(sum(1, 2, 3))
 
 def sum(x, y):
     sum = x + y
-    if sum in range(15, 20):
-        return 20
-    else:
-        return sum
+    return 20 if sum in range(15, 20) else sum
 
 print(sum(10, 6))
 print(sum(10, 2))
@@ -375,10 +347,7 @@ print(sum(10, 12))
 
 # 35. Write a Python program that will return true if the two given integer values are equal or their sum or difference is 5.
 def test_number5(x, y):
-    if x == y or abs(x-y) == 5 or (x+y) == 5:
-        return True
-    else:
-        return False
+    return x == y or abs(x-y) == 5 or (x+y) == 5
 
 print(test_number5(7, 2))
 print(test_number5(3, 2))
@@ -407,8 +376,8 @@ personal_details()
 # Expected Output : (4 + 3) ^ 2) = 49
 
 x, y = 4, 3
-result = x * x + 2 * x * y + y * y
-print("({} + {}) ^ 2) = {}".format(x, y, result))
+result = x**2 + 2 * x * y + y**2
+print(f"({x} + {y}) ^ 2) = {result}")
 
 # 39. Write a Python program to compute the future value of a specified principal amount, rate of interest, and a number of years.
 # Test Data : amt = 10000, int = 3.5, years = 7
@@ -451,7 +420,7 @@ print(platform.system())
 print(platform.release())
 
 # 44. Write a Python program to locate Python site-packages.
-import site; 
+import site;
 print(site.getsitepackages())
 
 
@@ -480,13 +449,13 @@ from os import listdir
 from os.path import isfile, join
 files_list = [f for f in listdir('/home/students') if isfile(join('/home/students', f))]
 print(files_list);
-	
+
 
 # 50. Write a Python program to print without newline or space.
-for i in range(0, 10):
+for _ in range(10):
     print('*', end="")
 print("\n")
-	
+
 
 # 51. Write a Python program to determine profiling of Python programs.
 # Note: A profile is a set of statistics that describes how often and for how long various parts of the program executed. These statistics can be formatted into reports via the pstats module.

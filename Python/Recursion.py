@@ -35,10 +35,7 @@ print(sum_of_list([1, 2, [3,4], [5,6]]))
 """
 
 def factorial(number):
-    if number == 0 or number == 1:
-        return 1
-    else:
-        return number * factorial(number-1)
+    return 1 if number in [0, 1] else number * factorial(number-1)
 
 print(factorial(2))
 
@@ -49,7 +46,7 @@ print(factorial(2))
 #  solution 1: bad function that will work for a low n but will slow the
 #  computation drastically as the n increases
 def fibonacci(n):
-    if n == 1 or n == 2:
+    if n in [1, 2]:
         b = 1
     if n > 2:
         b = fibonacci(n-1) + fibonacci(n-2)
@@ -65,10 +62,7 @@ fibonacci_cache = {}
 def fibonacci(n):
     if n in fibonacci_cache:
         return fibonacci_cache[n]
-    if n == 1 or n == 2:
-        b = 1
-    else:
-        b = fibonacci(n-1) + fibonacci(n-2)
+    b = 1 if n in [1, 2] else fibonacci(n-1) + fibonacci(n-2)
     fibonacci_cache[n] = b
     return b
 
@@ -88,10 +82,7 @@ def memoize(func):
 
 @memoize
 def fibonacci(n):
-    if n == 1 or n == 2:
-        return 1
-    else:
-        return fibonacci(n-1) + fibonacci(n-2)
+    return 1 if n in [1, 2] else fibonacci(n-1) + fibonacci(n-2)
 
 for i in range(1, 21):
     print(fibonacci(i), end = ' ')
@@ -104,10 +95,7 @@ sumDigits(45) -> 9
 """
 
 def sum_digits(n):
-    if n//10 < 1:
-        return n
-    else:
-        return n%10 + sum_digits(n//10)
+    return n if n//10 < 1 else n%10 + sum_digits(n//10)
 
 print(sum_digits(345))
 
@@ -120,10 +108,7 @@ sum_series(10) -> 30
 """
 
 def sum_series(n):
-    if (n-2) <= 0:
-        return n
-    else:
-        return n + sum_series(n-2)
+    return n if n <= 2 else n + sum_series(n-2)
 
 print(sum_series(6))
 
@@ -133,10 +118,7 @@ Note: The harmonic sum is the sum of reciprocals of the positive integers.
 """
 
 def harmonic_sum(n):
-    if n == 1:
-        return 1
-    else:
-        return 1/n + harmonic_sum(n-1)
+    return 1 if n == 1 else 1/n + harmonic_sum(n-1)
 
 print(harmonic_sum(5))
 
@@ -148,10 +130,7 @@ ratio between successive terms.
 
 def geometric_sum(n, a, r):
     # r is a common ratio, a is a start term
-    if n == 0:
-        return a
-    else:
-        return a*r**n + geometric_sum(n-1, a, r)
+    return a if n == 0 else a*r**n + geometric_sum(n-1, a, r)
 print(geometric_sum(5, 1, 2))
 
 """
@@ -161,10 +140,7 @@ Test Data :
 """
 
 def power(a,b):
-    if b == 0:
-        return 1
-    else:
-        return a*power(a, b-1)
+    return 1 if b == 0 else a*power(a, b-1)
 
 print(power(3,4))
 

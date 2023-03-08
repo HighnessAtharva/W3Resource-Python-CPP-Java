@@ -39,7 +39,7 @@ print(list(result))
 # 6. Write a Python program to convert all the characters in uppercase and lowercase and eliminate duplicate letters from a given sequence. Use map() function. 
 def change_cases(s):
   return str(s).upper(), str(s).lower()
-chars = {'a', 'b', 'E', 'f', 'a', 'i', 'o', 'U', 'a'}
+chars = {'b', 'E', 'f', 'i', 'o', 'U', 'a'}
 print("Original Characters:\n",chars)
 result = map(change_cases, chars)
 print("\nAfter converting above characters in upper and lower cases\nand eliminating duplicate letters:")
@@ -101,10 +101,7 @@ print(list(map(square, result)))
 # 11. Write a Python program to compute the sum of elements of an given array of integers, use map() function. 
 from array import array
 def array_sum(nums_arr):
-    sum_n = 0
-    for n in nums_arr:
-        sum_n += n
-    return sum_n
+  return sum(nums_arr)
 
 nums = array('i', [1, 2, 3, 4, 5, -15])
 print("Original array:",nums)
@@ -140,12 +137,10 @@ print("Ratio of positive numbers, negative numbers and zeroes: ", result)
 
 # 13. Write a Python program to count the same pair in two given lists. use map() function. 
 def isSame(x,y):
-    answer= True if x==y else False
-    return answer
+  return x == y
 
 def count_same_pair(nums1, nums2):
-    result = sum(map(isSame, nums1, nums2))
-    return result
+  return sum(map(isSame, nums1, nums2))
 
 nums1 = [1,2,3,4,5,6,7,8]
 nums2 = [2,2,3,1,2,6,7,9]
@@ -158,8 +153,14 @@ print(count_same_pair(nums1, nums2))
 # 14. Write a Python program to interleave two given list into another list randomly using map() function. 
 import random
 def randomly_interleave(nums1, nums2):
-    result =  list(map(next, random.sample([iter(nums1)]*len(nums1) + [iter(nums2)]*len(nums2), len(nums1)+len(nums2))))
-    return result
+  return list(
+      map(
+          next,
+          random.sample(
+              [iter(nums1)] * len(nums1) + [iter(nums2)] * len(nums2),
+              len(nums1) + len(nums2),
+          ),
+      ))
 nums1 = [1,2,7,8,3,7]
 nums2 = [4,3,8,9,4,3,8,9]
 print("Original lists:") 
@@ -183,8 +184,7 @@ print(list_of_dicts(marks))
 
 # 17. Write a Python program to convert a given list of tuples to a list of strings using map function
 def tuples_to_list_string(lst):
-    result = list(map(' '.join, lst))
-    return result   
+  return list(map(' '.join, lst))   
 
 colors = [('red', 'pink'), ('white', 'black'), ('orange', 'green')]
 print("Original list of tuples:", colors)

@@ -26,10 +26,9 @@ class singly_linked_list:
         node = Node(data)
         if self.tail:
             self.tail.next = node
-            self.tail = node
         else:
             self.head = node
-            self.tail = node
+        self.tail = node
         self.count += 1
 
 
@@ -65,10 +64,9 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
 
     def iterate_item(self):
@@ -114,10 +112,9 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
 
     def iterate_item(self):
@@ -129,11 +126,7 @@ class singly_linked_list:
             yield val
 
     def search_item(self, val):
-        # Search the list
-        for node in self.iterate_item():
-             if val == node:
-                 return True
-        return False
+        return any(val == node for node in self.iterate_item())
 
 
 items = singly_linked_list()
@@ -172,17 +165,16 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
     
     def __getitem__(self, index):
         if index > self.count - 1:
             return "Index out of range"
         current_val = self.tail
-        for n in range(index):
+        for _ in range(index):
             current_val = current_val.next
         return current_val.data
 
@@ -222,17 +214,16 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
 
     def __getitem__(self, index):
         if index > self.count - 1:
             return "Index out of range"
         current_val = self.tail
-        for n in range(index):
+        for _ in range(index):
             current_val = current_val.next
         return current_val.data
 
@@ -240,7 +231,7 @@ class singly_linked_list:
         if index > self.count - 1:
             raise Exception("Index out of range.")
         current = self.tail
-        for n in range(index):
+        for _ in range(index):
             current = current.next
         current.data = value
 
@@ -279,10 +270,9 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
 
     def delete_item(self, data):
@@ -346,10 +336,9 @@ class singly_linked_list:
         node = Node(data)
         if self.head:
             self.head.next = node
-            self.head = node
         else:
             self.tail = node
-            self.head = node
+        self.head = node
         self.count += 1
 
     def delete_item(self, data):
@@ -710,10 +699,7 @@ class doubly_linked_list(object):
             print(node)
 
     def search_item(self, val):
-        for node in self.iter():
-            if val == node:
-                return True
-        return False
+        return any(val == node for node in self.iter())
 
 
 items = doubly_linked_list()
@@ -777,10 +763,7 @@ class doubly_linked_list(object):
             print(node)   
         
     def search_item(self, val):
-         for node in self.iter():
-            if val == node:
-                return True
-         return False
+        return any(val == node for node in self.iter())
      
     def delete(self, value):
         # Delete a specific item

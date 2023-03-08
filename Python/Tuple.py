@@ -2,6 +2,7 @@
 1. Write a Python program to create a tuple.
 """
 
+
 my_empty_tuple = ()
 my_another_empty_tuple = tuple()
 my_single_tuple = 'abc',
@@ -82,10 +83,7 @@ print(my_colon)
 
 my_tuple = (1, 1, 2, 3, 4, 4, 5)
 
-repeated_items = []
-for i in my_tuple:
-    if my_tuple.count(i) > 1:
-        repeated_items.append(i)
+repeated_items = [i for i in my_tuple if my_tuple.count(i) > 1]
 print(set(repeated_items))
 
 """
@@ -149,9 +147,7 @@ print(len(my_tuple))
 
 my_tuple = ('a', 1, 'b', 2)
 
-my_dict = {}
-for i in range(0, len(my_tuple), 2):
-    my_dict[my_tuple[i]] = my_tuple[i+1]
+my_dict = {my_tuple[i]: my_tuple[i+1] for i in range(0, len(my_tuple), 2)}
 print(my_dict)
 
 """
@@ -159,9 +155,7 @@ print(my_dict)
 """
 
 my_list = [(1, 2), ('a', 'b'), (True, False)]
-new_list = []
-for i in my_list:
-    new_list.append(list(i))
+new_list = [list(i) for i in my_list]
 print(*new_list)
 
 """
@@ -194,7 +188,7 @@ Output : This is a tuple (100, 200, 300)
 """
 
 my_tuple = (100, 200, 300)
-print('This is a tuple {}'.format(my_tuple))
+print(f'This is a tuple {my_tuple}')
 
 """
 21. Write a Python program to replace last value of tuples in a list.
@@ -204,7 +198,7 @@ Expected Output: [(10, 20, 100), (40, 50, 100), (70, 80, 100)]
 
 my_list = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
 
-new_list = [i[:len(i)-1]+(100,) for i in my_list]
+new_list = [i[:-1] + (100,) for i in my_list]
 print(new_list)
 
 """

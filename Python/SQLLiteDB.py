@@ -55,8 +55,7 @@ print("\nThe SQLite connection is closed.")
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -85,8 +84,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -123,8 +121,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -185,8 +182,7 @@ if (c):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -225,8 +221,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -272,8 +267,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -319,8 +313,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 
@@ -368,8 +361,7 @@ if (conn):
 
 def sql_connection():
     try:
-        c = sqlite3.connect('mydatabase.db')
-        return c
+        return sqlite3.connect('mydatabase.db')
     except Error:
         print(Error)
 

@@ -9,6 +9,7 @@ f) Day of year
 g) Day of the month
 h) Day of week
 """
+
 import datetime
 
 print('current date:')
@@ -55,7 +56,7 @@ Sample Format :  13:19:49.078205
 """
 import datetime
 
-print(datetime.datetime.today().time())
+print(datetime.datetime.now().time())
 
 """
 5. subtract five days from current date.
@@ -209,7 +210,7 @@ print(addYears(datetime.date(2000,2,29),1))
 
 # 17. drop microseconds from datetime.
 import datetime
-dt = datetime.datetime.today().replace(microsecond=0)
+dt = datetime.datetime.now().replace(microsecond=0)
 print()
 print(dt)
 print()
@@ -288,15 +289,11 @@ print(monday1)
 
 # 25. print a string five times, delay three seconds.
 
-import time 
-x=0
+import time
 print("\nw3resource will print five  times, delay for three seconds.")
-while x<5:
+for _ in range(5):
     print("w3resource")
     time.sleep(3)
-    x=x+1
-	
-
 # 26. Write a Python program calculates the date six months from the current date using the datetime module.
 
 
@@ -446,34 +443,26 @@ print()
 import os, time
 def last_modified_fileinfo(filepath):
 	
-	filestat = os.stat(filepath)
-	date = time.localtime((filestat.st_mtime))
+    filestat = os.stat(filepath)
+    date = time.localtime((filestat.st_mtime))
 
-	# Extract year, month and day from the date
-	year = date[0]
-	month = date[1]
-	day = date[2]
-	# Extract hour, minute, second
-	hour = date[3]
-	minute = date[4]
-	second = date[5]
-	
-	# Year
-	strYear = str(year)[0:]
+    # Extract year, month and day from the date
+    year = date[0]
+    month = date[1]
+    day = date[2]
+    # Extract hour, minute, second
+    hour = date[3]
+    minute = date[4]
+    second = date[5]
 
-	# Month
-	if (month <=9):
-	    strMonth = '0' + str(month)
-	else:
-	    strMonth = str(month)
+    	# Year
+    strYear = str(year)[:]
 
-	# Date
-	if (day <=9):
-	    strDay = '0' + str(day)
-	else:
-	    strDay = str(day)
-
-	return (strYear+"-"+strMonth+"-"+strDay+" "+str(hour)+":"+str(minute)+":"+str(second))
+    	# Month
+    strMonth = f'0{str(month)}' if (month <=9) else str(month)
+    	# Date
+    strDay = f'0{str(day)}' if (day <=9) else str(day)
+    return f"{strYear}-{strMonth}-{strDay} {str(hour)}:{str(minute)}:{str(second)}"
 print()
 print(last_modified_fileinfo('test.txt'))
 print()
@@ -499,7 +488,7 @@ import time
 import datetime
 
 print()
-print("Time in seconds since the epoch: %s" %time.time())
+print(f"Time in seconds since the epoch: {time.time()}")
 print("Current date and time: " , datetime.datetime.now())
 print("Alternate date and time: " ,datetime.datetime.now().strftime("%y-%m-%d-%H-%M"))
 print("Current year: ", datetime.date.today().strftime("%Y"))
@@ -579,14 +568,14 @@ for month in range(1, 13):
     # If a Saturday presents in the first week, the second Saturday
     # is in the second week.  Otherwise, the second Saturday must 
     # be in the third week.
-    
+
     if first_week[calendar.SATURDAY]:
         holi_day = second_week[calendar.SATURDAY]
     else:
         holi_day = third_week[calendar.SATURDAY]
 
     print('%3s: %2s' % (calendar.month_abbr[month], holi_day))
-	
+
 
 
 # 48. display a simple, formatted calendar of a given year and month.
@@ -595,24 +584,24 @@ print('Print a calendar for a year and month:')
 month = int(input('Month (mm): '))
 year = int(input('Year (yyyy): '))
 print('\n')
- 
+
 calendar.setfirstweekday(calendar.SUNDAY)
 cal = calendar.monthcalendar(year, month)
- 
+
 if len(str(month)) == 1:
-    month = '0%s' % month
- 
+    month = f'0{month}'
+
 # Header
-print('|++++++ %s-%s +++++|' % (month, year))
+print(f'|++++++ {month}-{year} +++++|')
 print('|Su Mo Tu We Th Fr Sa|')
 print('|--------------------|')
- 
+
 # display calendar
 border = '|'
 for week in cal:
     line = border
 
-      
+
     for day in week:
         if day == 0:
       # 3 spaces for blank days       
@@ -622,10 +611,10 @@ for week in cal:
         else:
          line += '%d ' % day
     # remove space in last column
-    line = line[0:len(line) - 1]  
+    line = line[:-1]
     line += border
     print(line)
- 
+
 print('|--------------------|\n')
 
 
@@ -784,12 +773,11 @@ time_struct(time.gmtime())
 import time
 import os
 def zone_info():
-   print('TZ   :', os.environ.get('TZ', '(not set)'))
-   print('Timezone abbreviations:', time.tzname)
-   print('Timezone : {} ({})'.format(
-       time.timezone, (time.timezone / 3600)))
-   print('DST timezone ', time.daylight)
-   print('Time :', time.strftime('%X %x %Z'),'\n')
+    print('TZ   :', os.environ.get('TZ', '(not set)'))
+    print('Timezone abbreviations:', time.tzname)
+    print(f'Timezone : {time.timezone} ({time.timezone / 3600})')
+    print('DST timezone ', time.daylight)
+    print('Time :', time.strftime('%X %x %Z'),'\n')
 print('Default Zone:')
 zone_info()
 TIME_ZONES = [
@@ -814,9 +802,9 @@ for zone in TIME_ZONES:
 # Sorry, Slept for 3 seconds...
 
 import time
-for x in range(4):
-   time.sleep(3)
-   print("Sorry, Slept for 3 seconds...")
+for _ in range(4):
+    time.sleep(3)
+    print("Sorry, Slept for 3 seconds...")
 
 
 # 59. convert a given time in seconds since the epoch to a string representing local time.

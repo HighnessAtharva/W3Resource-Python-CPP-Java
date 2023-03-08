@@ -2,12 +2,10 @@
 1. Write a Python program to sum all the items in a list.
 """
 
+
 my_list = [1, 2, 3, 4, 5]
 
-# solution 1
-list_sum = 0
-for i in my_list:
-    list_sum += i
+list_sum = sum(my_list)
 print(list_sum)
 
 # solution 2
@@ -74,11 +72,7 @@ Expected Result : 2
 
 my_list = ['abc', 'xyz', 'aba', '1221']
 
-counter = 0
-for i in my_list:
-    if len(i) > 1:
-        if i[0] == i[len(i)-1]: # or if i[0] == i[-1]:
-            counter += 1
+counter = sum(len(i) > 1 and i[0] == i[len(i)-1] for i in my_list)
 print(counter)
 
 """
@@ -114,7 +108,7 @@ for i in my_list:
     if i not in new_list:
        new_list.append(i)
 print(new_list)
-        
+
 """
 8. Write a Python program to check a list is empty or not
 """
@@ -132,11 +126,7 @@ than n from a given list of words.
 """
 
 def is_longer(words, n):
-    long_words = []
-    for word in words:
-        if len(word) > n:
-            long_words.append(word)
-    return long_words
+    return [word for word in words if len(word) > n]
 
 
 my_list = ['cat', 'dog', 'apple', 'table', 'bags']
@@ -152,11 +142,7 @@ list_one = [1, 2, 3, 4, 5]
 list_two = [8, 9, 5, 10, 11]
 
 def common_member(li1, li2):
-    for i in li1:
-        if i in li2:
-            return True
-    else:
-        return False
+    return any(i in li2 for i in li1)
 
 print(common_member(list_one, list_two))
 
@@ -169,11 +155,9 @@ Expected Output : ['Green', 'White', 'Black']
 
 my_list = ['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']
 
-# solution 1
-new_list = []
-for index, value in enumerate(my_list):
-    if index not in [0, 4, 5]:
-        new_list.append(value)
+new_list = [
+    value for index, value in enumerate(my_list) if index not in [0, 4, 5]
+]
 print(new_list)
 
 # solution 2
@@ -184,7 +168,7 @@ print(new_list)
 13. Write a Python program to generate a 3*4*6 3D array whose each element is *.
 """
 
-my_array = [[['*' for x in range(6)] for x in range(4)] for x in range(3)]
+my_array = [[['*' for _ in range(6)] for _ in range(4)] for _ in range(3)]
 print(my_array)
 
 """
@@ -276,8 +260,7 @@ my_list = [[1, 2], [3, 4], [5]]
 # solution 1
 new_list = []
 for i in my_list:
-    for j in i:
-        new_list.append(j)
+    new_list.extend(iter(i))
 print(new_list)
 
 # solution 2
@@ -362,10 +345,7 @@ print(set(my_list))
 
 my_list = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 5, 5, 18, 'yellow']
 
-# solution 1
-freq_list = []
-for i in set(my_list):
-    freq_list.append((i, my_list.count(i)))
+freq_list = [(i, my_list.count(i)) for i in set(my_list)]
 print(freq_list)
 
 # soution 2
@@ -380,11 +360,7 @@ within a specified range.
 """
 
 def count_elements_in_range(my_list, min_range, max_range):
-    counter = 0
-    for element in my_list:
-        if element in range(min_range, max_range+1):
-            counter += 1
-    return counter
+    return sum(element in range(min_range, max_range+1) for element in my_list)
 
 my_list = [1, 2, 3, 4, 5]
 print(count_elements_in_range(my_list, 3, 10))
@@ -394,10 +370,7 @@ print(count_elements_in_range(my_list, 3, 10))
 """
 
 def is_sublist(main_list, sub_list):
-    if ''.join(map(str,sub_list)) in ''.join(map(str,main_list)):
-        return True
-    else:
-        return False
+    return ''.join(map(str,sub_list)) in ''.join(map(str,main_list))
 
 my_list = [1, 2, 3, 4, 5]
 my_sublist_one = [2, 3]
@@ -417,7 +390,7 @@ my_list = [1, 2, 3, 4, 5]
 
 # solution 1
 def sublist_generator(my_list):
-    for i in range(0,len(my_list),1):
+    for i in range(len(my_list)):
         for j in range(len(my_list),i,-1):
             yield list(itertools.islice(my_list, i, j))
 
@@ -433,7 +406,7 @@ def sublist_generator(my_list):
             j -= 1
     return sublists
 print(sublist_generator(my_list))
-            
+
 """
 34. Write a Python program using Sieve of Eratosthenes method for computing
 primes upto a specified number. 
@@ -450,14 +423,12 @@ primes = []
 for p in range(2, n):
     if p not in not_primes:
         primes.append(p)
-        for j in range(p**2, n, p):   # not_primes.extend(range(p**2, n, p))
-            not_primes.append(j)
+        not_primes.extend(iter(range(p**2, n, p)))
 print(primes)
 
 # solution 2 
 def update_list(p, num_list):
-    update_list = [x for x in num_list if x%p != 0]
-    return update_list
+    return [x for x in num_list if x%p != 0]
 
 n = int(input('please enter a number ')) + 1
 primes = []
