@@ -413,8 +413,7 @@ import itertools as it
 import operator as op
 
 def factorials_nums(n):
-    result = list(it.accumulate(it.chain([1], range(1, 1 + n)), op.mul))
-    return result
+    return list(it.accumulate(it.chain([1], range(1, 1 + n)), op.mul))
     
 print("Factorials of 5 :", factorials_nums(5))
 print("Factorials of 9 :", factorials_nums(9))
@@ -428,7 +427,7 @@ from itertools import islice
 # xmasIsSunday :: Int -> Bool
 def xmasIsSunday(y):
     '''True if Dec 25 in the given year is a Sunday.'''
-    return 6 == date(y, 12, 25).weekday()
+    return date(y, 12, 25).weekday() == 6
  
 # main :: IO ()
 def main():
@@ -454,10 +453,12 @@ def enumFromTo(m):
 # index (!!) :: [a] -> Int -> a
 def index(xs):
     '''Item at given (zero-based) index.'''
-    return lambda n: None if 0 > n else (
-        xs[n] if (
-            hasattr(xs, "__getitem__")
-        ) else next(islice(xs, n, None))
+    return (
+        lambda n: None
+        if n < 0
+        else xs[n]
+        if (hasattr(xs, "__getitem__"))
+        else next(islice(xs, n, None))
     )
  
  # unlines :: [String] -> String
@@ -634,8 +635,7 @@ print(result[1])
 
 # 29. Write a Python program to interleave multiple lists of the same length. Use itertools module. 
 def interleave_multiple_lists(list1, list2, list3):
-    result = list(itertools.chain(*zip(list1, list2, list3)))
-    return result
+    return list(itertools.chain(*zip(list1, list2, list3)))
 
 list1 = [100, 200, 300, 400, 500, 600, 700]
 list2 = [10, 20, 30, 40, 50, 60, 70]
@@ -665,8 +665,7 @@ for i in it.product([tuple(mums1)], it.permutations(mums2), it.permutations(mums
 # 31. Write a Python program to count the frequency of consecutive duplicate elements in a given list of numbers. Use itertools module. 
 from itertools import groupby
 def count_same_pair(nums):
-    result = [sum(1 for _ in group) for _, group in groupby(nums)]
-    return result
+    return [sum(1 for _ in group) for _, group in groupby(nums)]
 
 nums = [1,1,2,2,2,4,4,4,5,5,5,5]
 print("Original lists:")
@@ -719,10 +718,7 @@ print(sum_of_digits(nums))
 
 # 35. Write a Python program to get all possible combinations of the elements of a given list using itertools module. 
 def combinations_list(list1):
-    temp = []
-    for i in range(0, len(list1)+1):
-        temp.append(list(itertools.combinations(list1, i)))
-    return temp
+    return [list(itertools.combinations(list1, i)) for i in range(len(list1)+1)]
 
 colors = ['orange', 'red', 'green', 'blue']
 print("Original list:")
@@ -733,8 +729,9 @@ print(combinations_list(colors))
 # 36. Write a Python program to add two given lists of different lengths, start from right, using itertools module. 
 from itertools import zip_longest
 def elementswise_right_join(l1, l2):
-    result = [a + b for a,b in zip_longest(reversed(l1), reversed(l2), fillvalue=0)][::-1]
-    return result
+    return [
+        a + b for a, b in zip_longest(reversed(l1), reversed(l2), fillvalue=0)
+    ][::-1]
 
 nums1 = [2, 4, 7, 0, 5, 8]
 nums2 = [3, 3, -1, 7]
@@ -756,8 +753,7 @@ print(elementswise_right_join(nums3, nums4))
 
 
 def elementswise_left_join(l1, l2):
-    result = [a + b for a, b in zip_longest(l1, l2, fillvalue=0)][::1]
-    return result
+    return [a + b for a, b in zip_longest(l1, l2, fillvalue=0)][::1]
 
 nums1 = [2, 4, 7, 0, 5, 8]
 nums2 = [3, 3, -1, 7]
@@ -864,8 +860,7 @@ print(combination(st))
 
 
 def group_similar_items(seq):
-    result = [list(el) for _, el in it.groupby(seq, lambda x: x.split('_')[0])]
-    return result
+    return [list(el) for _, el in it.groupby(seq, lambda x: x.split('_')[0])]
 
 
 colors = ['red_1', 'red_2', 'green_1',

@@ -2,6 +2,7 @@
 1. Write a Python program to create a set.
 """
 
+
 my_set = set()
 my_second_set = {'a', 'b'}
 print(my_set, type(my_set))
@@ -20,8 +21,7 @@ for i in my_set:
 3. Write a Python program to add member(s) in a set.
 """
 
-my_set = {'a', 'b'}
-my_set.add('c')
+my_set = {'a', 'b', 'c'}
 print(my_set)
 
 """
@@ -134,7 +134,7 @@ print(set_one)
 """
 
 set_one = frozenset((1, 2, 3))
-set_two = set((1, 2, 3))
+set_two = {1, 2, 3}
 list_one = [4, 5, 6]
 print (set_one == set_two)
 print(set_one.isdisjoint(list_one))
@@ -153,7 +153,5 @@ print(min(set_one))
 
 set_one = frozenset((1, 2, 3))
 print(len(set_one))
-length = 0
-for i in set_one:
-    length += 1
+length = len(set_one)
 print(length)

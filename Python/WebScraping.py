@@ -112,12 +112,6 @@ def getTitle(url):
     except AttributeError as e:
         return None
     return title
-    
-    title = getTitle(url)
-    if title == None:
-      return "Title could not be found"
-    else:
-      return title
 
 print(getTitle("https://www.w3resource.com/"))
 print(getTitle("http://www.example.com/"))
@@ -161,14 +155,14 @@ print(len(pinlinks))
 
 # 16. Write a Python program to get the number of followers of a given twitter account. 
 handle = input('Input your account name on Twitter: ')
-temp = requests.get('https://twitter.com/'+handle)
+temp = requests.get(f'https://twitter.com/{handle}')
 bs = BeautifulSoup(temp.text, 'lxml')
 try:
     follow_box = bs.find(
         'li', {'class': 'ProfileNav-item ProfileNav-item--followers'})
     followers = follow_box.find('a').find(
         'span', {'class': 'ProfileNav-value'})
-    print("Number of followers: {} ".format(followers.get('data-count')))
+    print(f"Number of followers: {followers.get('data-count')} ")
 except:
     print('Account name not found...')
 
@@ -176,7 +170,7 @@ except:
 # 17. Write a Python program to get the number of following on Twitter. 
 
 handle = input('Input your account name on Twitter: ')
-temp = requests.get('https://twitter.com/'+handle)
+temp = requests.get(f'https://twitter.com/{handle}')
 bs = BeautifulSoup(temp.text, 'lxml')
 
 try:
@@ -184,8 +178,7 @@ try:
         'li', {'class': 'ProfileNav-item ProfileNav-item--following'})
     following = following_box.find('a').find(
         'span', {'class': 'ProfileNav-value'})
-    print("{} is following {} people.".format(
-        handle, following.get('data-count')))
+    print(f"{handle} is following {following.get('data-count')} people.")
 
 except:
     print('Account name not found...')
@@ -193,7 +186,7 @@ except:
 # 18. Write a Python program to get the number of post on Twitter liked by a given account. 
 
 handle = input('Input your account name on Twitter: ')
-temp = requests.get('https://twitter.com/'+handle)
+temp = requests.get(f'https://twitter.com/{handle}')
 bs = BeautifulSoup(temp.text, 'lxml')
 
 try:
@@ -201,8 +194,7 @@ try:
         'li', {'class': 'ProfileNav-item ProfileNav-item--favorites'})
     favorite = favorite_box.find('a').find(
         'span', {'class': 'ProfileNav-value'})
-    print("Number of post {}  liked are {}: ".format(
-        handle, favorite.get('data-count')))
+    print(f"Number of post {handle}  liked are {favorite.get('data-count')}: ")
 
 except:
     print('Account name not found...')
@@ -210,15 +202,14 @@ except:
 # 19. Write a Python program to count number of tweets by a given Twitter account. 
 
 handle = input('Input your account name on Twitter: ')
-temp = requests.get('https://twitter.com/'+handle)
+temp = requests.get(f'https://twitter.com/{handle}')
 bs = BeautifulSoup(temp.text, 'lxml')
 
 try:
     tweet_box = bs.find(
         'li', {'class': 'ProfileNav-item ProfileNav-item--tweets is-active'})
     tweets = tweet_box.find('a').find('span', {'class': 'ProfileNav-value'})
-    print("{} tweets {} number of tweets.".format(
-        handle, tweets.get('data-count')))
+    print(f"{handle} tweets {tweets.get('data-count')} number of tweets.")
 
 except:
     print('Account name not found...')
@@ -228,49 +219,50 @@ from bs4 import BeautifulSoup
 import requests
 handle = input('Input your account name on Twitter: ')
 ctr = int(input('Input number of tweets to scrape: '))
-res=requests.get('https://twitter.com/'+ handle)
+res = requests.get(f'https://twitter.com/{handle}')
 bs=BeautifulSoup(res.content,'lxml')
-all_tweets = bs.find_all('div',{'class':'tweet'})
-if all_tweets:
-  for tweet in all_tweets[:ctr]:
-    context = tweet.find('div',{'class':'context'}).text.replace("\n"," ").strip()
-    content = tweet.find('div',{'class':'content'})
-    header = content.find('div',{'class':'stream-item-header'})
-    user = header.find('a',{'class':'account-group js-account-group js-action-profile js-user-profile-link js-nav'}).text.replace("\n"," ").strip()
-    time = header.find('a',{'class':'tweet-timestamp js-permalink js-nav js-tooltip'}).find('span').text.replace("\n"," ").strip()
-    message = content.find('div',{'class':'js-tweet-text-container'}).text.replace("\n"," ").strip()
-    footer = content.find('div',{'class':'stream-item-footer'})
-    stat = footer.find('div',{'class':'ProfileTweet-actionCountList u-hiddenVisually'}).text.replace("\n"," ").strip()
-    if context:
-      print(context)
-    print(user,time)
-    print(message)
-    print(stat)
-    print()
+if all_tweets := bs.find_all('div', {'class': 'tweet'}):
+    for tweet in all_tweets[:ctr]:
+      context = tweet.find('div',{'class':'context'}).text.replace("\n"," ").strip()
+      content = tweet.find('div',{'class':'content'})
+      header = content.find('div',{'class':'stream-item-header'})
+      user = header.find('a',{'class':'account-group js-account-group js-action-profile js-user-profile-link js-nav'}).text.replace("\n"," ").strip()
+      time = header.find('a',{'class':'tweet-timestamp js-permalink js-nav js-tooltip'}).find('span').text.replace("\n"," ").strip()
+      message = content.find('div',{'class':'js-tweet-text-container'}).text.replace("\n"," ").strip()
+      footer = content.find('div',{'class':'stream-item-footer'})
+      stat = footer.find('div',{'class':'ProfileTweet-actionCountList u-hiddenVisually'}).text.replace("\n"," ").strip()
+      if context:
+        print(context)
+      print(user,time)
+      print(message)
+      print(stat)
+      print()
 else:
     print("List is empty/account name not found.")
-  
+
 # 21. Write a Python program to find the live weather report(temperature, wind speed, description and weather) of a given city. 
 import requests
 from pprint import pprint
 def weather_data(query):
-	res=requests.get('http://api.openweathermap.org/data/2.5/weather?'+query+'&APPID=****************************8&units=metric');
-	return res.json();
+    res = requests.get(
+        f'http://api.openweathermap.org/data/2.5/weather?{query}&APPID=****************************8&units=metric'
+    );
+    return res.json();
 def print_weather(result,city):
-	print("{}'s temperature: {}°C ".format(city,result['main']['temp']))
-	print("Wind speed: {} m/s".format(result['wind']['speed']))
-	print("Description: {}".format(result['weather'][0]['description']))
-	print("Weather: {}".format(result['weather'][0]['main']))
+    print(f"{city}'s temperature: {result['main']['temp']}°C ")
+    print(f"Wind speed: {result['wind']['speed']} m/s")
+    print(f"Description: {result['weather'][0]['description']}")
+    print(f"Weather: {result['weather'][0]['main']}")
 def main():
-	city=input('Enter the city:')
-	print()
-	try:
-	  query='q='+city;
-	  w_data=weather_data(query);
-	  print_weather(w_data, city)
-	  print()
-	except:
-	  print('City name not found...')
+    city=input('Enter the city:')
+    print()
+    try:
+        query = f'q={city}';
+        w_data=weather_data(query);
+        print_weather(w_data, city)
+        print()
+    except:
+      print('City name not found...')
 if __name__=='__main__':
 	main()
 
@@ -284,12 +276,20 @@ for i,f in enumerate(hacks_data,1):
     hacks_month = f.find('div',{'class':'date'}).find('div',{'class':'date-month'}).text.strip()
     hacks_date = f.find('div',{'class':'date'}).find('div',{'class':'date-day-number'}).text.strip()
     hacks_days = f.find('div',{'class':'date'}).find('div',{'class':'date-week-days'}).text.strip()
-    hacks_final_date = "{} {}, {} ".format(hacks_date, hacks_month, hacks_days )
+    hacks_final_date = f"{hacks_date} {hacks_month}, {hacks_days} "
     hacks_name = f.find('div',{'class':'info'}).find('h2').text.strip()
     hacks_city = f.find('div',{'class':'info'}).find('p').find('span',{'class':'city'}).text.strip()
     hacks_country = f.find('div',{'class':'info'}).find('p').find('span',{'class':'country'}).text.strip()
-    print("{:<5}{:<15}: {:<90}: {}, {}\n ".format(str(i)+')',hacks_final_date, hacks_name.title(), hacks_city, hacks_country))
-  
+    print(
+        "{:<5}{:<15}: {:<90}: {}, {}\n ".format(
+            f'{str(i)})',
+            hacks_final_date,
+            hacks_name.title(),
+            hacks_city,
+            hacks_country,
+        )
+    )
+      
 
 # 23. Write a Python program to download IMDB's Top 250 data(movie name, Initial release, director name and stars). 
 #https://bit.ly/2NyxdAG
@@ -311,12 +311,12 @@ votes = [b.attrs.get('data-value') for b in soup.select('td.ratingColumn strong'
 imdb = []
 
 # Store each item into dictionary (data), then put those into a list (imdb)
-for index in range(0, len(movies)):
+for index in range(len(movies)):
     # Seperate movie into: 'place', 'title', 'year'
     movie_string = movies[index].get_text()
     movie = (' '.join(movie_string.split()).replace('.', ''))
     movie_title = movie[len(str(index))+1:-7]
-    year = re.search('\((.*?)\)', movie_string).group(1)
+    year = re.search('\((.*?)\)', movie_string)[1]
     place = movie[:len(str(index))-(len(movie))]
     data = {"movie_title": movie_title,
             "year": year,
@@ -329,7 +329,7 @@ for index in range(0, len(movies)):
 
 for item in imdb:
     print(item['place'], '-', item['movie_title'], '('+item['year']+') -', 'Starring:', item['star_cast'])
-  
+
 # 24. Write a Python program to get movie name, year and a brief summary of the top 10 random movies. 
 from bs4 import BeautifulSoup
 import requests

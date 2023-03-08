@@ -244,7 +244,7 @@ url = 'https://www.python.org/'
 reqs = requests.get(url)
 soup = BeautifulSoup(reqs.text, 'lxml')
 print("First four h2 tags from the webpage python.org.:")
-print(soup.find_all('h2')[0:4])
+print(soup.find_all('h2')[:4])
 
 # 10. Write a Python program to find all the link tags and list the first ten from the webpage python.org. 
 import requests
@@ -253,7 +253,7 @@ url = 'https://www.python.org/'
 reqs = requests.get(url)
 soup = BeautifulSoup(reqs.text, 'lxml')
 print("First four h2 tags from the webpage python.org.:")
-print(soup.find_all('a')[0:10])
+print(soup.find_all('a')[:10])
 
 # 11. Write a Python program to a list of all the h1, h2, h3 tags from the webpage python.org. 
 import requests
@@ -263,7 +263,7 @@ reqs = requests.get(url)
 soup = BeautifulSoup(reqs.text, 'lxml')
 print("List of all the h1, h2, h3 :")
 for heading in soup.find_all(["h1", "h2", "h3"]):
-    print(heading.name + ' ' + heading.text.strip())
+    print(f'{heading.name} {heading.text.strip()}')
 
 # 12. Write a Python program to extract all the text from a given web page. 
 import requests
@@ -292,7 +292,7 @@ url = 'https://www.python.org/'
 reqs = requests.get(url)
 soup = BeautifulSoup(reqs.text, 'lxml')
 print("\nChildren of the html tag (https://www.python.org):\n")
-root = soup.html    
+root = soup.html
 root_childs = [e.name for e in root.children if e.name is not None]
 print(root_childs)
 
@@ -303,7 +303,7 @@ url = 'https://www.python.org/'
 reqs = requests.get(url)
 soup = BeautifulSoup(reqs.text, 'lxml')
 print("\nDescendants of the body tag (https://www.python.org):\n")
-root = soup.html    
+root = soup.html
 root_childs = [e.name for e in root.descendants if e.name is not None]
 print(root_childs)
 

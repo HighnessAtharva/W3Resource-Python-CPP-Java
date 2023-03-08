@@ -90,9 +90,9 @@ print(cube_nums)
 # Sample Output:
 # True
 # False
-starts_with = lambda x: True if x.startswith('P') else False
+starts_with = lambda x: bool(x.startswith('P'))
 print(starts_with('Python'))
-starts_with = lambda x: True if x.startswith('P') else False
+starts_with = lambda x: bool(x.startswith('P'))
 print(starts_with('Java'))
 
 # 8. Write a Python program to extract year, month, date and time using Lambda. 
@@ -105,7 +105,7 @@ print(starts_with('Java'))
 import datetime
 now = datetime.datetime.now()
 print(now)
-year, month, day, t = lambda x: x.year, lambda x: x.month, lambda x: x.day, lambda x: x.time() 
+year, month, day, t = lambda x: x.year, lambda x: x.month, lambda x: x.day, lambda x: x.time()
 print(year(now))
 print(month(now))
 print(day(now))
@@ -137,7 +137,7 @@ print(is_num1('-24587.11'))
 from functools import reduce
 #A bit complex workaround
 fib_series = lambda n: reduce(lambda x, _: x+[x[-1]+x[-2]], range(n-2), [0, 1])
- 
+
 print("Fibonacci series upto 2:")
 print(fib_series(2))
 print("\nFibonacci series upto 5:")
@@ -157,7 +157,7 @@ array_nums2 = [1, 2, 4, 8, 9]
 print("Original arrays:")
 print(array_nums1)
 print(array_nums2)
-result = list(filter(lambda x: x in array_nums1, array_nums2)) 
+result = list(filter(lambda x: x in array_nums1, array_nums2))
 print ("\nIntersection of the said arrays: ",result)
 
 # 12. Write a Python program to rearrange positive and negative numbers in a given array using Lambda. 
@@ -229,7 +229,6 @@ print(list(result))
 # N KAR
 students = []
 sec_name = []
-second_low = 0
 n = int(input("Input number of students: "))
 for _ in range(n):
    s_name = input("Name: ")
@@ -238,10 +237,8 @@ for _ in range(n):
 print("\nNames and Grades of all students:")
 print(students)
 order =sorted(students, key = lambda x: int(x[1]))
-for i in range(n):
-   if order[i][1] != order[0][1]:
-       second_low = order[i][1]
-       break
+second_low = next(
+    (order[i][1] for i in range(n) if order[i][1] != order[0][1]), 0)
 print("\nSecond lowest grade: ",second_low)
 sec_student_name = [x[0] for x in order if x[1] == second_low]
 sec_student_name.sort()
@@ -256,8 +253,8 @@ for s_name in sec_student_name:
 # [19, 65, 57, 39, 152, 190]
 nums = [19, 65, 57, 39, 152, 639, 121, 44, 90, 190]
 print("Orginal list:")
-print(nums) 
-result = list(filter(lambda x: (x % 19 == 0 or x % 13 == 0), nums)) 
+print(nums)
+result = list(filter(lambda x: (x % 19 == 0 or x % 13 == 0), nums))
 print("\nNumbers of the above list divisible by nineteen or thirteen:")
 print(result)
 
@@ -268,8 +265,8 @@ print(result)
 # ['php', 'aaa']
 texts = ["php", "w3r", "Python", "abcd", "Java", "aaa"]
 print("Orginal list of strings:")
-print(texts) 
-result = list(filter(lambda x: (x == "".join(reversed(x))), texts)) 
+print(texts)
+result = list(filter(lambda x: (x == "".join(reversed(x))), texts))
 print("\nList of palindromes:")
 print(result) 
 
@@ -278,12 +275,12 @@ print(result)
 # ['bcda', 'abce', 'cbda', 'cbea', 'adcb']
 # Anagrams of 'abcd' in the above string:
 # ['bcda', 'cbda', 'adcb']
-from collections import Counter  
+from collections import Counter
 texts = ["bcda", "abce", "cbda", "cbea", "adcb"]
 str = "abcd"
 print("Orginal list of strings:")
-print(texts) 
-result = list(filter(lambda x: (Counter(str) == Counter(x)), texts)) 
+print(texts)
+result = list(filter(lambda x: (Counter(str) == Counter(x)), texts))
 print("\nAnagrams of 'abcd' in the above string: ")
 print(result)
 
@@ -293,7 +290,7 @@ print(result)
 # 20 23 56
 str1 = "sdf 23 safs8 5 sdfsd8 sdfs 56 21sfs 20 5"
 print("Original string: ",str1)
-str_num=[i for i in str1.split(' ')]
+str_num = list(str1.split(' '))
 lenght=len(str_num)
 numbers=sorted([int(x) for x in str_num if x.isdigit()])
 print('Numbers in sorted form:')
@@ -412,8 +409,7 @@ print(min_length_list(list1))
 # After sorting each sublist of the said list of lists:
 # [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]
 def sort_sublists(input_list):
-    result = [sorted(x, key = lambda x:x[0]) for x in input_list] 
-    return result
+ return [sorted(x, key = lambda x:x[0]) for x in input_list]
 color1 = [["green", "orange"], ["black", "white"], ["white", "black", "orange"]]
 print("\nOriginal list:")
 print(color1)  
@@ -426,8 +422,7 @@ print(sort_sublists(color1))
 # Sort the list of lists by length and value:
 # [[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]
 def sort_sublists(input_list):
-    result = sorted(input_list, key=lambda l: (len(l), l))
-    return result
+ return sorted(input_list, key=lambda l: (len(l), l))
 list1 = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
 print("Original list:")
 print(list1)
@@ -440,8 +435,7 @@ print(sort_sublists(list1))
 # Maximum values in the said list using lambda:
 # 5
 def max_val(list_val):
-     max_val = max(list_val, key = lambda i: (isinstance(i, int), i))  
-     return(max_val)
+ return max(list_val, key = lambda i: (isinstance(i, int), i))
 
 list_val = ['Python', 3, 2, 4, 5, 'version'] 
 print("Original list:")
@@ -459,8 +453,7 @@ print(max_val(list_val))
 # Sort the said matrix in ascending order according to the sum of its rows
 # [[-2, 4, -5], [1, -1, 1], [1, 2, 3]]
 def sort_matrix(M):
-    result = sorted(M, key=lambda matrix_row: sum(matrix_row)) 
-    return result
+ return sorted(M, key=lambda matrix_row: sum(matrix_row))
 
 matrix1 = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
 matrix2 = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
@@ -483,8 +476,7 @@ print(sort_matrix(matrix2))
 # After extracting strings of specified length from the said list:
 # ['practice', 'solution']
 def extract_string(str_list1, l):
-    result = list(filter(lambda e: len(e) == l, str_list1))
-    return result
+ return list(filter(lambda e: len(e) == l, str_list1))
 
 str_list1 = ['Python', 'list', 'exercises', 'practice', 'solution'] 
 print("Original list:")
@@ -501,9 +493,8 @@ print(extract_string(str_list1 , l))
 # Number of floats in the said mixed list:
 # 3
 def count_integer(list1):
-    ert = list(map(lambda i: isinstance(i, float), list1)) 
-    result = len([e for e in ert if e])         
-    return result
+ ert = list(map(lambda i: isinstance(i, float), list1))
+ return len([e for e in ert if e])
 list1 = [1, 'abcd', 3.12, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
 print("Original list:")
 print(list1)
@@ -532,8 +523,7 @@ print(check_string(s))
 # Height> 6ft and Weight> 70kg:
 # {'Cierra Vega': (6.2, 70)}
 def filter_data(students):
-    result = dict(filter(lambda x: (x[1][0], x[1][1]) > (6.0, 70), students.items()))
-    return result  
+ return dict(filter(lambda x: (x[1][0], x[1][1]) > (6.0, 70), students.items()))  
 students = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
 print("Original Dictionary:")
 print(students)
@@ -550,10 +540,7 @@ print(filter_data(students))
 # Is the said list is sorted!
 # False
 def is_sort_list(nums, key=lambda x: x):
-    for i, e in enumerate(nums[1:]):
-        if key(e) < key(nums[i]): 
-            return False
-    return True
+ return all(key(e) >= key(nums[i]) for i, e in enumerate(nums[1:]))
 nums1 = [1,2,4,6,8,10,12,14,16,17]
 print ("Original list:")
 print(nums1)
@@ -573,8 +560,7 @@ print(is_sort_list(nums2))
 # Extract nth element ( n = 2 ) from the said list of tuples:
 # [99, 96, 94, 98]
 def extract_nth_element(test_list, n):
-    result = list(map (lambda x:(x[n]), test_list))
-    return result
+ return list(map (lambda x:(x[n]), test_list))
 students = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)] 
 print ("Original list:")
 print(students)
@@ -593,8 +579,7 @@ print(extract_nth_element(students, n))
 # Sort the said list of lists by a given index ( Index = 2 ) of the inner list
 # [('Wyatt Knott', 91, 94), ('Brady Kent', 97, 96), ('Beau Turnbull', 94, 98), ('Greyson Fulton', 98, 99)]
 def index_on_inner_list(list_data, index_no):
-    result = sorted(list_data, key=lambda x: x[index_no])
-    return result
+ return sorted(list_data, key=lambda x: x[index_no])
 students = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)] 
 print ("Original list:")
 print(students)
@@ -612,8 +597,7 @@ print(index_on_inner_list(students, index_no))
 # Remove all elements from 'list1' present in 'list2:
 # [1, 3, 5, 7, 9, 10]
 def index_on_inner_list(list1, list2):
-    result = list(filter(lambda x: x not in list2, list1))
-    return result
+ return list(filter(lambda x: x not in list2, list1))
 list1 = [1,2,3,4,5,6,7,8,9,10]
 list2 = [2,4,6,8]
 print("Original lists:")
@@ -635,8 +619,7 @@ print(index_on_inner_list(list1, list2))
 # Elements of the said list that contain specific substring:
 # []
 def find_substring(str1, sub_str):
-    result = list(filter(lambda x: sub_str in x, str1))
-    return result
+ return list(filter(lambda x: sub_str in x, str1))
 colors = ["red", "black", "white", "green", "orange"]
 print("Original list:")
 print(colors)
@@ -658,8 +641,7 @@ print(find_substring(colors, sub_str))
 # Intersection of said nested lists:
 # [[12], [7, 11], [1, 5, 8]]
 def intersection_nested_lists(l1, l2):
-    result = [list(filter(lambda x: x in l1, sublist)) for sublist in l2]
-    return result
+ return [list(filter(lambda x: x in l1, sublist)) for sublist in l2]
 nums1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 nums2 = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
 print("\nOriginal lists:")
@@ -674,8 +656,7 @@ print(intersection_nested_lists(nums1, nums2))
 # Reverse strings of the said given list:
 # ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
 def reverse_strings_list(string_list):
-    result = list(map(lambda x: "".join(reversed(x)), string_list))
-    return result
+ return list(map(lambda x: "".join(reversed(x)), string_list))
 
 colors_list = ["Red", "Green", "Blue", "White", "Black"]
 print("\nOriginal lists:")
@@ -693,8 +674,7 @@ print(reverse_strings_list(colors_list))
 import functools 
 #NOTE: reduce function is a part of functools modules. DO NOT FORGET TO INCLUDE!
 def remove_duplicates(nums):
-    result = functools.reduce(lambda x, y: x * y, nums, 1)
-    return result
+ return functools.reduce(lambda x, y: x * y, nums, 1)
 nums1 = [1,2,3,4,5,6,7,8,9,10]
 nums2 = [2.2,4.12,6.6,8.1,8.3]
 print("list1:", nums1)
@@ -718,8 +698,7 @@ print(remove_duplicates(nums2))
 # Average value of the numbers of the said tuple of tuples:
 # (25.5, -18.0, 3.75)
 def average_tuple(nums):
-    result = tuple(map(lambda x: sum(x) / float(len(x)), zip(*nums)))
-    return result
+ return tuple(map(lambda x: sum(x) / float(len(x)), zip(*nums)))
 
 nums = ((10, 10, 10), (30, 45, 56), (81, 80, 39), (1, 2, 3))
 print ("Original Tuple: ")
@@ -736,8 +715,7 @@ print("\nAverage value of the numbers of the said tuple of tuples:\n",average_tu
 # New tuple values:
 # ((233, 33), (1416, 55), (2345, 34))
 def tuple_int_str(tuple_str):
-    result = tuple(map(lambda x: (int(x[0]), int(x[2])), tuple_str))
-    return result     
+ return tuple(map(lambda x: (int(x[0]), int(x[2])), tuple_str))     
 tuple_str =  (('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
 print("Original tuple values:")
 print(tuple_str)
@@ -785,8 +763,7 @@ print(sort_mixed_list(mixed_list))
 # Sort the said list of strings(numbers) numerically:
 # ['-500', '-12', '0', '4', '7', '12', '45', '100', '200']
 def sort_numeric_strings(nums_str):
-    result = sorted(nums_str, key=lambda el: int(el))
-    return result
+ return sorted(nums_str, key=int)
 nums_str = ['4','12','45','7','0','100','200','-12','-500']
 print("Original list:")
 print(nums_str)
@@ -799,8 +776,7 @@ print(sort_numeric_strings(nums_str))
 # Count the occurrences of the items in the said list:
 # {3: 4, 4: 2, 5: 3, 8: 2, 0: 2, 1: 1, 2: 2}
 def count_occurrences(nums):
-    result = dict(map(lambda el  : (el, list(nums).count(el)), nums))
-    return result
+ return dict(map(lambda el  : (el, list(nums).count(el)), nums))
 nums = [3,4,5,8,0,3,8,5,0,3,1,5,2,3,4,2]
 print("Original list:")
 print(nums)
@@ -815,8 +791,7 @@ print(count_occurrences(nums))
 # After removing the specified words from the said list:
 # ['red', 'green', 'blue', 'white']
 def remove_words(list1, remove_words):
-    result = list(filter(lambda word: word not in remove_words, list1))
-    return result
+ return list(filter(lambda word: word not in remove_words, list1))
         
 colors = ['orange', 'red', 'green', 'blue', 'white', 'black']
 remove_colors = ['orange','black']

@@ -29,10 +29,7 @@ import random
 # 1. function that takes a sequence of numbers and determines whether all the numbers are different from each other
 
 def test_distinct(data):
-    if len(data) == len(set(data)):
-        return True
-    else:
-        return False
+    return len(data) == len(set(data))
 
 
 print(test_distinct([1, 5, 7, 9]))
@@ -92,15 +89,10 @@ x = [1, -6, 4, 2, -1, 2, 0, -2, 0]
 print(three_sum(x))
 
 
-# 5. create the combinations of 3 digit combo.
-
-numbers = []
 for num in range(1000):
     num = str(num).zfill(3)
 print(num)
-numbers.append(num)
-
-
+numbers = [num]
 # 6. print a long text, convert the string to a list and print all the words and their frequencies
 
 string_words = '''United States Declaration of Independence
@@ -118,10 +110,9 @@ formal declaration, to be ready when Congress voted on independence.
 word_list = string_words.split()
 word_freq = [word_list.count(n) for n in word_list]
 
-print("String:\n {} \n".format(string_words))
-print("List:\n {} \n".format(str(word_list)))
-print("Pairs (Words and Frequencies:\n {}".format(
-    str(list(zip(word_list, word_freq)))))
+print(f"String:\n {string_words} \n")
+print(f"List:\n {word_list} \n")
+print(f"Pairs (Words and Frequencies:\n {list(zip(word_list, word_freq))}")
 
 # 7. count the number of each character of a given text of a text file
 
@@ -152,8 +143,9 @@ for news in news_list:
 # 9. get a list of locally installed Python modules.
 
 installed_packages = pkg_resources.working_set
-installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
-                                  for i in installed_packages])
+installed_packages_list = sorted(
+    [f"{i.key}=={i.version}" for i in installed_packages]
+)
 for m in installed_packages_list:
     print(m)
 
@@ -178,7 +170,7 @@ os_profile = [
 ]
 for key in os_profile:
     if hasattr(pl, key):
-        print(key + ": " + str(getattr(pl, key)()))
+        print(f"{key}: {str(getattr(pl, key)())}")
 
 # 11. check the sum of three elements (each from an array) from three arrays is equal to a target value. Print all those three-element combinations.
 
@@ -189,10 +181,7 @@ T = 70
    
    
 def check_sum_array(N, *nums):
-    if sum(x for x in nums) == N:
-        return (True, nums)
-    else:
-        return (False, nums)
+    return (True, nums) if sum(nums) == N else (False, nums)
 
 
 pro = itertools.product(X, Y, Z)
@@ -247,8 +236,7 @@ def letter_combinations(digits):
     for num in digits:
         temp = []
         for an in result:
-            for char in string_maps[num]:
-                temp.append(an + char)
+            temp.extend(an + char for char in string_maps[num])
         result = temp
     return result
 
@@ -302,12 +290,12 @@ print(test_higher_priority('*', '/'))
 
 
 def pythagoras(opposite_side, adjacent_side, hypotenuse):
-    if opposite_side == str("x"):
-        return ("Opposite = " + str(((hypotenuse**2) - (adjacent_side**2))**0.5))
-    elif adjacent_side == str("x"):
-        return ("Adjacent = " + str(((hypotenuse**2) - (opposite_side**2))**0.5))
-    elif hypotenuse == str("x"):
-        return ("Hypotenuse = " + str(((opposite_side**2) + (adjacent_side**2))**0.5))
+    if opposite_side == "x":
+        return f"Opposite = {str((hypotenuse**2 - adjacent_side**2)**0.5)}"
+    elif adjacent_side == "x":
+        return f"Adjacent = {str((hypotenuse**2 - opposite_side**2)**0.5)}"
+    elif hypotenuse == "x":
+        return f"Hypotenuse = {str((opposite_side**2 + adjacent_side**2)**0.5)}"
     else:
         return "You know the answer!"
 
@@ -330,8 +318,7 @@ def gen_strobogrammatic(n):
     :type n: int
     :rtype: List[str]
     """
-    result = helper(n, n)
-    return result
+    return helper(n, n)
 
 
 def helper(n, length):
@@ -343,11 +330,8 @@ def helper(n, length):
     result = []
     for middle in middles:
         if n != length:
-            result.append("0" + middle + "0")
-        result.append("8" + middle + "8")
-        result.append("1" + middle + "1")
-        result.append("9" + middle + "6")
-        result.append("6" + middle + "9")
+            result.append(f"0{middle}0")
+        result.extend((f"8{middle}8", f"1{middle}1", f"9{middle}6", f"6{middle}9"))
     return result
 
 
@@ -364,7 +348,7 @@ n_num = [1, 2, 3, 4, 5]
 n = len(n_num)
 get_sum = sum(n_num)
 mean = get_sum / n
-print("Mean / Average is: " + str(mean))
+print(f"Mean / Average is: {str(mean)}")
 
 '''
 MODE
@@ -396,7 +380,7 @@ if n % 2 == 0:
     median = (median1 + median2)/2
 else:
     median = n_num[n//2]
-print("Median is: " + str(median))
+print(f"Median is: {str(median)}")
 
 
 # 19. find the value of n where n degrees of number 2 are written sequentially in a line without spaces
@@ -427,7 +411,7 @@ def factendzero(n):
     y = x
     while x > 0:
         x /= 5
-        y += int(x)
+        y += x
     return y
 
 
@@ -458,7 +442,7 @@ print(no_notes(1000))
 
 
 def new_seq(n):
-    if n == 1 or n == 2 or n == 3 or n == 4:
+    if n in [1, 2, 3, 4]:
         return 1
     return new_seq(n-1) + new_seq(n-2) + new_seq(n-3) + new_seq(n-4)
 
@@ -470,7 +454,7 @@ print(new_seq(7))
 # 23. Accept a positive number and subtract from this number the sum of its digits
 num = int(input('Please enter a multi-digit number: '))
 if num > 0:
-    num = num - sum([int(x) for x in str(num)])
+    num -= sum(int(x) for x in str(num))
     print(num)
 
 
@@ -491,11 +475,10 @@ print(divisor(3))
 
 
 def absent_digits(n):
-    all_nums = set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    n = set([int(i) for i in n])
+    all_nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+    n = {int(i) for i in n}
     n = n.symmetric_difference(all_nums)
-    n = sorted(n)
-    return n
+    return sorted(n)
 
 
 print(absent_digits([9, 8, 3, 2, 2, 0, 9, 7, 6, 3]))
@@ -504,12 +487,7 @@ print(absent_digits([9, 8, 3, 2, 2, 0, 9, 7, 6, 3]))
 
 
 def dist_sum(arr):
-    result = 0
-    i = 0
-    while i < len(arr):
-        result += i*arr[i]-(len(arr)-i-1)*arr[i]
-        i += 1
-    return result
+    return sum(i*arr[i]-(len(arr)-i-1)*arr[i] for i in range(len(arr)))
 
 
 # 3-1=2, 2-1=1, 3-2=1 so 2+1+1=4 which is absolute difference.
@@ -524,13 +502,12 @@ print(dist_sum([1, 4, 5]))
 def ap_gp_sequence(arr):
     if arr[0] == arr[1] == arr[2] == 0:
         return "Wrong Numbers"
+    if arr[1]-arr[0] == arr[2]-arr[1]:
+        n = 2*arr[2]-arr[1]
+        return "AP sequence, "+'Next number of the sequence: '+str(n)
     else:
-        if arr[1]-arr[0] == arr[2]-arr[1]:
-            n = 2*arr[2]-arr[1]
-            return "AP sequence, "+'Next number of the sequence: '+str(n)
-        else:
-            n = arr[2]**2/arr[1]
-            return "GP sequence, " + 'Next number of the sequence:  '+str(n)
+        n = arr[2]**2/arr[1]
+        return "GP sequence, " + 'Next number of the sequence:  '+str(n)
 
 
 print(ap_gp_sequence([1, 2, 3]))
@@ -545,15 +522,11 @@ n = int(2*s_sum/(tn+tltn))
 print("Length of the series: ", n)
 
 
-if n-5 == 0:
-    d = (s_sum-3*tn)//6
-else:
-    d = (tltn-tn)/(n-5)
-
+d = (s_sum-3*tn)//6 if n == 5 else (tltn-tn)/(n-5)
 a = tn-2*d
 j = 0
 print("Series:")
-for j in range(n-1):
+for _ in range(n-1):
     print(int(a), end=" ")
     a += d
 print(int(a), end=" ")
@@ -574,13 +547,11 @@ def num_comm_div(x, y):
     n = ngcd(x, y)
     result = 0
     z = int(n**0.5)
-    i = 1
-    while(i <= z):
+    for i in range(1, z + 1):
         if(n % i == 0):
             result += 2
             if(i == n/i):
                 result -= 1
-        i += 1
     return result
 
 
@@ -610,22 +581,14 @@ def carry_number(x, y):
     if(x == 0 and y == 0):
         return 0
     z = 0
-    for i in reversed(range(10)):
+    for _ in reversed(range(10)):
         z = x % 10 + y % 10 + z
-        if z > 9:
-            z = 1
-        else:
-            z = 0
+        z = 1 if z > 9 else 0
         ctr += z
         x //= 10
         y //= 10
 
-    if ctr == 0:
-        return "No carry operation."
-    elif ctr == 1:
-        return ctr
-    else:
-        return ctr
+    return "No carry operation." if ctr == 0 else ctr
 
 
 print(carry_number(786, 457))
@@ -633,7 +596,7 @@ print(carry_number(5, 6))
 
 # 32. python program to find heights of the top three building in descending order from eight given buildings
 print("Input the heights of eight buildings:")
-l = [int(input()) for i in range(8)]
+l = [int(input()) for _ in range(8)]
 print("Heights of the top three buildings:")
 l.sort(reverse=True)
 print(l[:3], end='\n')
@@ -653,10 +616,6 @@ if x**2+y**2 == z**2:
 else:
     print('No')
 
-# 35. program which solve the equation: Go to the editor
-    # ax+by=c
-    # dx+ey=f
-    # Print the values of x, y where a, b, c, d, e and f are given.
 print("Input the value of a, b, c, d, e, f:")
 a, b, c, d, e, f = map(float, input().split())
 n = a*e - b*d
@@ -670,20 +629,18 @@ if n != 0:
 #Interest is fixed @5% PA
 x = int(input("Amount? "))
 period = int(input("Period? "))
-for i in range(period):
+for _ in range(period):
     x = math.trunc(x*.05+x)
-    if x % 1000 == 0:
-        x = x
-    else:
-        x = (1000-(x % 1000))+x
+    x = x if x % 1000 == 0 else (1000-(x % 1000))+x
 print("Amount of Debt: ", x)
 
 # 37. program which reads an integer n and find the number of combinations of a,b,c and d (0 <= a,b,c,d <= 9) where (a + b + c + d) will be equal to n.
 print("Input the number(n):")
 n = int(input())
-result = 0
-for (i, j, k) in itertools.product(range(10), range(10), range(10)):
-    result += (0 <= n-(i+j+k) <= 9)
+result = sum(
+    (0 <= n - (i + j + k) <= 9)
+    for i, j, k in itertools.product(range(10), range(10), range(10))
+)
 print("Number of combinations:", result)
 
 # 38. print the number of prime numbers which are less than or equal to a given integer.
@@ -691,16 +648,11 @@ print("Number of combinations:", result)
 
 def is_prime(n):
     for i in range(2, int(n//2)+1):
-        if n % i == 0:
-            return False
-        return True
+        return n % i != 0
 
 
 n = int(input('Input an integer: '))
-list_primes = []
-for j in range(2, n+1):
-    if is_prime(j):
-        list_primes.append(j)
+list_primes = [j for j in range(2, n+1) if is_prime(j)]
 print("Number of prime numbers which are less than or equal to n.:",
       len(list_primes))
 
@@ -745,8 +697,7 @@ else:
 
 # 42. program that accepts six numbers as input and sorts them in descending order
 print("Input six integers:")
-nums = list(map(int, input().split()))
-nums.sort()
+nums = sorted(map(int, input().split()))
 nums.reverse()
 print("After sorting the said ntegers:")
 print(*nums)
@@ -775,10 +726,9 @@ numlist = [-2, -3, 4, -1, -2, 1, 5, -3]
 print(numlist)
 sumlst = []
 
-for i in range(0, len(numlist)):
-    for j in range(2, len(numlist)+1):
-        x = sum(numlist[i:j])
-        sumlst.append(x)
+for i, j in itertools.product(range(len(numlist)), range(2, len(numlist)+1)):
+    x = sum(numlist[i:j])
+    sumlst.append(x)
 
 print("Maximum sum is : ", max(sumlst))
 
@@ -801,12 +751,6 @@ elif d > r1+r2:
 else:
     print("C1 and C2  do not overlap")
 
-# 46. Write a Python program to that reads a date (from 2016/1/1 to 2016/12/31) and prints the day of the date. Jan. 1, 2016, is Friday. Note that 2016 is a leap year. Go to the editor
-    # Input:
-    # Two integers m and d separated by a single space in a line, m ,d represent the month and the day.
-    # Input month and date (separated by a single space):
-    # 5 15
-    # Name of the date: Sunday
 print("Input month and date (separated by a single space):")
 m, d = map(int, input().split())
 weeks = {1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
@@ -847,11 +791,7 @@ while True:
     if x == 0 and y == 0:
         break
     s = list(itertools.combinations(range(10), x))
-    ctr = 0
-    for i in s:
-        if sum(i) == y:
-            ctr += 1
-
+    ctr = sum(sum(i) == y for i in s)
 print(ctr)
 
 # 49.  program which reads the two adjoined sides and the diagonal of a parallelogram and check whether the parallelogram is a rectangle or a rhombus.
@@ -902,7 +842,7 @@ while True:
 print("Input an even number (0 to exit):")
 ub = 50000
 is_prime = [0, 0, 1, 1] + [0]*(ub-3)
-is_prime[5::6] = is_prime[7::6] = [1]*int(ub/6)
+is_prime[5::6] = is_prime[7::6] = [1] * (ub // 6)
 primes = [2, 3]
 append = primes.append
 
@@ -915,22 +855,19 @@ primes.sort()
 for n in map(int, sys.stdin):
     if not n:
         break
+    print("Number of combinations:")
     if n % 2:
-        print("Number of combinations:")
         print(is_prime[n-2])
     else:
-        print("Number of combinations:")
         print(len([1 for p in primes[:bisect_right(primes, n/2)] if is_prime[n-p]]))
 
-# 54. if you draw a straight line on a plane, the plane is divided into two regions. For example, if you pull two straight lines in parallel, you get three areas, and if you draw vertically one to the other you get 4 areas.
-    # Write a Python program to create maximum number of regions obtained by drawing n given straight lines
 while True:
     print("Input number of straight lines (o to exit): ")
     n = int(input())
     if n <= 0:
         break
     print("Number of regions:")
-    print((n*n+n+2)//2)
+    print((n**2 + n + 2) // 2)
 
 # 55. There are four different points on a plane, P(xp,yp), Q(xq, yq), R(xr, yr) and S(xs, ys). Write a Python program to test AB and CD are orthogonal or not.
 while True:
@@ -985,11 +922,10 @@ while 1:
     x = [list(input()) for _ in [0]*10]
     c = 1
     b = 0
-    for i in range(10):
-        for j in range(10):
-            if x[j][i] == '1':
-                b += 1
-                f(x, i, j)
+    for i, j in itertools.product(range(10), range(10)):
+        if x[j][i] == '1':
+            b += 1
+            f(x, i, j)
     print("Number of islands:")
     print(b)
 
@@ -1025,8 +961,12 @@ print(restore_original_str("#39+1=1#30"))
 def poly_area(c):
     add = []
     for i in range(0, (len(c) - 2), 2):
-        add.append(c[i] * c[i + 3] - c[i + 1] * c[i + 2])
-        add.append(c[len(c) - 2] * c[1] - c[len(c) - 1] * c[0])
+        add.extend(
+            (
+                c[i] * c[i + 3] - c[i + 1] * c[i + 2],
+                c[len(c) - 2] * c[1] - c[len(c) - 1] * c[0],
+            )
+        )
         return abs(sum(add) / 2)
 
 
@@ -1047,21 +987,16 @@ print(*[y for y in yy.split() if 3 <= len(y) <= 6])
 
 
 def gcd(x, y):
-    gcd = 1
     # Assign z the highest value, either x or y
     if x % y == 0:
         return y
-    # Iterate in reverse manner, make sure to typecast y/2 as int
-    for z in range(int(y / 2), 0, -1):
-        if x % z == 0 and y % z == 0:
-            gcd = z
-            break
-
-    return gcd
+    return next(
+        (z for z in range(int(y / 2), 0, -1) if x % z == 0 and y % z == 0), 1
+    )
 
 
 def lcm(x, y):
-    z = x if x > y else y
+    z = max(x, y)
     while (True):
         if (z % x == 0 and z % y == 0):
             lcm = z
@@ -1104,9 +1039,7 @@ for i in range(2001):
 while True:
     try:
         n = int(input())
-        ans = 0
-        for i in range(n + 1):
-            ans += pair_dict[i] * pair_dict[n - i]
+        ans = sum(pair_dict[i] * pair_dict[n - i] for i in range(n + 1))
         print("Number of combinations of a,b,c,d:", ans)
     except EOFError:
         break
@@ -1118,10 +1051,7 @@ while True:
     if n == 0:
         break
     print("Input cell value:")
-    x = []
-    for i in range(n):
-        x.append([int(num) for num in input().split()])
-
+    x = [[int(num) for num in input().split()] for _ in range(n)]
     for i in range(n):
         sum = 0
         for j in range(n):
@@ -1259,10 +1189,7 @@ def isIsomorphic(str1, str2):
     for j, value in enumerate(str2):
         dict_str2[value] = dict_str2.get(value, []) + [j]
 
-    if sorted(dict_str1.values()) == sorted(dict_str2.values()):
-        return True
-    else:
-        return False
+    return sorted(dict_str1.values()) == sorted(dict_str2.values())
 
 
 print(isIsomorphic("foo", "bar"))
@@ -1297,10 +1224,7 @@ print(longest_Common_Prefix(["Python", "PHP", "Java"]))
 
 
 def reverse_vowels(str1):
-    vowels = ""
-    for char in str1:
-        if char in "aeiouAEIOU":
-            vowels += char
+    vowels = "".join(char for char in str1 if char in "aeiouAEIOU")
     result_string = ""
     for char in str1:
         if char in "aeiouAEIOU":
@@ -1378,18 +1302,14 @@ print(remove_element([], 1))
 
 
 def search_Range(array_nums, target_val):
-    result_arra = []
     start_pos = 0
     end_pos = 0
     for i in range(len(array_nums)):
-        if target_val == array_nums[i] and start_pos == -1:
-            start_pos = i
+        if target_val == array_nums[i]:
+            if start_pos == -1:
+                start_pos = i
             end_pos = i
-        elif target_val == array_nums[i] and start_pos != -1:
-            end_pos = i
-    result_arra.append(start_pos)
-    result_arra.append(end_pos)
-    return result_arra
+    return [start_pos, end_pos]
 
 
 print(search_Range([5, 7, 7, 8, 8, 8], 8))
@@ -1407,17 +1327,15 @@ def print_matrix(nums):
     for line in nums:
 
         if flag == True:
-            i = 0
-            while i < len(line):
+            for i in range(len(line)):
                 print(line[i])
-                i += 1
             flag = False
 
         else:
             i = -1
             while i > -1 * len(line) - 1:
                 print(line[i])
-                i = i - 1
+                i -= 1
             flag = True
 
 
@@ -1451,12 +1369,12 @@ def first_missing_number(nums):
     nums.sort()
     smallest_int_num = 0
     for i in range(len(nums) - 1):
-        if nums[i] <= 0 or nums[i] == nums[i + 1]:
-            continue
-        else:
-            if nums[i + 1] - nums[i] != 1:
-                smallest_int_num = nums[i] + 1
-                return smallest_int_num
+        if (
+            nums[i] > 0
+            and nums[i] != nums[i + 1]
+            and nums[i + 1] - nums[i] != 1
+        ):
+            return nums[i] + 1
     if smallest_int_num == 0:
         smallest_int_num = nums[-1] + 1
     return smallest_int_num
@@ -1490,9 +1408,11 @@ print(is_symmetrical_num(990099))
 
 
 def count_sum(nums):
-    if not nums:
-        return []
-    return [len([n for n in nums if n < 0]), sum(n for n in nums if n > 0)]
+    return (
+        [len([n for n in nums if n < 0]), sum(n for n in nums if n > 0)]
+        if nums
+        else []
+    )
 
 
 print(count_sum([1, 2, 3, 4, 5]))
@@ -1517,11 +1437,8 @@ print(check_isogram("Java"))
 
 
 def test_three_equal(x, y, z):
-    result = set([x, y, z])
-    if len(result) == 3:
-        return 0
-    else:
-        return (4 - len(result))
+    result = {x, y, z}
+    return 0 if len(result) == 3 else (4 - len(result))
 
 
 print(test_three_equal(1, 1, 1))
@@ -1533,7 +1450,7 @@ print(test_three_equal(-1, -1, -1))
 
 
 def is_valid_emp_code(emp_code):
-    return len(emp_code) in [8, 12] and emp_code.isdigit()
+    return len(emp_code) in {8, 12} and emp_code.isdigit()
 
 
 print(is_valid_emp_code('12345678'))
@@ -1546,7 +1463,7 @@ print(is_valid_emp_code('123456abcdef'))
 
 
 def string_letter_check(list_data):
-    return all([char in list_data[0].lower() for char in list_data[1].lower()])
+    return all(char in list_data[0].lower() for char in list_data[1].lower())
 
 
 print(string_letter_check(["python", "ypth"]))
@@ -1638,7 +1555,7 @@ print(odd_even_position([4, 1, 2]))
 
 
 def is_narcissistic_num(num):
-    return num == sum([int(x) ** len(str(num)) for x in str(num)])
+    return num == sum(int(x) ** len(str(num)) for x in str(num))
 
 
 print(is_narcissistic_num(153))
@@ -1665,10 +1582,7 @@ print(highest_lowest_num("0 0"))
 
 # 98. check whether a sequence of numbers has an increasing trend or not.
 def increasing_trend(nums):
-    if (sorted(nums) == nums):
-        return True
-    else:
-        return False
+    return sorted(nums) == nums
 
 
 print(increasing_trend([1, 2, 3, 4]))
@@ -1866,7 +1780,7 @@ print(digit_distance_nums(24232, 45645))
 
 
 def reverse_even(txt):
-    return ' '.join(i[::-1] if not len(i) % 2 else i for i in txt.split())
+    return ' '.join(i if len(i) % 2 else i[::-1] for i in txt.split())
 
 
 print(reverse_even("The quick brown fox jumps over the lazy dog"))
@@ -1889,11 +1803,7 @@ print(list(map(str, nums)))
 
 
 def is_not_prime(n):
-    ans = False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
-            ans = True
-    return ans
+    return any(n % i == 0 for i in range(2, int(math.sqrt(n)) + 1))
 
 
 print("Nonprime numbers between 1 to 100:")
@@ -1966,9 +1876,8 @@ def is_coprime(x, y):
 def phi_func(x):
     if x == 1:
         return 1
-    else:
-        n = [y for y in range(1, x) if is_coprime(x, y)]
-        return len(n)
+    n = [y for y in range(1, x) if is_coprime(x, y)]
+    return len(n)
 
 
 print(phi_func(10))

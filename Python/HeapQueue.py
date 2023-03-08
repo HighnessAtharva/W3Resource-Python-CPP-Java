@@ -28,7 +28,7 @@ def heapsort(iterable):
     h = []
     for value in iterable:
         hq.heappush(h, value)
-    return [hq.heappop(h) for i in range(len(h))]
+    return [hq.heappop(h) for _ in range(len(h))]
 print(heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0]))
 
 # 4. Write a Python function which accepts an arbitrary list and converts it to a heap using Heap queue algorithm. 
@@ -53,7 +53,7 @@ nums_list = [18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1]
 print("Original list:")
 print(nums_list)
 hq.heapify(nums_list)
-s_result = [hq.heappop(nums_list) for i in range(len(nums_list))]
+s_result = [hq.heappop(nums_list) for _ in range(len(nums_list))]
 print("\nSorted list:")
 print(s_result)
 
@@ -106,10 +106,9 @@ def func(nums, k):
             temp.append((v, key))
             if len(temp) == k:
                 heapq.heapify(temp)
-        else:
-            if v > temp[0][0]:
-                heapq.heappop(temp)
-                heapq.heappush(temp, (v, key))
+        elif v > temp[0][0]:
+            heapq.heappop(temp)
+            heapq.heappush(temp, (v, key))
     result = []
     while temp:
         v, key = heapq.heappop(temp)
@@ -272,7 +271,7 @@ class Median_Finder:
         #type num: int, rtype: void
         if not self.max_heap and not self.min_heap:
             heapq.heappush(self.min_heap, num)
-            return 
+            return
         if not self.max_heap:
             if num > self.min_heap[0]:
                 heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
@@ -291,12 +290,11 @@ class Median_Finder:
                 heapq.heappush(self.max_heap, -num)
             else:
                 heapq.heappush(self.min_heap, num)
+        elif num > self.min_heap[0]:
+            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+            heapq.heappush(self.min_heap, num)
         else:
-            if num > self.min_heap[0]:
-                heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
-                heapq.heappush(self.min_heap, num)
-            else:
-                heapq.heappush(self.max_heap, -num)
+            heapq.heappush(self.max_heap, -num)
         
 
     def find_Median(self):
@@ -386,10 +384,7 @@ def show_tree(tree, total_width=60, fill=' '):
     output = StringIO()
     last_row = -1
     for i, n in enumerate(tree):
-        if i:
-            row = int(math.floor(math.log(i+1, 2)))
-        else:
-            row = 0
+        row = int(math.floor(math.log(i+1, 2))) if i else 0
         if row != last_row:
             output.write('\n')
         columns = 2**row
@@ -502,7 +497,7 @@ def heapsort(h):
     heap = []
     for value in h:
         heapq.heappush(heap, value)
-    return [heapq.heappop(heap) for i in range(len(heap))]
+    return [heapq.heappop(heap) for _ in range(len(heap))]
 print(heapsort([10, 20, 50, 70, 90, 20, 50, 40, 60, 80, 100]))
 
 # 25. Write a Python program to get the two largest and three smallest items from a dataset. 

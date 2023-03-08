@@ -235,7 +235,7 @@ with open('departments.csv', newline='') as csvfile:
     print(', '.join(row))
 print("\nTotal no. of rows: %d" % (data.line_num))
 print('Field names are:')
-print(', '.join(field for field in fields))
+print(', '.join(fields))
 '''
 CSV FILE SAME AS ABOVE
 '''

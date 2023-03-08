@@ -2,6 +2,7 @@
 1. Write a Python program to check that a string contains only a certain set of
 characters (in this case a-z, A-Z and 0-9).
 """
+
 import re
 my_string = input('enter a string: ')
 p = re.compile('[^0-9A-Za-z ]+')
@@ -215,7 +216,7 @@ print(my_clean_IP)
 import re
 my_string = input('enter a string ')
 my_number = input('enter a number ')
-m = re.search(my_number+'$', my_string)
+m = re.search(f'{my_number}$', my_string)
 if m:
     print('it\'s a match')
 else:
@@ -289,7 +290,7 @@ my_string = 'Python exercises, PHP exercises, C# exercises'
 my_substring = 'exercises'
 m = re.finditer(my_substring, my_string)
 for match in m:
-    print('string \'{}\''.format(my_substring), 'found at position', match.span())
+    print(f"string \'{my_substring}\'", 'found at position', match.span())
 
 """
 23. Write a Python program to replace whitespaces with an underscore and

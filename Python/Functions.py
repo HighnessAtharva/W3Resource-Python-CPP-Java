@@ -5,10 +5,7 @@ Expected Output : "dcba4321"
 """
 
 def reverse_string(my_string):
-    reversed_string = ''
-    for character in my_string[::-1]:
-        reversed_string += character
-    return reversed_string
+    return ''.join(my_string[::-1])
 
 my_string = input('please enter a string: ')
 print('the reversed string is:', reverse_string(my_string))
@@ -29,10 +26,7 @@ print('the factorial of your integer is:', factorial(my_number))
 
 # solution 2
 def factorial(number):
-    fact = 1
-    if number > 1:
-        fact = number*(factorial(number-1))
-    return fact
+    return number*(factorial(number-1)) if number > 1 else 1
 
 my_number = int(input('please enter a positive integer: '))
 print('the factorial of your integer is:', factorial(my_number))
@@ -42,9 +36,7 @@ print('the factorial of your integer is:', factorial(my_number))
 """
 
 def is_in_range(number, n, m):
-    if number in range(n,m+1):
-        return True
-    return False
+    return number in range(n,m+1)
 
 num = int(input('please enter a number: '))
 n = 0
@@ -76,12 +68,7 @@ and that has no positive divisors other than 1 and itself.
 """
 
 def is_prime(number):
-    if number == 1:
-        return True
-    for i in range(2, number):
-        if number%i == 0:
-            return False
-    return True
+    return True if number == 1 else all(number%i != 0 for i in range(2, number))
 
 my_number = int(input('please enter a number: '))
 
@@ -105,14 +92,8 @@ the perfect numbers 496 and 8128.
 """
 
 def is_perfect(number):
-    divisors_sum = 0
-    for i in range(1, int(number/2)+1):
-        if number%i == 0:
-            divisors_sum += i
-    if divisors_sum == number:
-        return True
-    else:
-        return False
+    divisors_sum = sum(i for i in range(1, int(number/2)+1) if number%i == 0)
+    return divisors_sum == number
 
 print(is_perfect(6))
 print(is_perfect(10))
@@ -150,10 +131,7 @@ def is_pangram(your_string):
         if letter.isalpha() and letter not in alphabet:
             alphabet += letter
     alphabet = ''.join(sorted(alphabet))
-    if alphabet == 'abcdefghijklmnopqrstuvwxyz':
-        return True
-    else:
-        return False
+    return alphabet == 'abcdefghijklmnopqrstuvwxyz'
 
 print(is_pangram("The quick brown fox jumps over the lazy dog"))
 
@@ -195,13 +173,7 @@ def div_decorator(func):
 @paragraph_decorator
 @div_decorator
 def s_to_dollarsign(your_string):
-    new_string = ''
-    for letter in your_string:
-        if letter == 's':
-            new_string += '$'
-        else:
-            new_string += letter
-    return new_string
+    return ''.join('$' if letter == 's' else letter for letter in your_string)
 
 print(s_to_dollarsign('Despite their heavy build and awkward gait, \nbears are adept runners, climbers, and swimmers.'))
 
@@ -224,7 +196,8 @@ exec(my_code_object)
 def my_function(num):
     print('your number is', num)
     def my_nested_func(s):
-        print((s+' ')*num)
+        print(f'{s} ' * num)
+
     return my_nested_func
 
 my_number = int(input('enter a number from 0 to 10: '))
@@ -241,8 +214,8 @@ def my_function(number):
     a = 4
     b = 'google'
     x = []
-    for i in range(number):
-        print('{} is awesome and a equals {}'.format(b, a))
+    for _ in range(number):
+        print(f'{b} is awesome and a equals {a}')
 
 my_function(2)
 print(my_function.__code__.co_nlocals)

@@ -12,8 +12,7 @@ NOTE:'''Python Bisect Excercises'''
 # 1. Write a Python program to locate the left insertion point for a specified value in sorted order. 
 # Expected Output: 4 2
 def index(a, x):
-    i = bisect.bisect_left(a, x)
-    return i
+    return bisect.bisect_left(a, x)
 a = [1, 2, 4, 5]
 print(index(a, 6))
 print(index(a, 3))
@@ -21,8 +20,7 @@ print(index(a, 3))
 # 2. Write a Python program to locate the right insertion point for a specified value in sorted order. 
 # Expected Output: 3 2
 def index(a, x):
-    i = bisect.bisect_right(a, x)
-    return i
+    return bisect.bisect_right(a, x)
 a = [1, 2, 4, 7]
 print(index(a, 6))
 print(index(a, 3))
@@ -50,11 +48,8 @@ print(sorted_list)
 # First occurrence of 8 is present at index 4
 from bisect import bisect_left   
 def Binary_Search(a, x): 
-    i = bisect_left(a, x) 
-    if i != len(a) and a[i] == x: 
-        return i 
-    else: 
-        return -1
+    i = bisect_left(a, x)
+    return i if i != len(a) and a[i] == x else -1
 
 nums = [1, 2, 3, 4, 8, 8, 10, 12] 
 x = 8 
@@ -68,11 +63,7 @@ else:
 # Expected Output:
 # Largest value smaller than 5 is at index 3
 def Binary_Search(l, x):
-    i = bisect_left(l, x)
-    if i:
-        return (i-1)
-    else:
-        return -1
+    return (i-1) if (i := bisect_left(l, x)) else -1
 
 nums = [1, 2, 3, 4, 8, 8, 10, 12]
 x = 5
@@ -87,10 +78,7 @@ else:
 # Last occurrence of 8 is present at 5
 def BinarySearch(a, x):
     i = bisect_right(a, x)
-    if i != len(a)+1 and a[i-1] == x:
-        return (i-1)
-    else:
-        return -1
+    return (i-1) if i != len(a)+1 and a[i-1] == x else -1
 
 nums = [1, 2, 3, 4, 8, 8, 10, 12]
 x = 8
@@ -119,9 +107,10 @@ class Solution:
         for i, v in enumerate(nums):
             if num_freq[v] >= 2:
                 complement = -2 * v
-                if complement in num_freq:
-                    if complement != v or num_freq[v] >= 3:
-                        triplets.append([v] * 2 + [complement])
+                if complement in num_freq and (
+                    complement != v or num_freq[v] >= 3
+                ):
+                    triplets.append([v] * 2 + [complement])
 
             # When all 3 numbers are different.
             if v < 0:  # Only when v is the smallest
@@ -275,10 +264,6 @@ print("\nArray values & target value:",nums,"&",target)
 print("Solution Set:\n", result)
 
 NOTE: '''Python Enum Excercises'''
-# 1. Write a Python program to create an Enum object and display a member name and value. 
-# Sample data:
-# Member name: Albania
-# Member value: 355
 class Country(Enum):
     Afghanistan = 93
     Albania = 355
@@ -287,17 +272,9 @@ class Country(Enum):
     Angola = 244
     Antarctica = 672
 
-print('\nMember name: {}'.format(Country.Albania.name))
-print('Member value: {}'.format(Country.Albania.value))
+print(f'\nMember name: {Country.Albania.name}')
+print(f'Member value: {Country.Albania.value}')
 
-# 2. Write a Python program to iterate over an enum class and display individual member and their value. 
-# Expected Output:
-# Afghanistan = 93
-# Albania = 355
-# Algeria = 213
-# Andorra = 376
-# Angola = 244
-# Antarctica = 672
 class Country(Enum):
     Afghanistan = 93
     Albania = 355
@@ -310,15 +287,6 @@ for data in Country:
     print('{:15} = {}'.format(data.name, data.value))
 
 
-# 3. Write a Python program to display all the member name of an enum class ordered by their values. 
-# Expected Output:
-# Country Name ordered by Country Code:
-# Afghanistan
-# Algeria
-# Angola
-# Albania
-# Andorra
-# Antarctica
 class Country(enum.IntEnum):
     Afghanistan = 93
     Albania = 355
@@ -329,12 +297,9 @@ class Country(enum.IntEnum):
 
 
 print('Country Name ordered by Country Code:')
-print('\n'.join('  ' + c.name for c in sorted(Country)))
+print('\n'.join(f'  {c.name}' for c in sorted(Country)))
 
 
-# 4. Write a Python program to get all values from an enum class. 
-# Expected output:
-# [93, 355, 213, 376, 244, 672]
 class Country(IntEnum):
     Afghanistan = 93
     Albania = 355
